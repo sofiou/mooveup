@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moove Up — Progress where you are</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════
+   RESET & TOKENS
+═══════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --or:#FF4D00; --or-d:#CC3D00; --or-l:#FFF3EE; --or-m:#FF7A3D;
+  --ch:#2C2C2A; --ch-4:#6E6C66; --ch-1:#F5F4F2; --ch-2:#D8D6D0;
+  --wh:#ffffff;
+  --gr:#58CC02; --gr-l:#D7FFB8; --gr-d:#3A8A00;
+  --bl:#1CB0F6; --bl-l:#DDF4FF;
+  --pu:#CE82FF; --pu-l:#F1D9FF; --pu-d:#7B2FBE;
+  --ye:#FFC800; --ye-l:#FFF8D4;
+  --re:#FF4B4B; --re-l:#FFE0E0;
+  --r-sm:10px; --r-md:16px; --r-lg:22px; --r-xl:32px; --r-pill:999px;
+  --sh:0 2px 16px rgba(44,44,42,.08);
+  --sh-lg:0 8px 40px rgba(44,44,42,.14);
+  --sh-or:0 4px 24px rgba(255,77,0,.28);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito Sans',sans-serif;background:var(--wh);color:var(--ch);overflow-x:hidden;line-height:1.65}
+h1,h2,h3,h4,h5{font-family:'Nunito',sans-serif;font-weight:800;line-height:1.15}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit;border:none}
+
+/* ════════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:66px;padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,box-shadow .3s;
+}
+#nav.solid{border-color:rgba(44,44,42,.08);box-shadow:0 2px 20px rgba(44,44,42,.06)}
+.nav-brand{
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:1.35rem;
+  display:flex;align-items:center;gap:4px;
+}
+.nav-brand span:first-child{color:var(--ch)}
+.nav-brand span:last-child{color:var(--or)}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:.875rem;
+  color:var(--ch-4);transition:color .2s;
+}
+.nav-links a:hover{color:var(--or)}
+.nav-btn{
+  background:var(--or);color:var(--wh);
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:.875rem;
+  padding:10px 22px;border-radius:var(--r-pill);
+  box-shadow:var(--sh-or);transition:background .2s,transform .15s,box-shadow .2s;
+}
+.nav-btn:hover{background:var(--or-d);transform:translateY(-1px);box-shadow:0 6px 28px rgba(255,77,0,.35)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:4px;background:none;border:none}
+.hamburger span{width:22px;height:2px;background:var(--ch);border-radius:2px;transition:.3s;display:block}
+.mobile-menu{
+  display:none;position:fixed;top:66px;left:0;right:0;z-index:199;
+  background:var(--wh);padding:20px 5% 28px;
+  border-bottom:1px solid var(--ch-2);
+  box-shadow:0 8px 32px rgba(44,44,42,.1);
+  flex-direction:column;gap:18px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;color:var(--ch-4);padding:4px 0}
+.mobile-menu .nav-btn{text-align:center;padding:14px}
+
+/* ════════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+#hero{
+  min-height:100vh;
+  padding:110px 5% 80px;
+  background:var(--ch-1);
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+}
+.hero-blob{
+  position:absolute;border-radius:50%;
+  background:var(--or);opacity:.07;
+  animation:blob-pulse 5s ease-in-out infinite;
+}
+.hero-blob-1{width:500px;height:500px;top:-120px;right:-80px}
+.hero-blob-2{width:320px;height:320px;bottom:-80px;left:-60px;animation-delay:2.5s}
+@keyframes blob-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.hero-inner{
+  max-width:1160px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+  position:relative;z-index:1;
+}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--or-l);color:var(--or-d);
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;
+  padding:6px 14px;border-radius:var(--r-pill);margin-bottom:20px;
+  animation:fadeup .6s ease both;
+}
+.hero h1{
+  font-size:clamp(2.2rem,4.5vw,3.4rem);
+  margin-bottom:18px;
+  animation:fadeup .6s .1s ease both;
+}
+.hero h1 em{color:var(--or);font-style:normal}
+.hero-sub{
+  font-size:1.05rem;color:var(--ch-4);max-width:440px;
+  margin-bottom:36px;
+  animation:fadeup .6s .2s ease both;
+}
+.hero-ctas{
+  display:flex;gap:14px;flex-wrap:wrap;
+  animation:fadeup .6s .3s ease both;
+}
+.btn-main{
+  background:var(--or);color:var(--wh);
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;
+  padding:14px 28px;border-radius:var(--r-pill);
+  box-shadow:var(--sh-or);
+  transition:background .2s,transform .15s,box-shadow .2s;
+}
+.btn-main:hover{background:var(--or-d);transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,77,0,.36)}
+.btn-ghost{
+  background:var(--wh);color:var(--ch);
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:.95rem;
+  padding:14px 28px;border-radius:var(--r-pill);
+  border:2px solid var(--ch-2);
+  transition:border-color .2s,color .2s,transform .15s;
+}
+.btn-ghost:hover{border-color:var(--or);color:var(--or);transform:translateY(-2px)}
+.hero-stats{
+  display:flex;gap:28px;margin-top:40px;
+  animation:fadeup .6s .45s ease both;
+}
+.hstat strong{display:block;font-family:'Nunito',sans-serif;font-weight:900;font-size:2rem;color:var(--or)}
+.hstat span{font-size:.78rem;font-weight:600;color:var(--ch-4)}
+.hero-visual{
+  display:flex;justify-content:center;align-items:center;
+  animation:fadeup .6s .2s ease both;
+}
+/* Phone frame */
+.phone{
+  width:240px;
+  background:var(--ch);
+  border-radius:40px;
+  padding:10px;
+  box-shadow:0 40px 90px rgba(44,44,42,.35),0 0 0 1px rgba(255,255,255,.05);
+  position:relative;
+}
+.phone-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:6px 14px 4px;color:var(--wh);font-size:10px;font-weight:700;
+  font-family:'Nunito',sans-serif;
+}
+.phone-notch{
+  width:72px;height:20px;background:var(--ch);
+  border-radius:0 0 14px 14px;margin:0 auto 4px;
+}
+.phone-screen{
+  background:var(--wh);border-radius:30px;overflow:hidden;min-height:480px;
+  display:flex;flex-direction:column;
+}
+@keyframes fadeup{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ════════════════════════════════════════
+   DEMO SECTION
+═══════════════════════════════════════ */
+#demo{
+  background:var(--ch);
+  padding:96px 5%;
+  position:relative;overflow:hidden;
+}
+#demo::before{
+  content:'';position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:var(--or);opacity:.04;
+  top:-200px;right:-100px;
+}
+.demo-inner{
+  max-width:1160px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center;
+}
+.demo-label{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,77,0,.18);color:#FF9A7A;
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;
+  padding:6px 14px;border-radius:var(--r-pill);margin-bottom:16px;
+}
+.demo-inner h2{color:var(--wh);font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:14px}
+.demo-sub{color:rgba(255,255,255,.55);font-size:1rem;margin-bottom:28px}
+/* Step tabs */
+.step-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.stab{
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;
+  padding:8px 16px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);
+  border:1.5px solid rgba(255,255,255,.1);
+  transition:all .2s;
+}
+.stab:hover:not(.on){background:rgba(255,255,255,.13);color:rgba(255,255,255,.8)}
+.stab.on{background:var(--or);color:var(--wh);border-color:var(--or);box-shadow:0 4px 18px rgba(255,77,0,.35)}
+.step-desc{
+  font-size:.9rem;color:rgba(255,255,255,.45);
+  line-height:1.7;min-height:52px;
+  transition:opacity .3s;
+}
+/* Demo phone */
+.demo-phone-wrap{
+  display:flex;justify-content:center;
+  animation:float 3.5s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.demo-phone-wrap .phone{width:210px}
+/* Progress bar inside demo */
+.app-prog{
+  height:3px;background:rgba(255,255,255,.15);
+  border-radius:2px;margin-bottom:0;
+}
+.app-prog-fill{
+  height:3px;background:var(--or);border-radius:2px;
+  transition:width .4s ease;
+}
+/* App screens */
+.ascreen{display:none;flex-direction:column;flex:1}
+.ascreen.on{display:flex}
+.atop{
+  background:var(--wh);padding:10px 14px 8px;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;color:var(--ch);
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid #f0f0f0;
+}
+.abody{flex:1;background:#f8f8f8;padding:10px;overflow:hidden}
+.afoot{
+  background:var(--wh);border-top:1px solid #f0f0f0;
+  display:flex;justify-content:space-around;padding:7px 0 5px;
+}
+.atab{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  font-size:7px;font-family:'Nunito',sans-serif;font-weight:700;
+  color:#ccc;cursor:pointer;transition:color .2s;padding:0 6px;
+}
+.atab.on,.atab:hover{color:var(--or)}
+.atab-icon{font-size:14px;line-height:1}
+/* Reusable app components */
+.ac{background:var(--wh);border-radius:10px;padding:9px 10px;margin-bottom:6px;border:.5px solid #e8e8e8}
+.ac-or{background:var(--or);border-radius:10px;padding:10px;margin-bottom:6px;color:var(--wh)}
+.atitle{font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;color:var(--ch);margin-bottom:5px}
+.amuted{font-size:8px;color:#aaa}
+.apill-g{background:var(--gr-l);color:var(--gr-d);font-size:7px;font-weight:700;padding:2px 8px;border-radius:20px;display:inline-block}
+.apill-o{background:var(--or-l);color:var(--or-d);font-size:7px;font-weight:700;padding:2px 8px;border-radius:20px;display:inline-block}
+.apill-b{background:var(--bl-l);color:#004a6b;font-size:7px;font-weight:700;padding:2px 8px;border-radius:20px;display:inline-block}
+.abtn{background:var(--or);color:var(--wh);border-radius:8px;padding:8px;text-align:center;font-family:'Nunito',sans-serif;font-weight:800;font-size:10px;cursor:pointer;margin-top:5px}
+.abtn-ghost{border:1.5px solid var(--or);color:var(--or);border-radius:8px;padding:7px;text-align:center;font-family:'Nunito',sans-serif;font-weight:800;font-size:10px;cursor:pointer;margin-top:5px}
+.arow{display:flex;align-items:center;gap:7px;background:var(--wh);border-radius:8px;padding:7px;margin-bottom:5px;border:.5px solid #eee}
+.aicon{width:26px;height:26px;border-radius:7px;background:var(--or);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.apbar{height:4px;background:#f0f0f0;border-radius:3px;margin-top:5px}
+.apfill{height:4px;background:var(--or);border-radius:3px}
+.aavatar{width:28px;height:28px;border-radius:50%;background:var(--or);color:var(--wh);font-family:'Nunito',sans-serif;font-weight:800;font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+/* Demo nav arrows */
+.demo-nav{display:flex;align-items:center;gap:12px;margin-top:20px}
+.dnav-btn{
+  background:rgba(255,255,255,.1);color:var(--wh);
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;
+  padding:10px 20px;border-radius:var(--r-pill);
+  border:1.5px solid rgba(255,255,255,.15);
+  transition:all .2s;
+}
+.dnav-btn:hover{background:rgba(255,255,255,.18)}
+.dnav-btn.primary{background:var(--or);border-color:var(--or);box-shadow:0 4px 18px rgba(255,77,0,.3)}
+.dnav-btn.primary:hover{background:var(--or-d)}
+.demo-dots{display:flex;gap:6px;margin-left:auto}
+.ddot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .3s}
+.ddot.on{background:var(--or);width:18px;border-radius:4px}
+
+/* ════════════════════════════════════════
+   COACHES
+═══════════════════════════════════════ */
+#coaches{padding:96px 5%;background:var(--wh)}
+.sec-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--or-l);color:var(--or-d);
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;
+  padding:6px 14px;border-radius:var(--r-pill);margin-bottom:14px;
+}
+.sec-title{font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:12px}
+.sec-title em{color:var(--or);font-style:normal}
+.sec-sub{font-size:1rem;color:var(--ch-4);max-width:500px;margin-bottom:56px}
+.coaches-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.ccard{
+  border-radius:var(--r-xl);overflow:hidden;
+  border:2px solid var(--ch-1);
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+  cursor:pointer;background:var(--wh);
+}
+.ccard:hover{transform:translateY(-8px);box-shadow:var(--sh-lg)}
+.ccard.muscu:hover{border-color:var(--gr)}
+.ccard.running:hover{border-color:var(--bl)}
+.ccard.souple:hover{border-color:var(--pu)}
+.ccard-img{
+  width:100%;aspect-ratio:3/2;
+  background:var(--ch-1);
+  overflow:hidden;position:relative;
+}
+.ccard-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.ccard:hover .ccard-img img{transform:scale(1.06)}
+/* Placeholder dog photo styling */
+.ccard-img .dog-ph{
+  width:100%;height:100%;object-fit:cover;
+}
+.ccard-body{padding:20px 22px 24px}
+.ctag{
+  display:inline-block;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;
+  text-transform:uppercase;letter-spacing:.06em;
+  padding:4px 12px;border-radius:var(--r-pill);margin-bottom:12px;
+}
+.muscu .ctag{background:var(--gr-l);color:var(--gr-d)}
+.running .ctag{background:var(--bl-l);color:#004a6b}
+.souple .ctag{background:var(--pu-l);color:var(--pu-d)}
+.ccard-body h3{font-size:1.2rem;margin-bottom:4px}
+.ccard-body p{font-size:.875rem;color:var(--ch-4)}
+.ccard-expr{
+  display:flex;gap:6px;margin-top:14px;
+}
+.expr-dot{
+  width:28px;height:28px;border-radius:50%;
+  overflow:hidden;border:2px solid var(--ch-1);
+  background:var(--ch-2);font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .2s;
+}
+.ccard:hover .expr-dot{border-color:var(--wh)}
+.expr-dot:hover{transform:scale(1.15);z-index:1}
+
+/* ════════════════════════════════════════
+   FEATURES
+═══════════════════════════════════════ */
+#features{padding:96px 5%;background:var(--ch-1)}
+.features-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:0;
+}
+.fcard{
+  background:var(--wh);border-radius:var(--r-lg);
+  padding:28px 26px;
+  border:1.5px solid var(--ch-1);
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+  position:relative;overflow:hidden;
+}
+.fcard::after{
+  content:'';position:absolute;bottom:0;right:0;
+  width:70px;height:70px;border-radius:var(--r-lg) 0;
+  background:var(--or);opacity:.05;
+}
+.fcard:hover{transform:translateY(-5px);box-shadow:var(--sh-lg);border-color:var(--or-m)}
+.ficon{
+  width:52px;height:52px;border-radius:var(--r-md);
+  background:var(--or);color:var(--wh);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:18px;
+  box-shadow:0 4px 16px rgba(255,77,0,.25);
+}
+.fcard h3{font-size:1.05rem;margin-bottom:8px}
+.fcard p{font-size:.875rem;color:var(--ch-4);line-height:1.6}
+
+/* ════════════════════════════════════════
+   CONTACT / WAITLIST
+═══════════════════════════════════════ */
+#contact{
+  padding:96px 5%;
+  background:var(--or);
+  text-align:center;position:relative;overflow:hidden;
+}
+#contact::before,#contact::after{
+  content:'';position:absolute;border-radius:50%;
+  background:rgba(255,255,255,.06);
+}
+#contact::before{width:500px;height:500px;top:-200px;left:50%;transform:translateX(-50%)}
+#contact::after{width:300px;height:300px;bottom:-150px;right:10%}
+.contact-inner{max-width:600px;margin:0 auto;position:relative;z-index:1}
+#contact h2{font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--wh);margin-bottom:14px}
+#contact p{font-size:1.05rem;color:rgba(255,255,255,.8);margin-bottom:40px}
+.wform{
+  display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;
+}
+.wform input{
+  flex:1;min-width:220px;padding:15px 22px;
+  border-radius:var(--r-pill);border:none;font-size:.95rem;
+  font-family:'Nunito Sans',sans-serif;color:var(--ch);
+  outline:none;transition:box-shadow .2s;
+}
+.wform input:focus{box-shadow:0 0 0 3px rgba(255,255,255,.5)}
+.wform input::placeholder{color:var(--ch-4)}
+.wform textarea{
+  width:100%;padding:14px 22px;
+  border-radius:var(--r-md);border:none;
+  font-size:.9rem;font-family:'Nunito Sans',sans-serif;
+  color:var(--ch);resize:none;height:90px;
+  outline:none;transition:box-shadow .2s;
+}
+.wform textarea:focus{box-shadow:0 0 0 3px rgba(255,255,255,.5)}
+.wform textarea::placeholder{color:var(--ch-4)}
+.wsub{
+  width:100%;
+  background:var(--ch);color:var(--wh);
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;
+  padding:15px;border-radius:var(--r-pill);
+  transition:background .2s,transform .15s;
+}
+.wsub:hover{background:#111;transform:scale(1.02)}
+.wcount{color:rgba(255,255,255,.7);font-size:.85rem;margin-top:14px}
+.wcount strong{color:var(--wh);font-weight:800}
+#wsuccess{
+  display:none;
+  background:rgba(255,255,255,.18);color:var(--wh);
+  padding:16px 24px;border-radius:var(--r-md);
+  font-weight:700;font-size:1rem;margin-bottom:16px;
+}
+
+/* ════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer{
+  background:var(--ch);
+  padding:36px 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:20px;
+}
+.foot-brand span:first-child{color:var(--wh)}
+.foot-brand span:last-child{color:var(--or)}
+.foot-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.2rem;display:flex;gap:4px}
+.foot-links{display:flex;gap:22px}
+.foot-links a{font-size:.8rem;color:rgba(255,255,255,.45);transition:color .2s}
+.foot-links a:hover{color:var(--or)}
+.foot-copy{font-size:.75rem;color:rgba(255,255,255,.3)}
+
+/* ════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.up{opacity:1;transform:none}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media(max-width:960px){
+  .hero-inner,.demo-inner{grid-template-columns:1fr;gap:48px;text-align:center}
+  .hero-sub,.sec-sub{margin-left:auto;margin-right:auto}
+  .hero-ctas,.hero-stats{justify-content:center}
+  .hero-visual{order:-1}
+  .demo-phone-wrap{order:-1}
+  .step-tabs{justify-content:center}
+  .step-desc{text-align:left}
+  .coaches-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}
+  .features-grid{grid-template-columns:1fr 1fr}
+  .demo-nav{justify-content:center}
+  .demo-dots{margin-left:0}
+}
+@media(max-width:600px){
+  .nav-links,.nav-btn{display:none}
+  .hamburger{display:flex}
+  .features-grid{grid-template-columns:1fr}
+  section,#demo,#coaches,#features,#contact{padding:70px 5%}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════ -->
+<nav id="nav">
+  <div class="nav-brand"><span>MOOVE</span><span>UP</span></div>
+  <div class="nav-links">
+    <a href="#demo">Démo</a>
+    <a href="#coaches">Coachs</a>
+    <a href="#features">Fonctionnalités</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-btn" onclick="goTo('contact')">Rejoindre →</button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mmenu">
+  <a href="#demo" onclick="closeMenu()">Démo</a>
+  <a href="#coaches" onclick="closeMenu()">Coachs</a>
+  <a href="#features" onclick="closeMenu()">Fonctionnalités</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <button class="nav-btn" onclick="goTo('contact');closeMenu()">Rejoindre →</button>
+</div>
+
+<!-- ══ HERO ═════════════════════════════ -->
+<section id="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-pill">🏃 Bientôt disponible</div>
+      <h1>Bouge où tu veux.<br>Progresse <em>chaque jour.</em></h1>
+      <p class="hero-sub">Moove Up connecte les sportifs de tous niveaux à des coachs experts, leur loue l'équipement et les guide séance après séance — partout.</p>
+      <div class="hero-ctas">
+        <button class="btn-main" onclick="goTo('demo')">Voir la démo →</button>
+        <button class="btn-ghost" onclick="goTo('contact')">Rejoindre la liste</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><strong>3</strong><span>Coachs experts</span></div>
+        <div class="hstat"><strong>5</strong><span>Modules app</span></div>
+        <div class="hstat"><strong>0€</strong><span>À l'inscription</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone">
+        <div class="phone-bar"><span>9:41</span><span>●●●</span></div>
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <!-- Mini onboarding preview -->
+          <div style="padding:14px;flex:1;display:flex;flex-direction:column;background:#f8f8f8">
+            <div style="text-align:center;margin-bottom:14px">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:16px;color:#FF4D00">Moove Up</div>
+              <div style="font-size:9px;color:#aaa;margin-top:3px">Personnalisons ton parcours</div>
+              <div style="display:flex;gap:4px;justify-content:center;margin-top:8px">
+                <div style="width:18px;height:3px;background:#FF4D00;border-radius:2px"></div>
+                <div style="width:7px;height:3px;background:#e0e0e0;border-radius:2px"></div>
+                <div style="width:7px;height:3px;background:#e0e0e0;border-radius:2px"></div>
+              </div>
+            </div>
+            <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;margin-bottom:8px">Quel est ton objectif ?</div>
+            <div style="background:#fff;border-radius:10px;padding:9px;margin-bottom:5px;border:2px solid #FF4D00;display:flex;align-items:center;gap:8px">
+              <span style="font-size:15px">🔥</span>
+              <div><div style="font-size:10px;font-weight:700">Perdre du poids</div><div style="font-size:8px;color:#aaa">Cardio + renfo</div></div>
+            </div>
+            <div style="background:#fff;border-radius:10px;padding:9px;margin-bottom:5px;border:1.5px solid #eee;display:flex;align-items:center;gap:8px">
+              <span style="font-size:15px">💪</span>
+              <div><div style="font-size:10px;font-weight:700">Prendre du muscle</div><div style="font-size:8px;color:#aaa">Force & volume</div></div>
+            </div>
+            <div style="background:#fff;border-radius:10px;padding:9px;margin-bottom:5px;border:1.5px solid #eee;display:flex;align-items:center;gap:8px">
+              <span style="font-size:15px">❤️</span>
+              <div><div style="font-size:10px;font-weight:700">Garder la forme</div><div style="font-size:8px;color:#aaa">Équilibre & bien-être</div></div>
+            </div>
+            <div style="margin-top:auto;background:#FF4D00;color:#fff;border-radius:10px;padding:10px;text-align:center;font-family:Nunito,sans-serif;font-weight:800;font-size:11px">Continuer →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DEMO ══════════════════════════════ -->
+<section id="demo">
+  <div class="demo-inner section-inner">
+
+    <!-- Left: controls -->
+    <div>
+      <div class="reveal">
+        <div class="demo-label">📱 Démo interactive</div>
+        <h2>Teste l'app<br>dès maintenant</h2>
+        <p class="demo-sub">Navigue dans les 5 écrans clés de Moove Up comme si tu tenais le téléphone.</p>
+      </div>
+      <div class="step-tabs reveal" id="stabs">
+        <button class="stab on" onclick="setScreen(0)">① Onboarding</button>
+        <button class="stab" onclick="setScreen(1)">② Accueil</button>
+        <button class="stab" onclick="setScreen(2)">③ Location kit</button>
+        <button class="stab" onclick="setScreen(3)">④ Séance</button>
+        <button class="stab" onclick="setScreen(4)">⑤ Réservation</button>
+      </div>
+      <p class="step-desc reveal" id="sdesc">Configure tes objectifs, ton niveau et tes disponibilités. L'app adapte tout ton parcours en 3 étapes simples.</p>
+      <div class="demo-nav reveal">
+        <button class="dnav-btn" id="dbtn-prev" onclick="prevScreen()" disabled style="opacity:.35">← Retour</button>
+        <button class="dnav-btn primary" id="dbtn-next" onclick="nextScreen()">Suivant →</button>
+        <div class="demo-dots" id="ddots">
+          <div class="ddot on"></div>
+          <div class="ddot"></div>
+          <div class="ddot"></div>
+          <div class="ddot"></div>
+          <div class="ddot"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: phone -->
+    <div class="demo-phone-wrap reveal">
+      <div class="phone">
+        <div class="phone-bar"><span>9:41</span><span>●●●</span></div>
+        <div class="phone-notch"></div>
+        <div class="phone-screen" id="dphone">
+          <div class="app-prog"><div class="app-prog-fill" id="aprog" style="width:20%"></div></div>
+
+          <!-- ─── SCREEN 0: ONBOARDING ─── -->
+          <div class="ascreen on" id="s0">
+            <div class="abody" style="display:flex;flex-direction:column">
+              <div style="text-align:center;margin-bottom:12px">
+                <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:15px;color:#FF4D00">Moove Up</div>
+                <div style="font-size:8px;color:#aaa;margin-top:2px">Personnalisons ton parcours</div>
+                <div style="display:flex;gap:3px;justify-content:center;margin-top:7px">
+                  <div style="width:18px;height:3px;background:#FF4D00;border-radius:2px"></div>
+                  <div style="width:7px;height:3px;background:#e0e0e0;border-radius:2px"></div>
+                  <div style="width:7px;height:3px;background:#e0e0e0;border-radius:2px"></div>
+                </div>
+              </div>
+              <div class="atitle">Quel est ton objectif ?</div>
+              <div class="ac" style="border:2px solid #FF4D00;display:flex;align-items:center;gap:7px">
+                <span style="font-size:14px">🔥</span>
+                <div><div style="font-size:10px;font-weight:700">Perdre du poids</div><div class="amuted">Cardio + renfo</div></div>
+              </div>
+              <div class="ac" style="display:flex;align-items:center;gap:7px">
+                <span style="font-size:14px">💪</span>
+                <div><div style="font-size:10px;font-weight:700">Prendre du muscle</div><div class="amuted">Force & volume</div></div>
+              </div>
+              <div class="ac" style="display:flex;align-items:center;gap:7px">
+                <span style="font-size:14px">❤️</span>
+                <div><div style="font-size:10px;font-weight:700">Garder la forme</div><div class="amuted">Équilibre & bien-être</div></div>
+              </div>
+              <div class="abtn" style="margin-top:auto" onclick="nextScreen()">Continuer →</div>
+            </div>
+            <div class="afoot">
+              <div class="atab on"><div class="atab-icon">👤</div>Profil</div>
+            </div>
+          </div>
+
+          <!-- ─── SCREEN 1: ACCUEIL ─── -->
+          <div class="ascreen" id="s1">
+            <div class="atop">
+              <div>
+                <div style="font-size:8px;color:#aaa">Bonjour 👋</div>
+                <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:12px">Alex</div>
+              </div>
+              <div class="aavatar">AL</div>
+            </div>
+            <div class="abody">
+              <div class="ac-or">
+                <div style="font-size:8px;opacity:.8">Série en cours</div>
+                <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:18px">🔥 7 jours</div>
+                <div style="font-size:8px;opacity:.65;margin-top:2px">Continue comme ça !</div>
+              </div>
+              <div class="atitle">Programme du jour</div>
+              <div class="arow">
+                <div class="aicon">🏃</div>
+                <div style="flex:1"><div style="font-size:9px;font-weight:700">Cardio HIIT</div><div class="amuted">20 min · Intermédiaire</div></div>
+                <span class="apill-g">Fait</span>
+              </div>
+              <div class="arow">
+                <div class="aicon">💪</div>
+                <div style="flex:1"><div style="font-size:9px;font-weight:700">Renfo buste</div><div class="amuted">30 min · 6 exercices</div></div>
+                <span class="apill-o">À faire</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:8px;margin-top:6px">
+                <span style="color:#aaa">Progression du jour</span>
+                <span style="font-weight:700;color:#FF4D00">50%</span>
+              </div>
+              <div class="apbar"><div class="apfill" style="width:50%"></div></div>
+            </div>
+            <div class="afoot">
+              <div class="atab on"><div class="atab-icon">🏠</div>Accueil</div>
+              <div class="atab" onclick="setScreen(2)"><div class="atab-icon">📦</div>Kits</div>
+              <div class="atab" onclick="setScreen(4)"><div class="atab-icon">📅</div>Réserver</div>
+              <div class="atab"><div class="atab-icon">👤</div>Profil</div>
+            </div>
+          </div>
+
+          <!-- ─── SCREEN 2: LOCATION KIT ─── -->
+          <div class="ascreen" id="s2">
+            <div class="atop"><span>Location de kits</span></div>
+            <div class="abody">
+              <div class="ac" style="display:flex;align-items:center;gap:6px;padding:6px 10px">
+                <span style="font-size:11px">🔍</span>
+                <span style="font-size:9px;color:#bbb">Rechercher un kit...</span>
+              </div>
+              <div class="ac">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+                  <div>
+                    <div style="font-size:10px;font-weight:700">Kit Full Body</div>
+                    <div class="amuted">Haltères, tapis, bandes</div>
+                    <span class="apill-g" style="margin-top:4px;display:inline-block">Disponible</span>
+                  </div>
+                  <div style="text-align:right">
+                    <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:12px;color:#FF4D00">4,90 €</div>
+                    <div class="amuted">/semaine</div>
+                  </div>
+                </div>
+                <div class="abtn">Louer</div>
+              </div>
+              <div class="ac">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                  <div>
+                    <div style="font-size:10px;font-weight:700">Kit Cardio</div>
+                    <div class="amuted">Corde, step, élastiques</div>
+                    <span class="apill-b" style="margin-top:4px;display:inline-block">2 dispo</span>
+                  </div>
+                  <div style="text-align:right">
+                    <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:12px;color:#FF4D00">3,50 €</div>
+                    <div class="amuted">/semaine</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ac" style="text-align:center">
+                <div style="font-size:24px;margin-bottom:4px">📷</div>
+                <div style="font-size:8px;color:#999;margin-bottom:5px">Scanner pour récupérer un kit</div>
+                <div class="abtn-ghost">Scanner QR</div>
+              </div>
+            </div>
+            <div class="afoot">
+              <div class="atab" onclick="setScreen(1)"><div class="atab-icon">🏠</div>Accueil</div>
+              <div class="atab on"><div class="atab-icon">📦</div>Kits</div>
+              <div class="atab" onclick="setScreen(4)"><div class="atab-icon">📅</div>Réserver</div>
+              <div class="atab"><div class="atab-icon">👤</div>Profil</div>
+            </div>
+          </div>
+
+          <!-- ─── SCREEN 3: SÉANCE ─── -->
+          <div class="ascreen" id="s3">
+            <div class="atop"><span>Séance en cours</span></div>
+            <div class="abody">
+              <div style="background:#1a1a1a;border-radius:10px;height:76px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;position:relative">
+                <span style="font-size:24px">▶️</span>
+                <div style="position:absolute;bottom:7px;right:8px;background:#FF4D00;color:#fff;font-size:7px;font-family:Nunito,sans-serif;font-weight:700;padding:2px 6px;border-radius:4px">EN DIRECT</div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+                <div><div style="font-size:10px;font-weight:700">Pompes larges</div><div class="amuted">Exercice 3 / 6</div></div>
+                <div style="text-align:right"><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:#FF4D00">0:42</div><div class="amuted">restant</div></div>
+              </div>
+              <div class="apbar" style="margin-bottom:8px"><div class="apfill" style="width:50%"></div></div>
+              <div style="display:flex;align-items:flex-start;gap:6px;margin-bottom:7px">
+                <div style="width:22px;height:22px;border-radius:50%;background:#FF4D00;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">🤖</div>
+                <div style="background:#FF4D00;color:#fff;border-radius:10px 10px 10px 2px;padding:6px 8px;font-size:8px;line-height:1.5">Garde le dos bien droit et descends lentement pour maximiser l'effort !</div>
+              </div>
+              <div class="atitle">Conseils clés</div>
+              <div style="display:flex;gap:5px;margin-bottom:4px"><span style="color:#58CC02;font-size:11px">✓</span><span style="font-size:8px;color:#666">Mains écartées à la largeur des épaules</span></div>
+              <div style="display:flex;gap:5px;margin-bottom:8px"><span style="color:#58CC02;font-size:11px">✓</span><span style="font-size:8px;color:#666">Expire en montant, inspire en descendant</span></div>
+              <div class="abtn" onclick="nextScreen()">Exercice suivant →</div>
+            </div>
+            <div class="afoot">
+              <div class="atab" onclick="setScreen(1)"><div class="atab-icon">🏠</div>Accueil</div>
+              <div class="atab" onclick="setScreen(2)"><div class="atab-icon">📦</div>Kits</div>
+              <div class="atab" onclick="setScreen(4)"><div class="atab-icon">📅</div>Réserver</div>
+              <div class="atab"><div class="atab-icon">👤</div>Profil</div>
+            </div>
+          </div>
+
+          <!-- ─── SCREEN 4: RÉSERVATION ─── -->
+          <div class="ascreen" id="s4">
+            <div class="atop"><span>Réserver une salle</span></div>
+            <div class="abody">
+              <div class="ac">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+                  <span style="font-size:10px;font-weight:700;font-family:Nunito,sans-serif">Juin 2025</span>
+                  <div style="font-size:12px;color:#aaa">‹ ›</div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-size:7px;color:#bbb;font-weight:700;margin-bottom:3px">
+                  <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-size:7.5px">
+                  <span style="padding:3px;color:#aaa">2</span><span style="padding:3px;color:#aaa">3</span><span style="padding:3px;color:#aaa">4</span><span style="padding:3px;color:#aaa">5</span>
+                  <span style="padding:3px;background:#FFF3EE;color:#CC3D00;border-radius:4px;font-weight:700">6</span>
+                  <span style="padding:3px;background:#FFF3EE;color:#CC3D00;border-radius:4px;font-weight:700">7</span>
+                  <span style="padding:3px;color:#aaa">8</span>
+                  <span style="padding:3px;color:#aaa">9</span>
+                  <span style="padding:3px;background:#FFF3EE;color:#CC3D00;border-radius:4px;font-weight:700">10</span>
+                  <span style="padding:3px;background:#FF4D00;color:#fff;border-radius:4px;font-weight:700">11</span>
+                  <span style="padding:3px;color:#aaa">12</span>
+                  <span style="padding:3px;background:#FFF3EE;color:#CC3D00;border-radius:4px;font-weight:700">13</span>
+                  <span style="padding:3px;color:#aaa">14</span>
+                  <span style="padding:3px;color:#aaa">15</span>
+                </div>
+              </div>
+              <div class="atitle">Coachs disponibles · 11 juin</div>
+              <div class="ac">
+                <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px">
+                  <div style="width:26px;height:26px;border-radius:50%;background:#E6F1FB;color:#0C447C;font-size:9px;font-weight:800;font-family:Nunito,sans-serif;display:flex;align-items:center;justify-content:center;flex-shrink:0">SC</div>
+                  <div style="flex:1"><div style="font-size:9px;font-weight:700">Sophie Clément</div><div class="amuted">Renfo · 10h – 11h</div></div>
+                  <span class="apill-g">Libre</span>
+                </div>
+                <div class="abtn" onclick="goTo('contact')">Réserver</div>
+              </div>
+              <div class="ac">
+                <div style="display:flex;align-items:center;gap:7px">
+                  <div style="width:26px;height:26px;border-radius:50%;background:#FFF3EE;color:#CC3D00;font-size:9px;font-weight:800;font-family:Nunito,sans-serif;display:flex;align-items:center;justify-content:center;flex-shrink:0">TM</div>
+                  <div style="flex:1"><div style="font-size:9px;font-weight:700">Thomas Morin</div><div class="amuted">Cardio · 14h – 15h</div></div>
+                  <span class="apill-o">2 places</span>
+                </div>
+              </div>
+            </div>
+            <div class="afoot">
+              <div class="atab" onclick="setScreen(1)"><div class="atab-icon">🏠</div>Accueil</div>
+              <div class="atab" onclick="setScreen(2)"><div class="atab-icon">📦</div>Kits</div>
+              <div class="atab on"><div class="atab-icon">📅</div>Réserver</div>
+              <div class="atab"><div class="atab-icon">👤</div>Profil</div>
+            </div>
+          </div>
+
+        </div><!-- /phone-screen -->
+      </div><!-- /phone -->
+    </div><!-- /demo-phone-wrap -->
+
+  </div><!-- /demo-inner -->
+</section>
+
+<!-- ══ COACHES ════════════════════════════ -->
+<section id="coaches">
+  <div style="max-width:1160px;margin:0 auto">
+    <div class="reveal">
+      <div class="sec-badge">👟 Tes coachs</div>
+      <h2 class="sec-title">Des experts pour<br><em>chaque discipline</em></h2>
+      <p class="sec-sub">Trois coachs, trois univers. Chacun adapte son programme à ton niveau et tes objectifs du moment.</p>
+    </div>
+    <div class="coaches-grid reveal">
+
+      <!-- MAX -->
+      <div class="ccard muscu">
+        <div class="ccard-img">
+          <!-- 🐶 REMPLACE PAR: <img src="images/coach-max.jpg" alt="Coach Max"> -->
+          <img src="https://placedog.net/400/280?id=1" alt="Coach Max" class="dog-ph">
+        </div>
+        <div class="ccard-body">
+          <span class="ctag">Musculation</span>
+          <h3>Max</h3>
+          <p>Force · Progression · Dépassement</p>
+          <div class="ccard-expr">
+            <div class="expr-dot" title="Heureux">😄</div>
+            <div class="expr-dot" title="Neutre">😐</div>
+            <div class="expr-dot" title="Triste">😢</div>
+            <div class="expr-dot" title="Choqué">😱</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SARA -->
+      <div class="ccard running">
+        <div class="ccard-img">
+          <!-- 🐶 REMPLACE PAR: <img src="images/coach-sara.jpg" alt="Coach Sara"> -->
+          <img src="https://placedog.net/400/280?id=22" alt="Coach Sara" class="dog-ph">
+        </div>
+        <div class="ccard-body">
+          <span class="ctag">Running</span>
+          <h3>Sara</h3>
+          <p>Endurance · Dépassement · Liberté</p>
+          <div class="ccard-expr">
+            <div class="expr-dot" title="Heureux">😄</div>
+            <div class="expr-dot" title="Neutre">😐</div>
+            <div class="expr-dot" title="Triste">😢</div>
+            <div class="expr-dot" title="Choqué">😱</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LÉA -->
+      <div class="ccard souple">
+        <div class="ccard-img">
+          <!-- 🐶 REMPLACE PAR: <img src="images/coach-lea.jpg" alt="Coach Léa"> -->
+          <img src="https://placedog.net/400/280?id=45" alt="Coach Léa" class="dog-ph">
+        </div>
+        <div class="ccard-body">
+          <span class="ctag">Souplesse</span>
+          <h3>Léa</h3>
+          <p>Mobilité · Équilibre · Sérénité</p>
+          <div class="ccard-expr">
+            <div class="expr-dot" title="Heureux">😄</div>
+            <div class="expr-dot" title="Neutre">😐</div>
+            <div class="expr-dot" title="Triste">😢</div>
+            <div class="expr-dot" title="Choqué">😱</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURES ══════════════════════════ -->
+<section id="features">
+  <div style="max-width:1160px;margin:0 auto">
+    <div class="reveal" style="text-align:center;margin-bottom:56px">
+      <div class="sec-badge">✨ Fonctionnalités</div>
+      <h2 class="sec-title" style="text-align:center">Tout ce dont tu as besoin,<br><em>en une seule app</em></h2>
+      <p class="sec-sub" style="margin:0 auto">Chaque écran a été pensé pour rendre ta pratique sportive simple, efficace et motivante.</p>
+    </div>
+    <div class="features-grid reveal">
+      <div class="fcard">
+        <div class="ficon">🎯</div>
+        <h3>Profil personnalisé</h3>
+        <p>Objectifs, niveau, disponibilités. En 3 étapes, ton programme est entièrement adapté à toi.</p>
+      </div>
+      <div class="fcard">
+        <div class="ficon">📅</div>
+        <h3>Programme du jour</h3>
+        <p>Tableau de bord clair : séance du jour, streak de motivation et progression en temps réel.</p>
+      </div>
+      <div class="fcard">
+        <div class="ficon">📦</div>
+        <h3>Location de kits</h3>
+        <p>Catalogue de kits sportifs à louer. Récupération express par scan QR code, livraison incluse.</p>
+      </div>
+      <div class="fcard">
+        <div class="ficon">🤖</div>
+        <h3>Coach virtuel IA</h3>
+        <p>Vidéo guidée + conseils temps réel de ton coach pendant chaque exercice. Comme en vrai.</p>
+      </div>
+      <div class="fcard">
+        <div class="ficon">🗓️</div>
+        <h3>Réservation salle</h3>
+        <p>Calendrier intégré pour réserver un créneau avec un coach humain directement depuis l'app.</p>
+      </div>
+      <div class="fcard" style="background:var(--or);border-color:var(--or)">
+        <div class="ficon" style="background:rgba(255,255,255,.25)">🚀</div>
+        <h3 style="color:var(--wh)">Bientôt disponible</h3>
+        <p style="color:rgba(255,255,255,.8)">Rejoins la liste d'attente et sois parmi les premiers à tester Moove Up à son lancement.</p>
+        <button class="btn-ghost" style="margin-top:18px;border-color:rgba(255,255,255,.5);color:var(--wh);padding:10px 20px;font-size:.875rem" onclick="goTo('contact')">Rejoindre →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ════════════════════════════ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <h2>Sois parmi les premiers<br>à bouger avec Moove Up</h2>
+      <p>Rejoins la liste d'attente et reçois un accès prioritaire au lancement.</p>
+      <div id="wsuccess">🎉 Parfait ! Tu seras parmi les premiers à tester Moove Up.</div>
+      <form class="wform" id="wform" onsubmit="submitForm(event)">
+        <input type="text" placeholder="Ton prénom" required>
+        <input type="email" id="wemail" placeholder="ton@email.com" required>
+        <textarea placeholder="Un message ? (optionnel)"></textarea>
+        <button type="submit" class="wsub">Rejoindre la liste d'attente →</button>
+      </form>
+      <p class="wcount"><strong>+247 personnes</strong> déjà inscrites</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════ -->
+<footer>
+  <div class="foot-brand"><span>MOOVE</span><span>UP</span></div>
+  <div class="foot-links">
+    <a href="#demo">Démo</a>
+    <a href="#coaches">Coachs</a>
+    <a href="#features">Fonctionnalités</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="foot-copy">© 2025 Moove Up · Progress where you are</div>
+</footer>
+
+<script>
+/* ── NAV scroll ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('solid',scrollY>20)
+})
+
+/* ── Mobile menu ── */
+function toggleMenu(){
+  document.getElementById('mmenu').classList.toggle('open')
+}
+function closeMenu(){
+  document.getElementById('mmenu').classList.remove('open')
+}
+
+/* ── Scroll to ── */
+function goTo(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'})
+}
+
+/* ── Scroll reveal ── */
+const ro=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('up')})
+},{threshold:.12})
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el))
+
+/* ── Demo screens ── */
+const DESCS=[
+  "Configure tes objectifs, ton niveau et tes disponibilités. L'app adapte tout ton parcours en 3 étapes simples.",
+  "Ton tableau de bord : streak en cours, programme du jour et progression globale d'un coup d'œil.",
+  "Parcours le catalogue, choisis un kit sportif et récupère-le avec un simple QR code. Location dès 3,50 €/sem.",
+  "Ton coach IA te guide en vidéo + conseils en temps réel. Chaque exercice est expliqué et corrigé.",
+  "Réserve un créneau avec un coach humain depuis le calendrier. Disponibilités en direct, confirmation immédiate."
+]
+let cur=0
+
+function setScreen(n){
+  if(n===cur)return
+  // Hide old
+  document.getElementById('s'+cur).classList.remove('on')
+  document.querySelectorAll('.stab')[cur].classList.remove('on')
+  cur=n
+  // Show new
+  document.getElementById('s'+n).classList.add('on')
+  document.querySelectorAll('.stab')[n].classList.add('on')
+  // Desc
+  document.getElementById('sdesc').textContent=DESCS[n]
+  // Progress
+  document.getElementById('aprog').style.width=((n+1)/5*100)+'%'
+  // Dots
+  document.querySelectorAll('.ddot').forEach((d,i)=>{
+    d.classList.toggle('on',i===n)
+  })
+  // Buttons
+  document.getElementById('dbtn-prev').disabled=n===0
+  document.getElementById('dbtn-prev').style.opacity=n===0?'.35':'1'
+  const nb=document.getElementById('dbtn-next')
+  if(n===4){
+    nb.textContent='Rejoindre →'
+    nb.onclick=()=>goTo('contact')
+  } else {
+    nb.textContent='Suivant →'
+    nb.onclick=nextScreen
+  }
+}
+function nextScreen(){if(cur<4)setScreen(cur+1)}
+function prevScreen(){if(cur>0)setScreen(cur-1)}
+
+/* ── Form ── */
+function submitForm(e){
+  e.preventDefault()
+  const email=document.getElementById('wemail').value
+  if(!email||!email.includes('@'))return
+  document.getElementById('wform').style.display='none'
+  document.getElementById('wsuccess').style.display='block'
+}
+</script>
+</body>
+</html>
