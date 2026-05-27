@@ -3,255 +3,184 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moove Up — Progress where you are</title>
+<title>Moove Up — Ton sport, ton rythme. Partout.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-/* ════════════════════════════════════════
-   RESET & TOKENS
-═══════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --or:#FF4D00; --or-d:#CC3D00; --or-l:#FFF3EE; --or-m:#FF7A3D;
-  --ch:#2C2C2A; --ch-4:#6E6C66; --ch-1:#F5F4F2; --ch-2:#D8D6D0;
+  --or:#FF4D00;--or-d:#CC3D00;--or-l:#FFF3EE;--or-m:#FF7A3D;
+  --ch:#2C2C2A;--ch-4:#6E6C66;--ch-1:#F5F4F2;--ch-2:#D8D6D0;
   --wh:#ffffff;
-  --gr:#58CC02; --gr-l:#D7FFB8; --gr-d:#3A8A00;
-  --bl:#1CB0F6; --bl-l:#DDF4FF;
-  --pu:#CE82FF; --pu-l:#F1D9FF; --pu-d:#7B2FBE;
-  --ye:#FFC800; --ye-l:#FFF8D4;
-  --re:#FF4B4B; --re-l:#FFE0E0;
-  --r-sm:10px; --r-md:16px; --r-lg:22px; --r-xl:32px; --r-pill:999px;
+  --gr:#58CC02;--gr-l:#D7FFB8;--gr-d:#3A8A00;
+  --bl:#1CB0F6;--bl-l:#DDF4FF;
+  --pu:#CE82FF;--pu-l:#F1D9FF;--pu-d:#7B2FBE;
+  --ye:#FFC800;--ye-l:#FFF8D4;
+  --re:#FF4B4B;--re-l:#FFE0E0;
+  --r-sm:10px;--r-md:16px;--r-lg:22px;--r-xl:32px;--r-pill:999px;
   --sh:0 2px 16px rgba(44,44,42,.08);
   --sh-lg:0 8px 40px rgba(44,44,42,.14);
   --sh-or:0 4px 24px rgba(255,77,0,.28);
 }
 html{scroll-behavior:smooth}
 body{font-family:'Nunito Sans',sans-serif;background:var(--wh);color:var(--ch);overflow-x:hidden;line-height:1.65}
-h1,h2,h3,h4,h5{font-family:'Nunito',sans-serif;font-weight:800;line-height:1.15}
+h1,h2,h3,h4{font-family:'Nunito',sans-serif;font-weight:800;line-height:1.15}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer;font-family:inherit;border:none}
 
-/* ════════════════════════════════════════
-   NAV
-═══════════════════════════════════════ */
-#nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:66px;padding:0 5%;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid transparent;
-  transition:border-color .3s,box-shadow .3s;
-}
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;height:66px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.93);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
 #nav.solid{border-color:rgba(44,44,42,.08);box-shadow:0 2px 20px rgba(44,44,42,.06)}
-.nav-brand{
-  font-family:'Nunito',sans-serif;font-weight:900;font-size:1.35rem;
-  display:flex;align-items:center;gap:4px;
-}
+.nav-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.35rem;display:flex;align-items:center;gap:4px}
 .nav-brand span:first-child{color:var(--ch)}
 .nav-brand span:last-child{color:var(--or)}
-.nav-links{display:flex;align-items:center;gap:30px}
-.nav-links a{
-  font-family:'Nunito',sans-serif;font-weight:700;font-size:.875rem;
-  color:var(--ch-4);transition:color .2s;
-}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-family:'Nunito',sans-serif;font-weight:700;font-size:.875rem;color:var(--ch-4);transition:color .2s}
 .nav-links a:hover{color:var(--or)}
-.nav-btn{
-  background:var(--or);color:var(--wh);
-  font-family:'Nunito',sans-serif;font-weight:800;font-size:.875rem;
-  padding:10px 22px;border-radius:var(--r-pill);
-  box-shadow:var(--sh-or);transition:background .2s,transform .15s,box-shadow .2s;
-}
-.nav-btn:hover{background:var(--or-d);transform:translateY(-1px);box-shadow:0 6px 28px rgba(255,77,0,.35)}
+.nav-btn{background:var(--or);color:var(--wh);font-family:'Nunito',sans-serif;font-weight:800;font-size:.875rem;padding:10px 22px;border-radius:var(--r-pill);box-shadow:var(--sh-or);transition:background .2s,transform .15s}
+.nav-btn:hover{background:var(--or-d);transform:translateY(-1px)}
 .hamburger{display:none;flex-direction:column;gap:5px;padding:4px;background:none;border:none}
-.hamburger span{width:22px;height:2px;background:var(--ch);border-radius:2px;transition:.3s;display:block}
-.mobile-menu{
-  display:none;position:fixed;top:66px;left:0;right:0;z-index:199;
-  background:var(--wh);padding:20px 5% 28px;
-  border-bottom:1px solid var(--ch-2);
-  box-shadow:0 8px 32px rgba(44,44,42,.1);
-  flex-direction:column;gap:18px;
-}
-.mobile-menu.open{display:flex}
-.mobile-menu a{font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;color:var(--ch-4);padding:4px 0}
-.mobile-menu .nav-btn{text-align:center;padding:14px}
+.hamburger span{width:22px;height:2px;background:var(--ch);border-radius:2px;display:block}
+.mmenu{display:none;position:fixed;top:66px;left:0;right:0;z-index:199;background:var(--wh);padding:20px 5% 28px;border-bottom:1px solid var(--ch-2);box-shadow:0 8px 32px rgba(44,44,42,.1);flex-direction:column;gap:16px}
+.mmenu.open{display:flex}
+.mmenu a{font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;color:var(--ch-4);padding:4px 0}
+.mmenu .nav-btn{text-align:center;padding:14px}
 
-/* ════════════════════════════════════════
-   HERO
-═══════════════════════════════════════ */
-#hero{
-  min-height:100vh;
-  padding:110px 5% 80px;
-  background:var(--ch-1);
-  display:flex;align-items:center;
-  position:relative;overflow:hidden;
-}
-.hero-blob{
-  position:absolute;border-radius:50%;
-  background:var(--or);opacity:.07;
-  animation:blob-pulse 5s ease-in-out infinite;
-}
-.hero-blob-1{width:500px;height:500px;top:-120px;right:-80px}
-.hero-blob-2{width:320px;height:320px;bottom:-80px;left:-60px;animation-delay:2.5s}
-@keyframes blob-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-.hero-inner{
-  max-width:1160px;margin:0 auto;width:100%;
-  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
-  position:relative;z-index:1;
-}
-.hero-pill{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--or-l);color:var(--or-d);
-  font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;
-  padding:6px 14px;border-radius:var(--r-pill);margin-bottom:20px;
-  animation:fadeup .6s ease both;
-}
-.hero h1{
-  font-size:clamp(2.2rem,4.5vw,3.4rem);
-  margin-bottom:18px;
-  animation:fadeup .6s .1s ease both;
-}
-.hero h1 em{color:var(--or);font-style:normal}
-.hero-sub{
-  font-size:1.05rem;color:var(--ch-4);max-width:440px;
-  margin-bottom:36px;
-  animation:fadeup .6s .2s ease both;
-}
-.hero-ctas{
-  display:flex;gap:14px;flex-wrap:wrap;
-  animation:fadeup .6s .3s ease both;
-}
-.btn-main{
-  background:var(--or);color:var(--wh);
-  font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;
-  padding:14px 28px;border-radius:var(--r-pill);
-  box-shadow:var(--sh-or);
-  transition:background .2s,transform .15s,box-shadow .2s;
-}
+/* BTNS */
+.btn-main{background:var(--or);color:var(--wh);font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;padding:14px 28px;border-radius:var(--r-pill);box-shadow:var(--sh-or);transition:background .2s,transform .15s,box-shadow .2s;border:none;cursor:pointer}
 .btn-main:hover{background:var(--or-d);transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,77,0,.36)}
-.btn-ghost{
-  background:var(--wh);color:var(--ch);
-  font-family:'Nunito',sans-serif;font-weight:700;font-size:.95rem;
-  padding:14px 28px;border-radius:var(--r-pill);
-  border:2px solid var(--ch-2);
-  transition:border-color .2s,color .2s,transform .15s;
-}
+.btn-ghost{background:var(--wh);color:var(--ch);font-family:'Nunito',sans-serif;font-weight:700;font-size:.95rem;padding:14px 28px;border-radius:var(--r-pill);border:2px solid var(--ch-2);transition:border-color .2s,color .2s,transform .15s;cursor:pointer}
 .btn-ghost:hover{border-color:var(--or);color:var(--or);transform:translateY(-2px)}
-.hero-stats{
-  display:flex;gap:28px;margin-top:40px;
-  animation:fadeup .6s .45s ease both;
-}
+
+/* SECTIONS */
+.sec{padding:88px 5%}
+.sec-in{max-width:1160px;margin:0 auto}
+.sec-badge{display:inline-flex;align-items:center;gap:6px;background:var(--or-l);color:var(--or-d);font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;padding:6px 14px;border-radius:var(--r-pill);margin-bottom:14px}
+.sec-title{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:12px}
+.sec-title em{color:var(--or);font-style:normal}
+.sec-sub{font-size:1rem;color:var(--ch-4);max-width:560px;line-height:1.7}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.up{opacity:1;transform:none}
+
+/* PHONE */
+.phone{background:var(--ch);border-radius:40px;padding:10px;box-shadow:0 40px 90px rgba(44,44,42,.3)}
+.phone-bar{display:flex;justify-content:space-between;align-items:center;padding:6px 14px 3px;color:var(--wh);font-size:10px;font-weight:700;font-family:'Nunito',sans-serif}
+.phone-notch{width:72px;height:20px;background:var(--ch);border-radius:0 0 14px 14px;margin:0 auto 4px}
+.phone-screen{background:var(--wh);border-radius:30px;overflow:hidden;display:flex;flex-direction:column}
+
+/* ANIMATIONS */
+@keyframes fadeup{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes blob{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+/* ══════════════════════════════════════
+   1. HERO
+══════════════════════════════════════ */
+#hero{min-height:100vh;padding:110px 5% 80px;background:var(--ch-1);display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-blob{position:absolute;border-radius:50%;background:var(--or);opacity:.07;animation:blob 5s ease-in-out infinite}
+.hero-blob-1{width:520px;height:520px;top:-130px;right:-90px}
+.hero-blob-2{width:300px;height:300px;bottom:-80px;left:-60px;animation-delay:2.5s}
+.hero-inner{max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;background:var(--or-l);color:var(--or-d);font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;padding:6px 14px;border-radius:var(--r-pill);margin-bottom:20px;animation:fadeup .6s ease both}
+.hero h1{font-size:clamp(2.2rem,4.5vw,3.5rem);margin-bottom:18px;animation:fadeup .6s .1s ease both}
+.hero h1 em{color:var(--or);font-style:normal}
+.hero-sub{font-size:1.05rem;color:var(--ch-4);max-width:460px;margin-bottom:12px;animation:fadeup .6s .2s ease both;line-height:1.7}
+.hero-quote{font-style:italic;font-size:.95rem;color:var(--ch-4);border-left:3px solid var(--or);padding-left:14px;margin-bottom:32px;animation:fadeup .6s .25s ease both}
+.hero-pillars{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;animation:fadeup .6s .3s ease both}
+.hero-pillar{display:flex;align-items:center;gap:7px;background:var(--wh);border:1.5px solid var(--ch-2);border-radius:var(--r-pill);padding:8px 16px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;color:var(--ch)}
+.hero-pillar span{font-size:16px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;animation:fadeup .6s .35s ease both}
+.hero-stats{display:flex;gap:28px;margin-top:40px;animation:fadeup .6s .45s ease both}
 .hstat strong{display:block;font-family:'Nunito',sans-serif;font-weight:900;font-size:2rem;color:var(--or)}
 .hstat span{font-size:.78rem;font-weight:600;color:var(--ch-4)}
-.hero-visual{
-  display:flex;justify-content:center;align-items:center;
-  animation:fadeup .6s .2s ease both;
-}
-/* Phone frame */
-.phone{
-  width:240px;
-  background:var(--ch);
-  border-radius:40px;
-  padding:10px;
-  box-shadow:0 40px 90px rgba(44,44,42,.35),0 0 0 1px rgba(255,255,255,.05);
-  position:relative;
-}
-.phone-bar{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:6px 14px 4px;color:var(--wh);font-size:10px;font-weight:700;
-  font-family:'Nunito',sans-serif;
-}
-.phone-notch{
-  width:72px;height:20px;background:var(--ch);
-  border-radius:0 0 14px 14px;margin:0 auto 4px;
-}
-.phone-screen{
-  background:var(--wh);border-radius:30px;overflow:hidden;min-height:480px;
-  display:flex;flex-direction:column;
-}
-@keyframes fadeup{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.hero-visual{display:flex;justify-content:center;animation:fadeup .6s .2s ease both}
+.hero-visual .phone{width:240px}
 
-/* ════════════════════════════════════════
-   DEMO SECTION
-═══════════════════════════════════════ */
-#demo{
-  background:var(--ch);
-  padding:96px 5%;
-  position:relative;overflow:hidden;
-}
-#demo::before{
-  content:'';position:absolute;
-  width:600px;height:600px;border-radius:50%;
-  background:var(--or);opacity:.04;
-  top:-200px;right:-100px;
-}
-.demo-inner{
-  max-width:1160px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center;
-}
-.demo-label{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(255,77,0,.18);color:#FF9A7A;
-  font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;
-  padding:6px 14px;border-radius:var(--r-pill);margin-bottom:16px;
-}
-.demo-inner h2{color:var(--wh);font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:14px}
-.demo-sub{color:rgba(255,255,255,.55);font-size:1rem;margin-bottom:28px}
-/* Step tabs */
-.step-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
-.stab{
-  font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;
-  padding:8px 16px;border-radius:var(--r-pill);
-  background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);
-  border:1.5px solid rgba(255,255,255,.1);
-  transition:all .2s;
-}
+/* ══════════════════════════════════════
+   2. C'EST QUOI
+══════════════════════════════════════ */
+#about{background:var(--wh)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:48px}
+.about-text p{font-size:1rem;color:var(--ch-4);line-height:1.8;margin-bottom:16px}
+.about-text p strong{color:var(--ch);font-weight:700}
+.about-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.atag{background:var(--or-l);color:var(--or-d);font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;padding:6px 14px;border-radius:var(--r-pill)}
+.about-visual{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.about-card{background:var(--ch-1);border-radius:var(--r-lg);padding:22px 20px;border:1.5px solid transparent;transition:border-color .25s,transform .25s,box-shadow .25s}
+.about-card:hover{border-color:var(--or-m);transform:translateY(-4px);box-shadow:var(--sh-lg)}
+.about-card .ico{font-size:28px;margin-bottom:10px}
+.about-card h4{font-size:.95rem;margin-bottom:6px}
+.about-card p{font-size:.82rem;color:var(--ch-4);line-height:1.6}
+
+/* ══════════════════════════════════════
+   3. POUR QUI
+══════════════════════════════════════ */
+#forqui{background:var(--ch-1)}
+.profiles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px}
+.profile-card{background:var(--wh);border-radius:var(--r-lg);padding:26px 24px;border:1.5px solid var(--ch-2);transition:transform .25s,box-shadow .25s,border-color .25s}
+.profile-card:hover{transform:translateY(-5px);box-shadow:var(--sh-lg);border-color:var(--or-m)}
+.profile-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.profile-ico{width:48px;height:48px;border-radius:var(--r-md);background:var(--or-l);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.profile-top h3{font-size:1rem;margin-bottom:2px}
+.profile-top p{font-size:.8rem;color:var(--ch-4)}
+.profile-quote{font-style:italic;font-size:.88rem;color:var(--ch-4);border-left:3px solid var(--or);padding-left:12px;line-height:1.6}
+
+/* ══════════════════════════════════════
+   4. PROBLÈMES RÉSOLUS
+══════════════════════════════════════ */
+#problems{background:var(--ch)}
+#problems .sec-badge{background:rgba(255,77,0,.18);color:#FF9A7A}
+#problems .sec-title{color:var(--wh)}
+#problems .sec-sub{color:rgba(255,255,255,.55)}
+.problems-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.prob-card{border-radius:var(--r-lg);padding:24px 22px;border:1.5px solid rgba(255,255,255,.06)}
+.prob-card.bad{background:rgba(255,75,75,.08)}
+.prob-card.good{background:rgba(88,204,2,.08)}
+.prob-card .prob-icon{font-size:24px;margin-bottom:10px}
+.prob-card h4{font-size:.95rem;margin-bottom:6px;color:var(--wh)}
+.prob-card p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.6}
+.prob-vs{display:flex;align-items:center;justify-content:center;margin:32px 0 0;gap:16px}
+.prob-vs-label{background:var(--or);color:var(--wh);font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;padding:6px 18px;border-radius:var(--r-pill)}
+
+/* ══════════════════════════════════════
+   5. DEMO
+══════════════════════════════════════ */
+#demo{background:var(--ch);padding:88px 5%}
+#demo::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:var(--or);opacity:.04;top:-150px;right:-80px}
+#demo{position:relative;overflow:hidden}
+.demo-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center}
+.demo-label{display:inline-flex;align-items:center;gap:6px;background:rgba(255,77,0,.18);color:#FF9A7A;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;padding:6px 14px;border-radius:var(--r-pill);margin-bottom:16px}
+.demo-inner h2{color:var(--wh);font-size:clamp(1.8rem,3vw,2.5rem);margin-bottom:12px}
+.demo-sub{color:rgba(255,255,255,.55);font-size:.95rem;margin-bottom:28px;line-height:1.7}
+.stabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.stab{font-family:'Nunito',sans-serif;font-weight:700;font-size:.78rem;padding:8px 14px;border-radius:var(--r-pill);background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);border:1.5px solid rgba(255,255,255,.1);transition:all .2s;cursor:pointer}
 .stab:hover:not(.on){background:rgba(255,255,255,.13);color:rgba(255,255,255,.8)}
 .stab.on{background:var(--or);color:var(--wh);border-color:var(--or);box-shadow:0 4px 18px rgba(255,77,0,.35)}
-.step-desc{
-  font-size:.9rem;color:rgba(255,255,255,.45);
-  line-height:1.7;min-height:52px;
-  transition:opacity .3s;
-}
-/* Demo phone */
-.demo-phone-wrap{
-  display:flex;justify-content:center;
-  animation:float 3.5s ease-in-out infinite;
-}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.demo-phone-wrap .phone{width:210px}
-/* Progress bar inside demo */
-.app-prog{
-  height:3px;background:rgba(255,255,255,.15);
-  border-radius:2px;margin-bottom:0;
-}
-.app-prog-fill{
-  height:3px;background:var(--or);border-radius:2px;
-  transition:width .4s ease;
-}
+.sdesc{font-size:.88rem;color:rgba(255,255,255,.4);line-height:1.7;min-height:48px;transition:opacity .3s}
+.demo-nav{display:flex;align-items:center;gap:10px;margin-top:20px}
+.dnav{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;padding:10px 18px;border-radius:var(--r-pill);background:rgba(255,255,255,.1);color:var(--wh);border:1.5px solid rgba(255,255,255,.15);transition:all .2s;cursor:pointer}
+.dnav:hover{background:rgba(255,255,255,.18)}
+.dnav.p{background:var(--or);border-color:var(--or);box-shadow:0 4px 18px rgba(255,77,0,.3)}
+.dnav.p:hover{background:var(--or-d)}
+.ddots{display:flex;gap:6px;margin-left:auto}
+.ddot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);transition:all .3s}
+.ddot.on{background:var(--or);width:18px;border-radius:4px}
+.demo-phone{display:flex;justify-content:center;animation:float 3.5s ease-in-out infinite}
+.demo-phone .phone{width:210px}
+.aprog{height:3px;background:rgba(255,255,255,.1);border-radius:2px}
+.aprog-f{height:3px;background:var(--or);border-radius:2px;transition:width .4s ease}
 /* App screens */
 .ascreen{display:none;flex-direction:column;flex:1}
 .ascreen.on{display:flex}
-.atop{
-  background:var(--wh);padding:10px 14px 8px;
-  font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;color:var(--ch);
-  display:flex;justify-content:space-between;align-items:center;
-  border-bottom:1px solid #f0f0f0;
-}
+.atop{background:var(--wh);padding:10px 14px 8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;color:var(--ch);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f0f0f0}
 .abody{flex:1;background:#f8f8f8;padding:10px;overflow:hidden}
-.afoot{
-  background:var(--wh);border-top:1px solid #f0f0f0;
-  display:flex;justify-content:space-around;padding:7px 0 5px;
-}
-.atab{
-  display:flex;flex-direction:column;align-items:center;gap:2px;
-  font-size:7px;font-family:'Nunito',sans-serif;font-weight:700;
-  color:#ccc;cursor:pointer;transition:color .2s;padding:0 6px;
-}
+.afoot{background:var(--wh);border-top:1px solid #f0f0f0;display:flex;justify-content:space-around;padding:7px 0 5px}
+.atab{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:7px;font-family:'Nunito',sans-serif;font-weight:700;color:#ccc;cursor:pointer;transition:color .2s;padding:0 6px}
 .atab.on,.atab:hover{color:var(--or)}
-.atab-icon{font-size:14px;line-height:1}
-/* Reusable app components */
+.atab-i{font-size:14px;line-height:1}
 .ac{background:var(--wh);border-radius:10px;padding:9px 10px;margin-bottom:6px;border:.5px solid #e8e8e8}
 .ac-or{background:var(--or);border-radius:10px;padding:10px;margin-bottom:6px;color:var(--wh)}
 .atitle{font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;color:var(--ch);margin-bottom:5px}
@@ -266,248 +195,212 @@ button{cursor:pointer;font-family:inherit;border:none}
 .apbar{height:4px;background:#f0f0f0;border-radius:3px;margin-top:5px}
 .apfill{height:4px;background:var(--or);border-radius:3px}
 .aavatar{width:28px;height:28px;border-radius:50%;background:var(--or);color:var(--wh);font-family:'Nunito',sans-serif;font-weight:800;font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-/* Demo nav arrows */
-.demo-nav{display:flex;align-items:center;gap:12px;margin-top:20px}
-.dnav-btn{
-  background:rgba(255,255,255,.1);color:var(--wh);
-  font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;
-  padding:10px 20px;border-radius:var(--r-pill);
-  border:1.5px solid rgba(255,255,255,.15);
-  transition:all .2s;
-}
-.dnav-btn:hover{background:rgba(255,255,255,.18)}
-.dnav-btn.primary{background:var(--or);border-color:var(--or);box-shadow:0 4px 18px rgba(255,77,0,.3)}
-.dnav-btn.primary:hover{background:var(--or-d)}
-.demo-dots{display:flex;gap:6px;margin-left:auto}
-.ddot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .3s}
-.ddot.on{background:var(--or);width:18px;border-radius:4px}
 
-/* ════════════════════════════════════════
-   COACHES
-═══════════════════════════════════════ */
-#coaches{padding:96px 5%;background:var(--wh)}
-.sec-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--or-l);color:var(--or-d);
-  font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;
-  padding:6px 14px;border-radius:var(--r-pill);margin-bottom:14px;
-}
-.sec-title{font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:12px}
-.sec-title em{color:var(--or);font-style:normal}
-.sec-sub{font-size:1rem;color:var(--ch-4);max-width:500px;margin-bottom:56px}
-.coaches-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
-}
-.ccard{
-  border-radius:var(--r-xl);overflow:hidden;
-  border:2px solid var(--ch-1);
-  transition:transform .3s,box-shadow .3s,border-color .3s;
-  cursor:pointer;background:var(--wh);
-}
+/* ══════════════════════════════════════
+   6. FONCTIONNALITÉS CLÉS
+══════════════════════════════════════ */
+#keyfeat{background:var(--wh)}
+.keyfeat-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:56px}
+.kfcard{border-radius:var(--r-xl);overflow:hidden;border:2px solid var(--ch-1);transition:transform .3s,box-shadow .3s,border-color .3s}
+.kfcard:hover{transform:translateY(-6px);box-shadow:var(--sh-lg);border-color:var(--or-m)}
+.kfcard-head{padding:32px 28px 24px;position:relative;overflow:hidden}
+.kfcard-head::after{content:'';position:absolute;bottom:-30px;right:-30px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.15)}
+.kfcard.kit .kfcard-head{background:linear-gradient(135deg,#FF4D00,#FF7A3D)}
+.kfcard.coach .kfcard-head{background:linear-gradient(135deg,#2C2C2A,#444441)}
+.kfcard.salle .kfcard-head{background:linear-gradient(135deg,#1CB0F6,#58CC02)}
+.kfcard.resa .kfcard-head{background:linear-gradient(135deg,#CE82FF,#7B2FBE)}
+.kfcard-head .ico{font-size:36px;margin-bottom:12px}
+.kfcard-head h3{font-size:1.3rem;color:var(--wh);margin-bottom:6px}
+.kfcard-head p{font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.6}
+.kfcard-body{padding:24px 28px}
+.kfcard-body ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.kfcard-body li{display:flex;align-items:flex-start;gap:10px;font-size:.88rem;color:var(--ch-4);line-height:1.5}
+.kfcard-body li::before{content:'✓';color:var(--or);font-weight:900;font-size:.9rem;flex-shrink:0;margin-top:1px}
+
+/* ══════════════════════════════════════
+   7. AUTRES FONCTIONNALITÉS
+══════════════════════════════════════ */
+#otherfeat{background:var(--ch-1)}
+.otherfeat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.ofcard{background:var(--wh);border-radius:var(--r-lg);padding:26px 22px;border:1.5px solid var(--ch-2);transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden}
+.ofcard::after{content:'';position:absolute;bottom:0;right:0;width:60px;height:60px;background:var(--or);opacity:.05;border-radius:var(--r-lg) 0}
+.ofcard:hover{transform:translateY(-5px);box-shadow:var(--sh-lg);border-color:var(--or-m)}
+.ofcard .ico{width:50px;height:50px;border-radius:var(--r-md);background:var(--or);color:var(--wh);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;box-shadow:0 4px 14px rgba(255,77,0,.25)}
+.ofcard h3{font-size:1rem;margin-bottom:8px}
+.ofcard p{font-size:.85rem;color:var(--ch-4);line-height:1.6}
+
+/* ══════════════════════════════════════
+   8. COACHS
+══════════════════════════════════════ */
+#coaches{background:var(--wh)}
+.coaches-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.ccard{border-radius:var(--r-xl);overflow:hidden;border:2px solid var(--ch-1);transition:transform .3s,box-shadow .3s,border-color .3s;cursor:pointer;background:var(--wh)}
 .ccard:hover{transform:translateY(-8px);box-shadow:var(--sh-lg)}
 .ccard.muscu:hover{border-color:var(--gr)}
 .ccard.running:hover{border-color:var(--bl)}
 .ccard.souple:hover{border-color:var(--pu)}
-.ccard-img{
-  width:100%;aspect-ratio:3/2;
-  background:var(--ch-1);
-  overflow:hidden;position:relative;
-}
+.ccard-img{width:100%;aspect-ratio:3/2;background:var(--ch-1);overflow:hidden;position:relative}
 .ccard-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .ccard:hover .ccard-img img{transform:scale(1.06)}
-/* Placeholder dog photo styling */
-.ccard-img .dog-ph{
-  width:100%;height:100%;object-fit:cover;
-}
 .ccard-body{padding:20px 22px 24px}
-.ctag{
-  display:inline-block;
-  font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;
-  text-transform:uppercase;letter-spacing:.06em;
-  padding:4px 12px;border-radius:var(--r-pill);margin-bottom:12px;
-}
+.ctag{display:inline-block;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;padding:4px 12px;border-radius:var(--r-pill);margin-bottom:12px}
 .muscu .ctag{background:var(--gr-l);color:var(--gr-d)}
 .running .ctag{background:var(--bl-l);color:#004a6b}
 .souple .ctag{background:var(--pu-l);color:var(--pu-d)}
 .ccard-body h3{font-size:1.2rem;margin-bottom:4px}
 .ccard-body p{font-size:.875rem;color:var(--ch-4)}
-.ccard-expr{
-  display:flex;gap:6px;margin-top:14px;
-}
-.expr-dot{
-  width:28px;height:28px;border-radius:50%;
-  overflow:hidden;border:2px solid var(--ch-1);
-  background:var(--ch-2);font-size:13px;
-  display:flex;align-items:center;justify-content:center;
-  transition:transform .2s;
-}
+.ccard-expr{display:flex;gap:6px;margin-top:12px}
+.expr-dot{width:28px;height:28px;border-radius:50%;overflow:hidden;border:2px solid var(--ch-1);background:var(--ch-2);font-size:13px;display:flex;align-items:center;justify-content:center;transition:transform .2s}
 .ccard:hover .expr-dot{border-color:var(--wh)}
-.expr-dot:hover{transform:scale(1.15);z-index:1}
+.expr-dot:hover{transform:scale(1.15)}
 
-/* ════════════════════════════════════════
-   FEATURES
-═══════════════════════════════════════ */
-#features{padding:96px 5%;background:var(--ch-1)}
-.features-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:0;
-}
-.fcard{
-  background:var(--wh);border-radius:var(--r-lg);
-  padding:28px 26px;
-  border:1.5px solid var(--ch-1);
-  transition:transform .25s,box-shadow .25s,border-color .25s;
-  position:relative;overflow:hidden;
-}
-.fcard::after{
-  content:'';position:absolute;bottom:0;right:0;
-  width:70px;height:70px;border-radius:var(--r-lg) 0;
-  background:var(--or);opacity:.05;
-}
-.fcard:hover{transform:translateY(-5px);box-shadow:var(--sh-lg);border-color:var(--or-m)}
-.ficon{
-  width:52px;height:52px;border-radius:var(--r-md);
-  background:var(--or);color:var(--wh);
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;margin-bottom:18px;
-  box-shadow:0 4px 16px rgba(255,77,0,.25);
-}
-.fcard h3{font-size:1.05rem;margin-bottom:8px}
-.fcard p{font-size:.875rem;color:var(--ch-4);line-height:1.6}
+/* ══════════════════════════════════════
+   9. ABONNEMENTS
+══════════════════════════════════════ */
+#pricing{background:var(--ch)}
+#pricing .sec-badge{background:rgba(255,77,0,.18);color:#FF9A7A}
+#pricing .sec-title{color:var(--wh)}
+#pricing .sec-sub{color:rgba(255,255,255,.55)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+.pcard{border-radius:var(--r-xl);padding:32px 28px;border:2px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden}
+.pcard:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.18)}
+.pcard.featured{background:var(--or);border-color:var(--or);box-shadow:0 20px 60px rgba(255,77,0,.4)}
+.pcard.featured:hover{transform:translateY(-8px)}
+.pcard-badge{position:absolute;top:16px;right:16px;background:var(--ye);color:var(--ch);font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;padding:4px 12px;border-radius:var(--r-pill)}
+.pcard h3{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--wh);margin-bottom:4px}
+.pcard .psub{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:20px}
+.pcard.featured .psub{color:rgba(255,255,255,.75)}
+.pcard .price{font-family:'Nunito',sans-serif;font-weight:900;font-size:2.4rem;color:var(--wh);line-height:1}
+.pcard .price span{font-size:1rem;font-weight:600;opacity:.7}
+.pcard .price-note{font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:24px;margin-top:4px}
+.pcard.featured .price-note{color:rgba(255,255,255,.65)}
+.pcard ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.pcard li{display:flex;align-items:flex-start;gap:9px;font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.5}
+.pcard.featured li{color:rgba(255,255,255,.9)}
+.pcard li .check{color:var(--gr);font-weight:900;flex-shrink:0}
+.pcard.featured li .check{color:var(--wh)}
+.pcard-btn{width:100%;padding:13px;border-radius:var(--r-pill);font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;background:rgba(255,255,255,.12);color:var(--wh);border:1.5px solid rgba(255,255,255,.2);transition:all .2s;cursor:pointer}
+.pcard-btn:hover{background:rgba(255,255,255,.2)}
+.pcard.featured .pcard-btn{background:var(--ch);color:var(--wh);border-color:var(--ch)}
+.pcard.featured .pcard-btn:hover{background:#111}
+/* Kit rental note */
+.kit-note{text-align:center;margin-top:24px;font-size:.85rem;color:rgba(255,255,255,.4)}
+.kit-note strong{color:rgba(255,255,255,.7)}
 
-/* ════════════════════════════════════════
-   CONTACT / WAITLIST
-═══════════════════════════════════════ */
-#contact{
-  padding:96px 5%;
-  background:var(--or);
-  text-align:center;position:relative;overflow:hidden;
-}
-#contact::before,#contact::after{
-  content:'';position:absolute;border-radius:50%;
-  background:rgba(255,255,255,.06);
-}
+/* ══════════════════════════════════════
+   10. COMPARATIF
+══════════════════════════════════════ */
+#compare{background:var(--ch-1)}
+.compare-table{margin-top:48px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+thead th{font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;padding:14px 16px;text-align:center;background:var(--ch);color:var(--wh);border-bottom:2px solid var(--or)}
+thead th:first-child{text-align:left;border-radius:var(--r-sm) 0 0 0}
+thead th:last-child{border-radius:0 var(--r-sm) 0 0;background:var(--or)}
+tbody tr{border-bottom:1px solid var(--ch-2)}
+tbody tr:hover{background:var(--or-l)}
+tbody td{padding:13px 16px;text-align:center;color:var(--ch-4)}
+tbody td:first-child{text-align:left;font-weight:600;color:var(--ch)}
+.cyes{color:var(--gr-d);font-weight:700}
+.cno{color:var(--ch-2)}
+.cpart{color:var(--ye);font-weight:600}
+.cmoove{font-weight:800;color:var(--or-d)}
+
+/* ══════════════════════════════════════
+   11. CONTACT
+══════════════════════════════════════ */
+#contact{padding:88px 5%;background:var(--or);text-align:center;position:relative;overflow:hidden}
+#contact::before,#contact::after{content:'';position:absolute;border-radius:50%;background:rgba(255,255,255,.06)}
 #contact::before{width:500px;height:500px;top:-200px;left:50%;transform:translateX(-50%)}
 #contact::after{width:300px;height:300px;bottom:-150px;right:10%}
 .contact-inner{max-width:600px;margin:0 auto;position:relative;z-index:1}
 #contact h2{font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--wh);margin-bottom:14px}
-#contact p{font-size:1.05rem;color:rgba(255,255,255,.8);margin-bottom:40px}
-.wform{
-  display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;
-}
-.wform input{
-  flex:1;min-width:220px;padding:15px 22px;
-  border-radius:var(--r-pill);border:none;font-size:.95rem;
-  font-family:'Nunito Sans',sans-serif;color:var(--ch);
-  outline:none;transition:box-shadow .2s;
-}
-.wform input:focus{box-shadow:0 0 0 3px rgba(255,255,255,.5)}
-.wform input::placeholder{color:var(--ch-4)}
-.wform textarea{
-  width:100%;padding:14px 22px;
-  border-radius:var(--r-md);border:none;
-  font-size:.9rem;font-family:'Nunito Sans',sans-serif;
-  color:var(--ch);resize:none;height:90px;
-  outline:none;transition:box-shadow .2s;
-}
-.wform textarea:focus{box-shadow:0 0 0 3px rgba(255,255,255,.5)}
-.wform textarea::placeholder{color:var(--ch-4)}
-.wsub{
-  width:100%;
-  background:var(--ch);color:var(--wh);
-  font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;
-  padding:15px;border-radius:var(--r-pill);
-  transition:background .2s,transform .15s;
-}
+#contact p.lead{font-size:1.05rem;color:rgba(255,255,255,.8);margin-bottom:40px}
+.wform{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.wform-row{display:flex;gap:10px;flex-wrap:wrap}
+.wform input,.wform textarea{flex:1;min-width:200px;padding:14px 20px;border-radius:var(--r-md);border:none;font-size:.95rem;font-family:'Nunito Sans',sans-serif;color:var(--ch);outline:none;transition:box-shadow .2s}
+.wform input:focus,.wform textarea:focus{box-shadow:0 0 0 3px rgba(255,255,255,.5)}
+.wform input::placeholder,.wform textarea::placeholder{color:var(--ch-4)}
+.wform textarea{resize:none;height:90px}
+.wsub{width:100%;background:var(--ch);color:var(--wh);font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;padding:15px;border-radius:var(--r-pill);transition:background .2s,transform .15s;cursor:pointer;border:none}
 .wsub:hover{background:#111;transform:scale(1.02)}
 .wcount{color:rgba(255,255,255,.7);font-size:.85rem;margin-top:14px}
 .wcount strong{color:var(--wh);font-weight:800}
-#wsuccess{
-  display:none;
-  background:rgba(255,255,255,.18);color:var(--wh);
-  padding:16px 24px;border-radius:var(--r-md);
-  font-weight:700;font-size:1rem;margin-bottom:16px;
-}
+#wsuccess{display:none;background:rgba(255,255,255,.18);color:var(--wh);padding:16px 24px;border-radius:var(--r-md);font-weight:700;font-size:1rem;margin-bottom:16px}
 
-/* ════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
-footer{
-  background:var(--ch);
-  padding:36px 5%;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:20px;
-}
+/* FOOTER */
+footer{background:var(--ch);padding:36px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.foot-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.2rem;display:flex;gap:4px}
 .foot-brand span:first-child{color:var(--wh)}
 .foot-brand span:last-child{color:var(--or)}
-.foot-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.2rem;display:flex;gap:4px}
-.foot-links{display:flex;gap:22px}
-.foot-links a{font-size:.8rem;color:rgba(255,255,255,.45);transition:color .2s}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap}
+.foot-links a{font-size:.8rem;color:rgba(255,255,255,.4);transition:color .2s}
 .foot-links a:hover{color:var(--or)}
 .foot-copy{font-size:.75rem;color:rgba(255,255,255,.3)}
 
-/* ════════════════════════════════════════
-   SCROLL REVEAL
-═══════════════════════════════════════ */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
-.reveal.up{opacity:1;transform:none}
-
-/* ════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
+/* RESPONSIVE */
 @media(max-width:960px){
-  .hero-inner,.demo-inner{grid-template-columns:1fr;gap:48px;text-align:center}
-  .hero-sub,.sec-sub{margin-left:auto;margin-right:auto}
-  .hero-ctas,.hero-stats{justify-content:center}
-  .hero-visual{order:-1}
-  .demo-phone-wrap{order:-1}
-  .step-tabs{justify-content:center}
-  .step-desc{text-align:left}
-  .coaches-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}
-  .features-grid{grid-template-columns:1fr 1fr}
+  .hero-inner,.demo-inner,.about-grid{grid-template-columns:1fr;gap:44px;text-align:center}
+  .hero-sub,.hero-quote,.sec-sub{margin-left:auto;margin-right:auto}
+  .hero-ctas,.hero-pillars,.hero-stats{justify-content:center}
+  .hero-visual,.demo-phone{order:-1}
+  .stabs{justify-content:center}
+  .coaches-grid,.pricing-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}
+  .keyfeat-grid,.problems-grid,.profiles-grid{grid-template-columns:1fr}
+  .otherfeat-grid{grid-template-columns:1fr 1fr}
   .demo-nav{justify-content:center}
-  .demo-dots{margin-left:0}
+  .ddots{margin-left:0}
+  .about-visual{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
   .nav-links,.nav-btn{display:none}
   .hamburger{display:flex}
-  .features-grid{grid-template-columns:1fr}
-  section,#demo,#coaches,#features,#contact{padding:70px 5%}
+  .otherfeat-grid{grid-template-columns:1fr}
+  .sec,.#demo,#contact{padding:64px 5%}
+  .pcard{padding:24px 20px}
 }
 </style>
 </head>
 <body>
 
-<!-- ══ NAV ══════════════════════════════ -->
+<!-- NAV -->
 <nav id="nav">
   <div class="nav-brand"><span>MOOVE</span><span>UP</span></div>
   <div class="nav-links">
+    <a href="#about">Le projet</a>
     <a href="#demo">Démo</a>
+    <a href="#keyfeat">Fonctionnalités</a>
     <a href="#coaches">Coachs</a>
-    <a href="#features">Fonctionnalités</a>
+    <a href="#pricing">Abonnements</a>
     <a href="#contact">Contact</a>
   </div>
   <button class="nav-btn" onclick="goTo('contact')">Rejoindre →</button>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
-<div class="mobile-menu" id="mmenu">
+<div class="mmenu" id="mmenu">
+  <a href="#about" onclick="closeMenu()">Le projet</a>
   <a href="#demo" onclick="closeMenu()">Démo</a>
+  <a href="#keyfeat" onclick="closeMenu()">Fonctionnalités</a>
   <a href="#coaches" onclick="closeMenu()">Coachs</a>
-  <a href="#features" onclick="closeMenu()">Fonctionnalités</a>
+  <a href="#pricing" onclick="closeMenu()">Abonnements</a>
   <a href="#contact" onclick="closeMenu()">Contact</a>
   <button class="nav-btn" onclick="goTo('contact');closeMenu()">Rejoindre →</button>
 </div>
 
-<!-- ══ HERO ═════════════════════════════ -->
+<!-- 1. HERO -->
 <section id="hero">
   <div class="hero-blob hero-blob-1"></div>
   <div class="hero-blob hero-blob-2"></div>
   <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-pill">🏃 Bientôt disponible</div>
-      <h1>Bouge où tu veux.<br>Progresse <em>chaque jour.</em></h1>
-      <p class="hero-sub">Moove Up connecte les sportifs de tous niveaux à des coachs experts, leur loue l'équipement et les guide séance après séance — partout.</p>
+    <div>
+      <div class="hero-pill">🏃 Bientôt disponible · Paris 18–34 ans</div>
+      <h1>Ton sport, ton rythme.<br><em>Chez toi, en salle,<br>partout.</em></h1>
+      <p class="hero-sub">Moove Up est une solution sportive hybride qui combine une app mobile intelligente, la location de kits d'équipement à domicile et l'accès à des salles de sport intimistes.</p>
+      <p class="hero-quote">"Ton sport, ton rythme. Chez toi, en salle, partout."</p>
+      <div class="hero-pillars">
+        <div class="hero-pillar"><span>📱</span> App mobile</div>
+        <div class="hero-pillar"><span>📦</span> Kit à la location</div>
+        <div class="hero-pillar"><span>🏋️</span> Salle intimiste</div>
+      </div>
       <div class="hero-ctas">
         <button class="btn-main" onclick="goTo('demo')">Voir la démo →</button>
         <button class="btn-ghost" onclick="goTo('contact')">Rejoindre la liste</button>
@@ -523,7 +416,6 @@ footer{
         <div class="phone-bar"><span>9:41</span><span>●●●</span></div>
         <div class="phone-notch"></div>
         <div class="phone-screen">
-          <!-- Mini onboarding preview -->
           <div style="padding:14px;flex:1;display:flex;flex-direction:column;background:#f8f8f8">
             <div style="text-align:center;margin-bottom:14px">
               <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:16px;color:#FF4D00">Moove Up</div>
@@ -555,47 +447,169 @@ footer{
   </div>
 </section>
 
-<!-- ══ DEMO ══════════════════════════════ -->
-<section id="demo">
-  <div class="demo-inner section-inner">
+<!-- 2. C'EST QUOI -->
+<section class="sec" id="about">
+  <div class="sec-in">
+    <div class="reveal">
+      <div class="sec-badge">💡 Qu'est-ce que Moove Up ?</div>
+      <h2 class="sec-title">Une solution sportive <em>tout-en-un</em></h2>
+      <p class="sec-sub">Conçue pour les Parisiens actifs qui veulent s'entraîner sans contrainte — sans abonnement rigide, sans équipement à acheter, sans se déplacer loin.</p>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>Moove Up est une <strong>application mobile intelligente</strong> qui génère ton programme sur mesure instantanément. Tu entres tes objectifs, ton niveau, tes disponibilités et ta morphologie — l'app construit tout automatiquement.</p>
+        <p>Au-delà de l'app, Moove Up c'est aussi un <strong>service de location de kits sportifs</strong> (max 15 personnes) livrés à domicile ou récupérables par QR code, et l'accès à des <strong>salles de sport intimistes à Paris</strong> avec coaching solo ou collectif.</p>
+        <p>Tout s'articule autour d'une seule application qui pilote ton programme selon ton niveau, tes objectifs et le matériel que tu as sous la main.</p>
+        <div class="about-tags">
+          <span class="atag">📍 Paris</span>
+          <span class="atag">👤 18–34 ans</span>
+          <span class="atag">🎯 Tous niveaux</span>
+          <span class="atag">📱 iOS & Android</span>
+          <span class="atag">0 engagement</span>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-card">
+          <div class="ico">📱</div>
+          <h4>App intelligente</h4>
+          <p>Programme généré par IA selon ton profil, ta morpho et tes dispo.</p>
+        </div>
+        <div class="about-card">
+          <div class="ico">📦</div>
+          <h4>Kit à louer</h4>
+          <p>Haltères, tapis, bandes — livrés ou récupérés par QR code.</p>
+        </div>
+        <div class="about-card">
+          <div class="ico">🏋️</div>
+          <h4>Salle intimiste</h4>
+          <p>Max 15 personnes. Poids, cardio, stretching. Ambiance unique.</p>
+        </div>
+        <div class="about-card">
+          <div class="ico">🤖</div>
+          <h4>Coach virtuel IA</h4>
+          <p>Vidéos + conseils en temps réel pendant chaque séance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Left: controls -->
+<!-- 3. POUR QUI -->
+<section class="sec" id="forqui">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center;margin-bottom:0">
+      <div class="sec-badge">👥 Pour qui ?</div>
+      <h2 class="sec-title" style="text-align:center">Conçu pour <em>4 profils</em></h2>
+      <p class="sec-sub" style="margin:0 auto">Chaque profil a ses contraintes. Moove Up s'adapte à toutes.</p>
+    </div>
+    <div class="profiles-grid reveal" style="margin-top:48px">
+      <div class="profile-card">
+        <div class="profile-top">
+          <div class="profile-ico">🎓</div>
+          <div><h3>L'étudiant parisien</h3><p>18–25 ans · Budget serré · Emploi du temps imprévisible</p></div>
+        </div>
+        <p class="profile-quote">"Je veux m'entraîner mais les salles sont trop chères et je n'ai pas toujours le temps d'y aller."</p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-top">
+          <div class="profile-ico">⚡</div>
+          <div><h3>Le jeune actif</h3><p>25–34 ans · Salarié ou indépendant · Peu de temps</p></div>
+        </div>
+        <p class="profile-quote">"J'ai la motivation mais pas la régularité. Je veux quelque chose qui s'adapte à ma semaine."</p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-top">
+          <div class="profile-ico">💻</div>
+          <div><h3>Le télétravailleur</h3><p>28–34 ans · Full remote · Veut sortir de chez lui</p></div>
+        </div>
+        <p class="profile-quote">"Je travaille de chez moi, j'ai besoin d'un espace pour bouger — pas d'une grande salle bondée."</p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-top">
+          <div class="profile-ico">🚀</div>
+          <div><h3>Le primo-sportif</h3><p>Tout profil · N'a jamais eu d'abonnement · Veut commencer</p></div>
+        </div>
+        <p class="profile-quote">"Je veux me mettre au sport mais je ne sais pas par où commencer et je n'ose pas m'engager."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PROBLÈMES RÉSOLUS -->
+<section class="sec" id="problems">
+  <div class="sec-in">
+    <div class="reveal">
+      <div class="sec-badge">🎯 Problèmes résolus</div>
+      <h2 class="sec-title">Ce que Moove Up <em>change</em></h2>
+      <p class="sec-sub">Les 3 freins majeurs à la pratique sportive, enfin résolus.</p>
+    </div>
+    <div class="problems-grid reveal">
+      <div class="prob-card bad">
+        <div class="prob-icon">⏰</div>
+        <h4>Manque de temps</h4>
+        <p>Les horaires fixes ne s'adaptent pas à la vie.</p>
+      </div>
+      <div class="prob-card bad">
+        <div class="prob-icon">💸</div>
+        <h4>Coût trop élevé</h4>
+        <p>Abonnements rigides + équipement à acheter en avance.</p>
+      </div>
+      <div class="prob-card bad">
+        <div class="prob-icon">📉</div>
+        <h4>Manque de suivi</h4>
+        <p>Pas d'accompagnement → abandon rapide.</p>
+      </div>
+      <div class="prob-card good">
+        <div class="prob-icon">🕐</div>
+        <h4>Flexibilité totale</h4>
+        <p>Sans engagement, partout, à ton heure. No commitment, anywhere, anytime.</p>
+      </div>
+      <div class="prob-card good">
+        <div class="prob-icon">📦</div>
+        <h4>Kit à la location</h4>
+        <p>Plus besoin d'acheter du matériel. No need to buy equipment.</p>
+      </div>
+      <div class="prob-card good">
+        <div class="prob-icon">🤖</div>
+        <h4>Coaching IA + humain</h4>
+        <p>Programme sur mesure + coach réel en salle. Custom programme + real coach.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. DEMO -->
+<section id="demo">
+  <div class="demo-inner">
     <div>
       <div class="reveal">
         <div class="demo-label">📱 Démo interactive</div>
         <h2>Teste l'app<br>dès maintenant</h2>
-        <p class="demo-sub">Navigue dans les 5 écrans clés de Moove Up comme si tu tenais le téléphone.</p>
+        <p class="demo-sub">Navigue dans les 5 écrans clés de Moove Up comme si tu tenais le téléphone. Chaque interaction est fonctionnelle.</p>
       </div>
-      <div class="step-tabs reveal" id="stabs">
+      <div class="stabs reveal" id="stabs">
         <button class="stab on" onclick="setScreen(0)">① Onboarding</button>
         <button class="stab" onclick="setScreen(1)">② Accueil</button>
         <button class="stab" onclick="setScreen(2)">③ Location kit</button>
         <button class="stab" onclick="setScreen(3)">④ Séance</button>
         <button class="stab" onclick="setScreen(4)">⑤ Réservation</button>
       </div>
-      <p class="step-desc reveal" id="sdesc">Configure tes objectifs, ton niveau et tes disponibilités. L'app adapte tout ton parcours en 3 étapes simples.</p>
+      <p class="sdesc reveal" id="sdesc">Configure tes objectifs, ton niveau et tes disponibilités. L'app génère ton programme sur mesure en moins de 2 minutes.</p>
       <div class="demo-nav reveal">
-        <button class="dnav-btn" id="dbtn-prev" onclick="prevScreen()" disabled style="opacity:.35">← Retour</button>
-        <button class="dnav-btn primary" id="dbtn-next" onclick="nextScreen()">Suivant →</button>
-        <div class="demo-dots" id="ddots">
-          <div class="ddot on"></div>
-          <div class="ddot"></div>
-          <div class="ddot"></div>
-          <div class="ddot"></div>
-          <div class="ddot"></div>
+        <button class="dnav" id="dbprev" onclick="prevS()" disabled style="opacity:.35">← Retour</button>
+        <button class="dnav p" id="dbnext" onclick="nextS()">Suivant →</button>
+        <div class="ddots" id="ddots">
+          <div class="ddot on"></div><div class="ddot"></div><div class="ddot"></div><div class="ddot"></div><div class="ddot"></div>
         </div>
       </div>
     </div>
-
-    <!-- Right: phone -->
-    <div class="demo-phone-wrap reveal">
+    <div class="demo-phone reveal">
       <div class="phone">
         <div class="phone-bar"><span>9:41</span><span>●●●</span></div>
         <div class="phone-notch"></div>
-        <div class="phone-screen" id="dphone">
-          <div class="app-prog"><div class="app-prog-fill" id="aprog" style="width:20%"></div></div>
-
-          <!-- ─── SCREEN 0: ONBOARDING ─── -->
+        <div class="phone-screen" style="min-height:500px">
+          <div class="aprog"><div class="aprog-f" id="apf" style="width:20%"></div></div>
+          <!-- SCREEN 0 -->
           <div class="ascreen on" id="s0">
             <div class="abody" style="display:flex;flex-direction:column">
               <div style="text-align:center;margin-bottom:12px">
@@ -620,103 +634,56 @@ footer{
                 <span style="font-size:14px">❤️</span>
                 <div><div style="font-size:10px;font-weight:700">Garder la forme</div><div class="amuted">Équilibre & bien-être</div></div>
               </div>
-              <div class="abtn" style="margin-top:auto" onclick="nextScreen()">Continuer →</div>
+              <div class="abtn" style="margin-top:auto" onclick="nextS()">Continuer →</div>
             </div>
-            <div class="afoot">
-              <div class="atab on"><div class="atab-icon">👤</div>Profil</div>
-            </div>
+            <div class="afoot"><div class="atab on"><div class="atab-i">👤</div>Profil</div></div>
           </div>
-
-          <!-- ─── SCREEN 1: ACCUEIL ─── -->
+          <!-- SCREEN 1 -->
           <div class="ascreen" id="s1">
-            <div class="atop">
-              <div>
-                <div style="font-size:8px;color:#aaa">Bonjour 👋</div>
-                <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:12px">Alex</div>
-              </div>
-              <div class="aavatar">AL</div>
-            </div>
+            <div class="atop"><div><div style="font-size:8px;color:#aaa">Bonjour 👋</div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:12px">Alex</div></div><div class="aavatar">AL</div></div>
             <div class="abody">
-              <div class="ac-or">
-                <div style="font-size:8px;opacity:.8">Série en cours</div>
-                <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:18px">🔥 7 jours</div>
-                <div style="font-size:8px;opacity:.65;margin-top:2px">Continue comme ça !</div>
-              </div>
+              <div class="ac-or"><div style="font-size:8px;opacity:.8">Série en cours</div><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:18px">🔥 7 jours</div><div style="font-size:8px;opacity:.65;margin-top:2px">Continue comme ça !</div></div>
               <div class="atitle">Programme du jour</div>
-              <div class="arow">
-                <div class="aicon">🏃</div>
-                <div style="flex:1"><div style="font-size:9px;font-weight:700">Cardio HIIT</div><div class="amuted">20 min · Intermédiaire</div></div>
-                <span class="apill-g">Fait</span>
-              </div>
-              <div class="arow">
-                <div class="aicon">💪</div>
-                <div style="flex:1"><div style="font-size:9px;font-weight:700">Renfo buste</div><div class="amuted">30 min · 6 exercices</div></div>
-                <span class="apill-o">À faire</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;font-size:8px;margin-top:6px">
-                <span style="color:#aaa">Progression du jour</span>
-                <span style="font-weight:700;color:#FF4D00">50%</span>
-              </div>
+              <div class="arow"><div class="aicon">🏃</div><div style="flex:1"><div style="font-size:9px;font-weight:700">Cardio HIIT</div><div class="amuted">20 min · Intermédiaire</div></div><span class="apill-g">Fait</span></div>
+              <div class="arow"><div class="aicon">💪</div><div style="flex:1"><div style="font-size:9px;font-weight:700">Renfo buste</div><div class="amuted">30 min · 6 exercices</div></div><span class="apill-o">À faire</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:8px;margin-top:6px"><span style="color:#aaa">Progression du jour</span><span style="font-weight:700;color:#FF4D00">50%</span></div>
               <div class="apbar"><div class="apfill" style="width:50%"></div></div>
             </div>
             <div class="afoot">
-              <div class="atab on"><div class="atab-icon">🏠</div>Accueil</div>
-              <div class="atab" onclick="setScreen(2)"><div class="atab-icon">📦</div>Kits</div>
-              <div class="atab" onclick="setScreen(4)"><div class="atab-icon">📅</div>Réserver</div>
-              <div class="atab"><div class="atab-icon">👤</div>Profil</div>
+              <div class="atab on"><div class="atab-i">🏠</div>Accueil</div>
+              <div class="atab" onclick="setScreen(2)"><div class="atab-i">📦</div>Kits</div>
+              <div class="atab" onclick="setScreen(4)"><div class="atab-i">📅</div>Réserver</div>
+              <div class="atab"><div class="atab-i">👤</div>Profil</div>
             </div>
           </div>
-
-          <!-- ─── SCREEN 2: LOCATION KIT ─── -->
+          <!-- SCREEN 2 -->
           <div class="ascreen" id="s2">
             <div class="atop"><span>Location de kits</span></div>
             <div class="abody">
-              <div class="ac" style="display:flex;align-items:center;gap:6px;padding:6px 10px">
-                <span style="font-size:11px">🔍</span>
-                <span style="font-size:9px;color:#bbb">Rechercher un kit...</span>
-              </div>
+              <div class="ac" style="display:flex;align-items:center;gap:6px;padding:6px 10px"><span style="font-size:11px">🔍</span><span style="font-size:9px;color:#bbb">Rechercher un kit...</span></div>
               <div class="ac">
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
-                  <div>
-                    <div style="font-size:10px;font-weight:700">Kit Full Body</div>
-                    <div class="amuted">Haltères, tapis, bandes</div>
-                    <span class="apill-g" style="margin-top:4px;display:inline-block">Disponible</span>
-                  </div>
-                  <div style="text-align:right">
-                    <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:12px;color:#FF4D00">4,90 €</div>
-                    <div class="amuted">/semaine</div>
-                  </div>
+                  <div><div style="font-size:10px;font-weight:700">Kit Full Body</div><div class="amuted">Haltères, tapis, bandes</div><span class="apill-g" style="margin-top:4px;display:inline-block">Disponible</span></div>
+                  <div style="text-align:right"><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:12px;color:#FF4D00">4,90 €</div><div class="amuted">/semaine</div></div>
                 </div>
                 <div class="abtn">Louer</div>
               </div>
               <div class="ac">
                 <div style="display:flex;justify-content:space-between;align-items:flex-start">
-                  <div>
-                    <div style="font-size:10px;font-weight:700">Kit Cardio</div>
-                    <div class="amuted">Corde, step, élastiques</div>
-                    <span class="apill-b" style="margin-top:4px;display:inline-block">2 dispo</span>
-                  </div>
-                  <div style="text-align:right">
-                    <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:12px;color:#FF4D00">3,50 €</div>
-                    <div class="amuted">/semaine</div>
-                  </div>
+                  <div><div style="font-size:10px;font-weight:700">Kit Cardio</div><div class="amuted">Corde, step, élastiques</div><span class="apill-b" style="margin-top:4px;display:inline-block">2 dispo</span></div>
+                  <div style="text-align:right"><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:12px;color:#FF4D00">3,50 €</div><div class="amuted">/semaine</div></div>
                 </div>
               </div>
-              <div class="ac" style="text-align:center">
-                <div style="font-size:24px;margin-bottom:4px">📷</div>
-                <div style="font-size:8px;color:#999;margin-bottom:5px">Scanner pour récupérer un kit</div>
-                <div class="abtn-ghost">Scanner QR</div>
-              </div>
+              <div class="ac" style="text-align:center"><div style="font-size:24px;margin-bottom:4px">📷</div><div style="font-size:8px;color:#999;margin-bottom:5px">Scanner pour récupérer un kit</div><div class="abtn-ghost">Scanner QR</div></div>
             </div>
             <div class="afoot">
-              <div class="atab" onclick="setScreen(1)"><div class="atab-icon">🏠</div>Accueil</div>
-              <div class="atab on"><div class="atab-icon">📦</div>Kits</div>
-              <div class="atab" onclick="setScreen(4)"><div class="atab-icon">📅</div>Réserver</div>
-              <div class="atab"><div class="atab-icon">👤</div>Profil</div>
+              <div class="atab" onclick="setScreen(1)"><div class="atab-i">🏠</div>Accueil</div>
+              <div class="atab on"><div class="atab-i">📦</div>Kits</div>
+              <div class="atab" onclick="setScreen(4)"><div class="atab-i">📅</div>Réserver</div>
+              <div class="atab"><div class="atab-i">👤</div>Profil</div>
             </div>
           </div>
-
-          <!-- ─── SCREEN 3: SÉANCE ─── -->
+          <!-- SCREEN 3 -->
           <div class="ascreen" id="s3">
             <div class="atop"><span>Séance en cours</span></div>
             <div class="abody">
@@ -731,48 +698,40 @@ footer{
               <div class="apbar" style="margin-bottom:8px"><div class="apfill" style="width:50%"></div></div>
               <div style="display:flex;align-items:flex-start;gap:6px;margin-bottom:7px">
                 <div style="width:22px;height:22px;border-radius:50%;background:#FF4D00;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">🤖</div>
-                <div style="background:#FF4D00;color:#fff;border-radius:10px 10px 10px 2px;padding:6px 8px;font-size:8px;line-height:1.5">Garde le dos bien droit et descends lentement pour maximiser l'effort !</div>
+                <div style="background:#FF4D00;color:#fff;border-radius:10px 10px 10px 2px;padding:6px 8px;font-size:8px;line-height:1.5">Garde le dos bien droit et descends lentement !</div>
               </div>
               <div class="atitle">Conseils clés</div>
               <div style="display:flex;gap:5px;margin-bottom:4px"><span style="color:#58CC02;font-size:11px">✓</span><span style="font-size:8px;color:#666">Mains écartées à la largeur des épaules</span></div>
               <div style="display:flex;gap:5px;margin-bottom:8px"><span style="color:#58CC02;font-size:11px">✓</span><span style="font-size:8px;color:#666">Expire en montant, inspire en descendant</span></div>
-              <div class="abtn" onclick="nextScreen()">Exercice suivant →</div>
+              <div class="abtn" onclick="nextS()">Exercice suivant →</div>
             </div>
             <div class="afoot">
-              <div class="atab" onclick="setScreen(1)"><div class="atab-icon">🏠</div>Accueil</div>
-              <div class="atab" onclick="setScreen(2)"><div class="atab-icon">📦</div>Kits</div>
-              <div class="atab" onclick="setScreen(4)"><div class="atab-icon">📅</div>Réserver</div>
-              <div class="atab"><div class="atab-icon">👤</div>Profil</div>
+              <div class="atab" onclick="setScreen(1)"><div class="atab-i">🏠</div>Accueil</div>
+              <div class="atab" onclick="setScreen(2)"><div class="atab-i">📦</div>Kits</div>
+              <div class="atab" onclick="setScreen(4)"><div class="atab-i">📅</div>Réserver</div>
+              <div class="atab"><div class="atab-i">👤</div>Profil</div>
             </div>
           </div>
-
-          <!-- ─── SCREEN 4: RÉSERVATION ─── -->
+          <!-- SCREEN 4 -->
           <div class="ascreen" id="s4">
             <div class="atop"><span>Réserver une salle</span></div>
             <div class="abody">
               <div class="ac">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
-                  <span style="font-size:10px;font-weight:700;font-family:Nunito,sans-serif">Juin 2025</span>
-                  <div style="font-size:12px;color:#aaa">‹ ›</div>
-                </div>
-                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-size:7px;color:#bbb;font-weight:700;margin-bottom:3px">
-                  <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
-                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><span style="font-size:10px;font-weight:700;font-family:Nunito,sans-serif">Juin 2025</span><div style="font-size:12px;color:#aaa">‹ ›</div></div>
+                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-size:7px;color:#bbb;font-weight:700;margin-bottom:3px"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
                 <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-size:7.5px">
                   <span style="padding:3px;color:#aaa">2</span><span style="padding:3px;color:#aaa">3</span><span style="padding:3px;color:#aaa">4</span><span style="padding:3px;color:#aaa">5</span>
                   <span style="padding:3px;background:#FFF3EE;color:#CC3D00;border-radius:4px;font-weight:700">6</span>
                   <span style="padding:3px;background:#FFF3EE;color:#CC3D00;border-radius:4px;font-weight:700">7</span>
-                  <span style="padding:3px;color:#aaa">8</span>
-                  <span style="padding:3px;color:#aaa">9</span>
+                  <span style="padding:3px;color:#aaa">8</span><span style="padding:3px;color:#aaa">9</span>
                   <span style="padding:3px;background:#FFF3EE;color:#CC3D00;border-radius:4px;font-weight:700">10</span>
                   <span style="padding:3px;background:#FF4D00;color:#fff;border-radius:4px;font-weight:700">11</span>
                   <span style="padding:3px;color:#aaa">12</span>
                   <span style="padding:3px;background:#FFF3EE;color:#CC3D00;border-radius:4px;font-weight:700">13</span>
-                  <span style="padding:3px;color:#aaa">14</span>
-                  <span style="padding:3px;color:#aaa">15</span>
+                  <span style="padding:3px;color:#aaa">14</span><span style="padding:3px;color:#aaa">15</span>
                 </div>
               </div>
-              <div class="atitle">Coachs disponibles · 11 juin</div>
+              <div class="atitle">Coachs dispo · 11 juin</div>
               <div class="ac">
                 <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px">
                   <div style="width:26px;height:26px;border-radius:50%;background:#E6F1FB;color:#0C447C;font-size:9px;font-weight:800;font-family:Nunito,sans-serif;display:flex;align-items:center;justify-content:center;flex-shrink:0">SC</div>
@@ -790,146 +749,300 @@ footer{
               </div>
             </div>
             <div class="afoot">
-              <div class="atab" onclick="setScreen(1)"><div class="atab-icon">🏠</div>Accueil</div>
-              <div class="atab" onclick="setScreen(2)"><div class="atab-icon">📦</div>Kits</div>
-              <div class="atab on"><div class="atab-icon">📅</div>Réserver</div>
-              <div class="atab"><div class="atab-icon">👤</div>Profil</div>
+              <div class="atab" onclick="setScreen(1)"><div class="atab-i">🏠</div>Accueil</div>
+              <div class="atab" onclick="setScreen(2)"><div class="atab-i">📦</div>Kits</div>
+              <div class="atab on"><div class="atab-i">📅</div>Réserver</div>
+              <div class="atab"><div class="atab-i">👤</div>Profil</div>
             </div>
           </div>
-
-        </div><!-- /phone-screen -->
-      </div><!-- /phone -->
-    </div><!-- /demo-phone-wrap -->
-
-  </div><!-- /demo-inner -->
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ══ COACHES ════════════════════════════ -->
-<section id="coaches">
-  <div style="max-width:1160px;margin:0 auto">
+<!-- 6. FONCTIONNALITÉS CLÉS -->
+<section class="sec" id="keyfeat">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center;margin-bottom:0">
+      <div class="sec-badge">⭐ Fonctionnalités clés</div>
+      <h2 class="sec-title" style="text-align:center">Ce qui rend Moove Up <em>unique</em></h2>
+      <p class="sec-sub" style="margin:0 auto">Quatre piliers qui n'existent nulle part ailleurs dans la même application.</p>
+    </div>
+    <div class="keyfeat-grid reveal" style="margin-top:52px">
+      <div class="kfcard kit">
+        <div class="kfcard-head">
+          <div class="ico">📦</div>
+          <h3>Location de kit sportif</h3>
+          <p>1 jour à 4 semaines. Livraison à domicile ou retrait QR. Programme adapté au kit débloqué automatiquement.</p>
+        </div>
+        <div class="kfcard-body">
+          <ul>
+            <li>Kit Full Body, Cardio, Stretching disponibles</li>
+            <li>Livraison à domicile ou retrait par QR code</li>
+            <li>Programme app adapté au kit loué automatiquement</li>
+            <li>Dès 3,50 € / semaine, sans engagement</li>
+          </ul>
+        </div>
+      </div>
+      <div class="kfcard coach">
+        <div class="kfcard-head">
+          <div class="ico">🤖</div>
+          <h3>Coach virtuel IA en temps réel</h3>
+          <p>Vidéos d'exécution, conseils techniques, suivi de progression pendant chaque séance.</p>
+        </div>
+        <div class="kfcard-body">
+          <ul>
+            <li>3 niveaux : débutant → avancé, haut et bas du corps, cardio</li>
+            <li>Aucun matériel requis — bodyweight inclus</li>
+            <li>Conseils techniques en temps réel pendant l'exercice</li>
+            <li>Suivi de progression semaine après semaine</li>
+          </ul>
+        </div>
+      </div>
+      <div class="kfcard salle">
+        <div class="kfcard-head">
+          <div class="ico">🏋️</div>
+          <h3>Salle de sport intimiste</h3>
+          <p>Accès salle gymn intime (max 15 pers.) à Paris. Poids, cardio, stretching. Petite salle, grande ambiance.</p>
+        </div>
+        <div class="kfcard-body">
+          <ul>
+            <li>Maximum 15 personnes simultanément</li>
+            <li>Poids libres, cardio, zone stretching</li>
+            <li>Séance d'essai gratuite pour les nouveaux membres</li>
+            <li>Ambiance collectif sans la foule des grandes salles</li>
+          </ul>
+        </div>
+      </div>
+      <div class="kfcard resa">
+        <div class="kfcard-head">
+          <div class="ico">🗓️</div>
+          <h3>Réservation de coach humain</h3>
+          <p>Réservation de coaching solo ou collectif via l'app. Événements collectifs, coaching personnalisé.</p>
+        </div>
+        <div class="kfcard-body">
+          <ul>
+            <li>Coaching solo ou collectif depuis l'app</li>
+            <li>Calendrier en temps réel des disponibilités</li>
+            <li>Événements collectifs & défis entre membres</li>
+            <li>Confirmation immédiate, annulation libre</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. AUTRES FONCTIONNALITÉS -->
+<section class="sec" id="otherfeat">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center;margin-bottom:0">
+      <div class="sec-badge">✨ Aussi dans l'app</div>
+      <h2 class="sec-title" style="text-align:center">Tout ce qui fait <em>la différence</em></h2>
+      <p class="sec-sub" style="margin:0 auto">En plus des 4 piliers, Moove Up embarque des fonctionnalités pensées pour te garder motivé.</p>
+    </div>
+    <div class="otherfeat-grid reveal" style="margin-top:48px">
+      <div class="ofcard">
+        <div class="ico">🎯</div>
+        <h3>Onboarding personnalisé</h3>
+        <p>Objectifs, niveau, dispo, morpho. Ton programme arrive en 2 minutes, généré sur mesure pour toi.</p>
+      </div>
+      <div class="ofcard">
+        <div class="ico">📊</div>
+        <h3>Suivi des performances</h3>
+        <p>Historique des séances, évolution des perfs sur machines, progression visible semaine après semaine.</p>
+      </div>
+      <div class="ofcard">
+        <div class="ico">🏆</div>
+        <h3>Communauté & défis</h3>
+        <p>Défis entre membres, classements, événements collectifs en salle. Member challenges, leaderboards.</p>
+      </div>
+      <div class="ofcard">
+        <div class="ico">🔥</div>
+        <h3>Entraînement sans poids</h3>
+        <p>3 niveaux, haut et bas du corps, cardio. Aucun matériel requis. Partout, tout le temps.</p>
+      </div>
+      <div class="ofcard">
+        <div class="ico">👥</div>
+        <h3>Deviens ambassadeur</h3>
+        <p>Parraine un ami, gagne un mois offert. Ta communauté grandit avec toi et tu en profites.</p>
+      </div>
+      <div class="ofcard" style="background:var(--or);border-color:var(--or)">
+        <div class="ico" style="background:rgba(255,255,255,.25)">🚀</div>
+        <h3 style="color:var(--wh)">Et bien plus à venir</h3>
+        <p style="color:rgba(255,255,255,.8)">Nutrition, sleep tracking, intégration wearables... Rejoins la liste pour être bêta-testeur.</p>
+        <button class="btn-ghost" style="margin-top:16px;border-color:rgba(255,255,255,.5);color:var(--wh);padding:10px 20px;font-size:.875rem" onclick="goTo('contact')">Rejoindre →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. COACHS -->
+<section class="sec" id="coaches">
+  <div class="sec-in">
     <div class="reveal">
       <div class="sec-badge">👟 Tes coachs</div>
-      <h2 class="sec-title">Des experts pour<br><em>chaque discipline</em></h2>
-      <p class="sec-sub">Trois coachs, trois univers. Chacun adapte son programme à ton niveau et tes objectifs du moment.</p>
+      <h2 class="sec-title">Des experts pour <em>chaque discipline</em></h2>
+      <p class="sec-sub">Trois coachs, trois univers. Chacun adapte son programme à ton niveau et tes objectifs.</p>
     </div>
     <div class="coaches-grid reveal">
-
-      <!-- MAX -->
       <div class="ccard muscu">
         <div class="ccard-img">
           <!-- 🐶 REMPLACE PAR: <img src="images/coach-max.jpg" alt="Coach Max"> -->
-          <img src="https://placedog.net/400/280?id=1" alt="Coach Max" class="dog-ph">
+          <img src="https://placedog.net/400/280?id=1" alt="Coach Max">
         </div>
         <div class="ccard-body">
           <span class="ctag">Musculation</span>
           <h3>Max</h3>
           <p>Force · Progression · Dépassement</p>
           <div class="ccard-expr">
-            <div class="expr-dot" title="Heureux">😄</div>
-            <div class="expr-dot" title="Neutre">😐</div>
-            <div class="expr-dot" title="Triste">😢</div>
-            <div class="expr-dot" title="Choqué">😱</div>
+            <div class="expr-dot">😄</div><div class="expr-dot">😐</div>
+            <div class="expr-dot">😢</div><div class="expr-dot">😱</div>
           </div>
         </div>
       </div>
-
-      <!-- SARA -->
       <div class="ccard running">
         <div class="ccard-img">
           <!-- 🐶 REMPLACE PAR: <img src="images/coach-sara.jpg" alt="Coach Sara"> -->
-          <img src="https://placedog.net/400/280?id=22" alt="Coach Sara" class="dog-ph">
+          <img src="https://placedog.net/400/280?id=22" alt="Coach Sara">
         </div>
         <div class="ccard-body">
           <span class="ctag">Running</span>
           <h3>Sara</h3>
           <p>Endurance · Dépassement · Liberté</p>
           <div class="ccard-expr">
-            <div class="expr-dot" title="Heureux">😄</div>
-            <div class="expr-dot" title="Neutre">😐</div>
-            <div class="expr-dot" title="Triste">😢</div>
-            <div class="expr-dot" title="Choqué">😱</div>
+            <div class="expr-dot">😄</div><div class="expr-dot">😐</div>
+            <div class="expr-dot">😢</div><div class="expr-dot">😱</div>
           </div>
         </div>
       </div>
-
-      <!-- LÉA -->
       <div class="ccard souple">
         <div class="ccard-img">
           <!-- 🐶 REMPLACE PAR: <img src="images/coach-lea.jpg" alt="Coach Léa"> -->
-          <img src="https://placedog.net/400/280?id=45" alt="Coach Léa" class="dog-ph">
+          <img src="https://placedog.net/400/280?id=45" alt="Coach Léa">
         </div>
         <div class="ccard-body">
           <span class="ctag">Souplesse</span>
           <h3>Léa</h3>
           <p>Mobilité · Équilibre · Sérénité</p>
           <div class="ccard-expr">
-            <div class="expr-dot" title="Heureux">😄</div>
-            <div class="expr-dot" title="Neutre">😐</div>
-            <div class="expr-dot" title="Triste">😢</div>
-            <div class="expr-dot" title="Choqué">😱</div>
+            <div class="expr-dot">😄</div><div class="expr-dot">😐</div>
+            <div class="expr-dot">😢</div><div class="expr-dot">😱</div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══ FEATURES ══════════════════════════ -->
-<section id="features">
-  <div style="max-width:1160px;margin:0 auto">
-    <div class="reveal" style="text-align:center;margin-bottom:56px">
-      <div class="sec-badge">✨ Fonctionnalités</div>
-      <h2 class="sec-title" style="text-align:center">Tout ce dont tu as besoin,<br><em>en une seule app</em></h2>
-      <p class="sec-sub" style="margin:0 auto">Chaque écran a été pensé pour rendre ta pratique sportive simple, efficace et motivante.</p>
+<!-- 9. ABONNEMENTS -->
+<section class="sec" id="pricing">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <div class="sec-badge">💳 Abonnements</div>
+      <h2 class="sec-title" style="text-align:center">Des offres <em>sans engagement</em></h2>
+      <p class="sec-sub" style="margin:0 auto">Commence avec ce qui te convient, évolue quand tu veux. Aucun frais caché.</p>
     </div>
-    <div class="features-grid reveal">
-      <div class="fcard">
-        <div class="ficon">🎯</div>
-        <h3>Profil personnalisé</h3>
-        <p>Objectifs, niveau, disponibilités. En 3 étapes, ton programme est entièrement adapté à toi.</p>
+    <div class="pricing-grid reveal">
+      <!-- App seule -->
+      <div class="pcard">
+        <h3>App seule</h3>
+        <p class="psub">App only</p>
+        <div class="price">9–15 <span>€/mois</span></div>
+        <p class="price-note">Sans engagement · Résiliable à tout moment</p>
+        <ul>
+          <li><span class="check">✓</span> Programme IA sur mesure</li>
+          <li><span class="check">✓</span> Coach virtuel + vidéos</li>
+          <li><span class="check">✓</span> Suivi poids & morpho</li>
+          <li><span class="check">✓</span> Entraînement bodyweight</li>
+          <li><span class="check">✓</span> Tracking performances</li>
+        </ul>
+        <button class="pcard-btn" onclick="goTo('contact')">Commencer →</button>
       </div>
-      <div class="fcard">
-        <div class="ficon">📅</div>
-        <h3>Programme du jour</h3>
-        <p>Tableau de bord clair : séance du jour, streak de motivation et progression en temps réel.</p>
+      <!-- Hybride complet -->
+      <div class="pcard featured">
+        <div class="pcard-badge">⭐ Recommandé</div>
+        <h3>Hybride complet</h3>
+        <p class="psub">Full hybrid</p>
+        <div class="price">39–59 <span>€/mois</span></div>
+        <p class="price-note">App + accès salle illimité + suivi pro</p>
+        <ul>
+          <li><span class="check">✓</span> Tout l'abonnement App</li>
+          <li><span class="check">✓</span> Accès salle illimité (max 15 pers.)</li>
+          <li><span class="check">✓</span> Navigation en option</li>
+          <li><span class="check">✓</span> Coaching collectif inclus</li>
+          <li><span class="check">✓</span> Événements & défis membres</li>
+          <li><span class="check">✓</span> Kit rental disponible en option</li>
+        </ul>
+        <button class="pcard-btn" onclick="goTo('contact')">Je veux cet abonnement →</button>
       </div>
-      <div class="fcard">
-        <div class="ficon">📦</div>
-        <h3>Location de kits</h3>
-        <p>Catalogue de kits sportifs à louer. Récupération express par scan QR code, livraison incluse.</p>
+      <!-- Kit à la location -->
+      <div class="pcard">
+        <h3>Kit à la location</h3>
+        <p class="psub">Kit rental</p>
+        <div class="price">15–45 <span>€/sem.</span></div>
+        <p class="price-note">1 jour à 4 semaines · Livraison ou QR code</p>
+        <ul>
+          <li><span class="check">✓</span> Kit Full Body, Cardio ou Stretching</li>
+          <li><span class="check">✓</span> Livraison à domicile incluse</li>
+          <li><span class="check">✓</span> Programme app généré automatiquement</li>
+          <li><span class="check">✓</span> Retrait par QR code disponible</li>
+          <li><span class="check">✓</span> Sans abonnement, à la demande</li>
+        </ul>
+        <button class="pcard-btn" onclick="goTo('contact')">Louer un kit →</button>
       </div>
-      <div class="fcard">
-        <div class="ficon">🤖</div>
-        <h3>Coach virtuel IA</h3>
-        <p>Vidéo guidée + conseils temps réel de ton coach pendant chaque exercice. Comme en vrai.</p>
-      </div>
-      <div class="fcard">
-        <div class="ficon">🗓️</div>
-        <h3>Réservation salle</h3>
-        <p>Calendrier intégré pour réserver un créneau avec un coach humain directement depuis l'app.</p>
-      </div>
-      <div class="fcard" style="background:var(--or);border-color:var(--or)">
-        <div class="ficon" style="background:rgba(255,255,255,.25)">🚀</div>
-        <h3 style="color:var(--wh)">Bientôt disponible</h3>
-        <p style="color:rgba(255,255,255,.8)">Rejoins la liste d'attente et sois parmi les premiers à tester Moove Up à son lancement.</p>
-        <button class="btn-ghost" style="margin-top:18px;border-color:rgba(255,255,255,.5);color:var(--wh);padding:10px 20px;font-size:.875rem" onclick="goTo('contact')">Rejoindre →</button>
-      </div>
+    </div>
+    <p class="kit-note">💡 Le kit à la location est aussi disponible <strong>en option dans le Hybride complet</strong>. Coaching humain solo disponible en supplément.</p>
+  </div>
+</section>
+
+<!-- 10. COMPARATIF -->
+<section class="sec" id="compare">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center;margin-bottom:0">
+      <div class="sec-badge">📊 Comparatif</div>
+      <h2 class="sec-title" style="text-align:center">Moove Up <em>vs</em> les autres</h2>
+      <p class="sec-sub" style="margin:0 auto">Ce que personne d'autre ne propose dans une seule solution.</p>
+    </div>
+    <div class="compare-table reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Critère</th>
+            <th>Basic-Fit</th>
+            <th>Freeletics</th>
+            <th>Nike Training</th>
+            <th>Moove Up</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Programme personnalisé IA</td><td class="cno">—</td><td class="cpart">Partiel</td><td class="cpart">Partiel</td><td class="cmoove">✓ Complet</td></tr>
+          <tr><td>Location d'équipement</td><td class="cno">—</td><td class="cno">—</td><td class="cno">—</td><td class="cmoove">✓ Inclus</td></tr>
+          <tr><td>Accès salle intimiste</td><td class="cpart">Grande salle</td><td class="cno">—</td><td class="cno">—</td><td class="cmoove">✓ Max 15 pers.</td></tr>
+          <tr><td>Coach humain réservable</td><td class="cpart">Supplément</td><td class="cno">—</td><td class="cno">—</td><td class="cmoove">✓ Inclus</td></tr>
+          <tr><td>Engagement contractuel</td><td class="cno">12 mois</td><td class="cpart">Mensuel</td><td class="cyes">Non</td><td class="cmoove">✓ Aucun</td></tr>
+          <tr><td>Entraînement à domicile</td><td class="cno">—</td><td class="cyes">Oui</td><td class="cyes">Oui</td><td class="cmoove">✓ Oui</td></tr>
+          <tr><td>Personnalisation morpho</td><td class="cno">—</td><td class="cpart">Partielle</td><td class="cno">—</td><td class="cmoove">✓ Complète</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
 
-<!-- ══ CONTACT ════════════════════════════ -->
+<!-- 11. CONTACT -->
 <section id="contact">
   <div class="contact-inner">
     <div class="reveal">
       <h2>Sois parmi les premiers<br>à bouger avec Moove Up</h2>
-      <p>Rejoins la liste d'attente et reçois un accès prioritaire au lancement.</p>
+      <p class="lead">Rejoins la liste d'attente et reçois un accès prioritaire au lancement. Gratuit, sans engagement.</p>
       <div id="wsuccess">🎉 Parfait ! Tu seras parmi les premiers à tester Moove Up.</div>
       <form class="wform" id="wform" onsubmit="submitForm(event)">
-        <input type="text" placeholder="Ton prénom" required>
-        <input type="email" id="wemail" placeholder="ton@email.com" required>
-        <textarea placeholder="Un message ? (optionnel)"></textarea>
+        <div class="wform-row">
+          <input type="text" placeholder="Ton prénom" required>
+          <input type="email" id="wemail" placeholder="ton@email.com" required>
+        </div>
+        <textarea placeholder="Un message ou une question ? (optionnel)"></textarea>
         <button type="submit" class="wsub">Rejoindre la liste d'attente →</button>
       </form>
       <p class="wcount"><strong>+247 personnes</strong> déjà inscrites</p>
@@ -937,86 +1050,64 @@ footer{
   </div>
 </section>
 
-<!-- ══ FOOTER ═════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="foot-brand"><span>MOOVE</span><span>UP</span></div>
   <div class="foot-links">
+    <a href="#about">Le projet</a>
     <a href="#demo">Démo</a>
+    <a href="#keyfeat">Fonctionnalités</a>
     <a href="#coaches">Coachs</a>
-    <a href="#features">Fonctionnalités</a>
+    <a href="#pricing">Abonnements</a>
     <a href="#contact">Contact</a>
   </div>
   <div class="foot-copy">© 2025 Moove Up · Progress where you are</div>
 </footer>
 
 <script>
-/* ── NAV scroll ── */
+// Nav
 window.addEventListener('scroll',()=>{
   document.getElementById('nav').classList.toggle('solid',scrollY>20)
 })
+function toggleMenu(){document.getElementById('mmenu').classList.toggle('open')}
+function closeMenu(){document.getElementById('mmenu').classList.remove('open')}
+function goTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
 
-/* ── Mobile menu ── */
-function toggleMenu(){
-  document.getElementById('mmenu').classList.toggle('open')
-}
-function closeMenu(){
-  document.getElementById('mmenu').classList.remove('open')
-}
-
-/* ── Scroll to ── */
-function goTo(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'})
-}
-
-/* ── Scroll reveal ── */
+// Reveal
 const ro=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('up')})
-},{threshold:.12})
+},{threshold:.1})
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el))
 
-/* ── Demo screens ── */
+// Demo
 const DESCS=[
-  "Configure tes objectifs, ton niveau et tes disponibilités. L'app adapte tout ton parcours en 3 étapes simples.",
-  "Ton tableau de bord : streak en cours, programme du jour et progression globale d'un coup d'œil.",
-  "Parcours le catalogue, choisis un kit sportif et récupère-le avec un simple QR code. Location dès 3,50 €/sem.",
-  "Ton coach IA te guide en vidéo + conseils en temps réel. Chaque exercice est expliqué et corrigé.",
+  "Configure tes objectifs, ton niveau et tes disponibilités. L'app génère ton programme sur mesure en moins de 2 minutes.",
+  "Ton tableau de bord : streak en cours, programme du jour et progression globale d'un seul coup d'œil.",
+  "Parcours le catalogue de kits sportifs, loue en un clic et récupère ton équipement par QR code dès 3,50€/sem.",
+  "Ton coach IA te guide en vidéo avec des conseils techniques en temps réel pendant chaque exercice.",
   "Réserve un créneau avec un coach humain depuis le calendrier. Disponibilités en direct, confirmation immédiate."
 ]
 let cur=0
-
 function setScreen(n){
   if(n===cur)return
-  // Hide old
   document.getElementById('s'+cur).classList.remove('on')
   document.querySelectorAll('.stab')[cur].classList.remove('on')
   cur=n
-  // Show new
   document.getElementById('s'+n).classList.add('on')
   document.querySelectorAll('.stab')[n].classList.add('on')
-  // Desc
   document.getElementById('sdesc').textContent=DESCS[n]
-  // Progress
-  document.getElementById('aprog').style.width=((n+1)/5*100)+'%'
-  // Dots
-  document.querySelectorAll('.ddot').forEach((d,i)=>{
-    d.classList.toggle('on',i===n)
-  })
-  // Buttons
-  document.getElementById('dbtn-prev').disabled=n===0
-  document.getElementById('dbtn-prev').style.opacity=n===0?'.35':'1'
-  const nb=document.getElementById('dbtn-next')
-  if(n===4){
-    nb.textContent='Rejoindre →'
-    nb.onclick=()=>goTo('contact')
-  } else {
-    nb.textContent='Suivant →'
-    nb.onclick=nextScreen
-  }
+  document.getElementById('apf').style.width=((n+1)/5*100)+'%'
+  document.querySelectorAll('.ddot').forEach((d,i)=>d.classList.toggle('on',i===n))
+  const bp=document.getElementById('dbprev')
+  bp.disabled=n===0;bp.style.opacity=n===0?'.35':'1'
+  const bn=document.getElementById('dbnext')
+  if(n===4){bn.textContent='Rejoindre →';bn.onclick=()=>goTo('contact')}
+  else{bn.textContent='Suivant →';bn.onclick=nextS}
 }
-function nextScreen(){if(cur<4)setScreen(cur+1)}
-function prevScreen(){if(cur>0)setScreen(cur-1)}
+function nextS(){if(cur<4)setScreen(cur+1)}
+function prevS(){if(cur>0)setScreen(cur-1)}
 
-/* ── Form ── */
+// Form
 function submitForm(e){
   e.preventDefault()
   const email=document.getElementById('wemail').value
@@ -1027,5 +1118,3 @@ function submitForm(e){
 </script>
 </body>
 </html>
-
-
