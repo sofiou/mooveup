@@ -1092,6 +1092,151 @@ footer{background:var(--ch);padding:36px 5%;display:flex;align-items:center;just
   </div>
 </section>
 
+  <!-- SECTION RÉSERVATION -->
+
+<section id="reservation" style="background:var(--ch-1);overflow:hidden;padding:88px 5%">
+  <div style="max-width:1160px;margin:0 auto">
+
+    <!-- Header -->
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:64px">
+
+      <!-- Texte gauche -->
+      <div>
+        <div class="sec-badge">🗓️ Réservation coach</div>
+        <h2 class="sec-title">Un vrai coach humain,<br><em>quand tu en as besoin</em></h2>
+        <p style="font-size:1rem;color:var(--ch-4);line-height:1.8;margin-bottom:28px">
+          Au-delà du coach IA, Moove Up te donne accès à des coachs humains 
+          disponibles en salle. Solo ou en groupe, tu réserves ton créneau 
+          directement depuis l'app en quelques secondes.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:flex-start;gap:14px">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--or-l);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">📲</div>
+            <div>
+              <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:.92rem;color:var(--ch);margin-bottom:3px">Réservation en 3 secondes</div>
+              <div style="font-size:.85rem;color:var(--ch-4);line-height:1.6">Calendrier temps réel des disponibilités. Confirmation immédiate, annulation libre.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--or-l);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">👤</div>
+            <div>
+              <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:.92rem;color:var(--ch);margin-bottom:3px">Solo ou groupe</div>
+              <div style="font-size:.85rem;color:var(--ch-4);line-height:1.6">Coaching individuel pour progresser vite. Collectif pour se motiver entre membres.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--or-l);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🎯</div>
+            <div>
+              <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:.92rem;color:var(--ch);margin-bottom:3px">Séance d'essai gratuite</div>
+              <div style="font-size:.85rem;color:var(--ch-4);line-height:1.6">Ta première séance avec un coach est offerte. Tu paies si tu aimes, pas avant.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--or-l);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🏆</div>
+            <div>
+              <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:.92rem;color:var(--ch);margin-bottom:3px">Événements & défis collectifs</div>
+              <div style="font-size:.85rem;color:var(--ch-4);line-height:1.6">Challenges entre membres, classements, événements spéciaux en salle chaque semaine.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone mockup réservation -->
+      <div style="display:flex;justify-content:center">
+        <div style="position:relative">
+          <div style="position:absolute;inset:-20px;background:radial-gradient(circle,rgba(255,77,0,.1) 0%,transparent 70%);border-radius:50%;z-index:0"></div>
+          <div class="phone" style="width:220px;position:relative;z-index:1;animation:float 3.5s ease-in-out infinite">
+            <div class="phone-bar"><span>9:41</span><span>●●●</span></div>
+            <div class="phone-notch"></div>
+            <div class="phone-screen" style="min-height:460px">
+              <div style="background:white;flex:1;display:flex;flex-direction:column">
+
+                <!-- Top bar -->
+                <div style="padding:10px 12px 8px;border-bottom:1px solid #f0f0f0;font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:#2C2C2A">Réserver une séance</div>
+
+                <div style="padding:10px;background:#f8f8f8;flex:1;display:flex;flex-direction:column;gap:8px">
+
+                  <!-- Toggle solo/groupe -->
+                  <div style="display:flex;background:white;border-radius:10px;padding:4px;border:.5px solid #eee">
+                    <div style="flex:1;background:#FF4D00;color:white;border-radius:7px;padding:6px;text-align:center;font-family:Nunito,sans-serif;font-weight:800;font-size:9px">Coaching solo</div>
+                    <div style="flex:1;color:#aaa;padding:6px;text-align:center;font-family:Nunito,sans-serif;font-weight:700;font-size:9px">Coaching groupe</div>
+                  </div>
+
+                  <!-- Calendar -->
+                  <div style="background:white;border-radius:10px;padding:9px;border:.5px solid #eee">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                      <span style="font-size:10px;font-weight:700;font-family:Nunito,sans-serif">Juin 2025</span>
+                      <div style="font-size:11px;color:#aaa">‹ ›</div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-size:7px;color:#bbb;font-weight:700;margin-bottom:3px">
+                      <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-size:7.5px">
+                      <span style="padding:3px;color:#aaa">2</span><span style="padding:3px;color:#aaa">3</span><span style="padding:3px;color:#aaa">4</span><span style="padding:3px;color:#aaa">5</span>
+                      <span style="padding:3px;background:#FFF3EE;color:#CC3D00;border-radius:4px;font-weight:700">6</span>
+                      <span style="padding:3px;background:#FFF3EE;color:#CC3D00;border-radius:4px;font-weight:700">7</span>
+                      <span style="padding:3px;color:#aaa">8</span>
+                      <span style="padding:3px;color:#aaa">9</span>
+                      <span style="padding:3px;background:#FFF3EE;color:#CC3D00;border-radius:4px;font-weight:700">10</span>
+                      <span style="padding:3px;background:#FF4D00;color:#fff;border-radius:4px;font-weight:700">11</span>
+                      <span style="padding:3px;color:#aaa">12</span>
+                      <span style="padding:3px;background:#FFF3EE;color:#CC3D00;border-radius:4px;font-weight:700">13</span>
+                      <span style="padding:3px;color:#aaa">14</span>
+                      <span style="padding:3px;color:#aaa">15</span>
+                    </div>
+                  </div>
+
+                  <!-- Créneaux -->
+                  <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:9px;color:#2C2C2A">Créneaux disponibles · 11 juin</div>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px">
+                    <div style="background:white;border:.5px solid #eee;border-radius:8px;padding:6px;text-align:center;font-size:9px;font-weight:700;color:#aaa">08:00</div>
+                    <div style="background:#FF4D00;border-radius:8px;padding:6px;text-align:center;font-size:9px;font-weight:700;color:white">10:00 ✓</div>
+                    <div style="background:white;border:.5px solid #eee;border-radius:8px;padding:6px;text-align:center;font-size:9px;font-weight:700;color:#aaa">12:00</div>
+                    <div style="background:white;border:.5px solid #eee;border-radius:8px;padding:6px;text-align:center;font-size:9px;font-weight:700;color:#aaa">14:00</div>
+                    <div style="background:white;border:.5px solid #eee;border-radius:8px;padding:6px;text-align:center;font-size:9px;font-weight:700;color:#aaa">16:00</div>
+                    <div style="background:white;border:.5px solid #eee;border-radius:8px;padding:6px;text-align:center;font-size:9px;font-weight:700;color:#aaa">18:00</div>
+                  </div>
+
+                  <!-- Coach sélectionné -->
+                  <div style="background:white;border-radius:10px;padding:9px;border:.5px solid #eee">
+                    <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:9px;color:#2C2C2A;margin-bottom:6px">Coach sélectionné</div>
+                    <div style="display:flex;align-items:center;gap:8px">
+                      <div style="width:28px;height:28px;border-radius:50%;background:#FFF3EE;color:#CC3D00;font-size:9px;font-weight:800;font-family:Nunito,sans-serif;display:flex;align-items:center;justify-content:center;flex-shrink:0">SC</div>
+                      <div style="flex:1">
+                        <div style="font-size:9px;font-weight:700">Sophie Clément</div>
+                        <div style="font-size:7px;color:#aaa">Renfo · 10h00 – 11h00</div>
+                      </div>
+                      <span style="background:#D7FFB8;color:#3A8A00;font-size:7px;font-weight:700;padding:2px 7px;border-radius:20px">Libre</span>
+                    </div>
+                  </div>
+
+                  <!-- Bouton réserver -->
+                  <div style="background:#FF4D00;color:white;border-radius:10px;padding:10px;text-align:center;font-family:Nunito,sans-serif;font-weight:800;font-size:10px;margin-top:auto">
+                    Confirmer la réservation →
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- CTA final -->
+      <div style="text-align:center;margin-top:40px;padding:40px;background:linear-gradient(135deg,var(--or-l),var(--wh));border-radius:24px;border:1.5px solid rgba(255,77,0,.15)">
+        <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.4rem;color:var(--ch);margin-bottom:8px">Première séance <em style="color:var(--or)">offerte</em></div>
+        <div style="font-size:.95rem;color:var(--ch-4);margin-bottom:24px">Réserve ta séance d'essai avec le coach de ton choix. Gratuit, sans engagement.</div>
+        <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+          Réserver ma séance d'essai →
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 <!-- 6. FONCTIONNALITÉS CLÉS -->
 <section class="sec" id="keyfeat">
   <div class="sec-in">
