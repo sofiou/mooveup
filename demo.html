@@ -466,6 +466,8 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
     <div class="screen" id="screen-kit">
       <div class="a-top"><span class="a-top-title">Mes kits</span><span class="pill pill-g">📦 1 actif</span></div>
       <div class="a-body">
+
+        <!-- Kit en cours -->
         <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--ch);margin-bottom:7px">Kit en cours</div>
         <div style="background:var(--ch);border-radius:13px;padding:13px;margin-bottom:10px;color:var(--wh)">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
@@ -483,46 +485,54 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
           <div style="height:4px;background:rgba(255,255,255,.1);border-radius:3px;margin-bottom:10px">
             <div style="height:4px;width:46%;background:var(--or);border-radius:3px"></div>
           </div>
+          <!-- Contenu sans icônes -->
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:10px">
-            <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px;display:flex;align-items:center;gap:6px"><span style="font-size:13px">🏋️</span><div><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Haltères</div><div style="font-size:7px;color:rgba(255,255,255,.4)">2 × 4 kg</div></div></div>
-            <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px;display:flex;align-items:center;gap:6px"><span style="font-size:13px">🧘</span><div><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Tapis</div><div style="font-size:7px;color:rgba(255,255,255,.4)">Anti-dérapant</div></div></div>
-            <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px;display:flex;align-items:center;gap:6px"><span style="font-size:13px">💪</span><div><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Bandes</div><div style="font-size:7px;color:rgba(255,255,255,.4)">3 résistances</div></div></div>
-            <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px;display:flex;align-items:center;gap:6px"><span style="font-size:13px">🪢</span><div><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Corde</div><div style="font-size:7px;color:rgba(255,255,255,.4)">Cardio</div></div></div>
+            <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Haltères</div><div style="font-size:7px;color:rgba(255,255,255,.4)">2 × 4 kg</div></div>
+            <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Tapis</div><div style="font-size:7px;color:rgba(255,255,255,.4)">Anti-dérapant</div></div>
+            <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Bandes</div><div style="font-size:7px;color:rgba(255,255,255,.4)">3 résistances</div></div>
+            <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Corde</div><div style="font-size:7px;color:rgba(255,255,255,.4)">Cardio</div></div>
           </div>
           <button onclick="openQR()" style="width:100%;background:var(--or);color:var(--wh);border-radius:10px;padding:10px;font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px"><span style="font-size:14px">📷</span> Scanner mon kit QR</button>
           <div style="font-size:7.5px;color:rgba(255,255,255,.3);text-align:center;margin-top:5px">Scanne pour déverrouiller ton programme</div>
         </div>
+
+        <!-- Boutons Renouveler / Changer -->
         <div style="display:flex;gap:7px;margin-bottom:12px">
-          <button style="flex:1;background:var(--or-l);color:var(--or-d);border-radius:9px;padding:8px;font-family:Nunito,sans-serif;font-weight:700;font-size:9.5px;border:1.5px solid rgba(255,77,0,.2);cursor:pointer">🔄 Renouveler</button>
-          <button style="flex:1;background:var(--ch-1);color:var(--ch-4);border-radius:9px;padding:8px;font-family:Nunito,sans-serif;font-weight:700;font-size:9.5px;border:1.5px solid var(--ch-2);cursor:pointer">↔ Changer</button>
+          <button onclick="openRenouveler()" style="flex:1;background:var(--or-l);color:var(--or-d);border-radius:9px;padding:8px;font-family:Nunito,sans-serif;font-weight:700;font-size:9.5px;border:1.5px solid rgba(255,77,0,.2);cursor:pointer">🔄 Renouveler</button>
+          <button onclick="openChanger()" style="flex:1;background:var(--ch-1);color:var(--ch-4);border-radius:9px;padding:8px;font-family:Nunito,sans-serif;font-weight:700;font-size:9.5px;border:1.5px solid var(--ch-2);cursor:pointer">↔ Changer</button>
         </div>
+
+        <!-- Catalogue -->
         <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--ch);margin-bottom:7px">Catalogue</div>
         <div class="acard" style="margin-bottom:6px">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px">
-            <div style="display:flex;align-items:center;gap:8px">
-              <div style="width:34px;height:34px;border-radius:9px;background:var(--bl-l);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🏃</div>
-              <div><div style="font-family:Nunito,sans-serif;font-weight:700;font-size:10.5px;color:var(--ch)">Kit Cardio</div><div style="font-size:8px;color:#aaa">Corde · Step · Élastiques</div></div>
-            </div>
+            <div><div style="font-family:Nunito,sans-serif;font-weight:700;font-size:10.5px;color:var(--ch)">Kit Cardio</div><div style="font-size:8px;color:#aaa">Corde · Step · Élastiques</div></div>
             <div style="text-align:right"><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:13px;color:var(--or)">3,50 €</div><div style="font-size:7.5px;color:#aaa">/semaine</div></div>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <span class="pill pill-b">2 disponibles</span>
-            <button style="background:var(--ch);color:var(--wh);border-radius:8px;padding:5px 12px;font-family:Nunito,sans-serif;font-weight:700;font-size:9px;border:none;cursor:pointer">Louer →</button>
-          </div>
+          <button style="width:100%;background:var(--ch);color:var(--wh);border-radius:8px;padding:7px;font-family:Nunito,sans-serif;font-weight:700;font-size:9px;border:none;cursor:pointer">Louer →</button>
         </div>
         <div class="acard" style="margin-bottom:6px">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px">
-            <div style="display:flex;align-items:center;gap:8px">
-              <div style="width:34px;height:34px;border-radius:9px;background:var(--pu-l);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🧘</div>
-              <div><div style="font-family:Nunito,sans-serif;font-weight:700;font-size:10.5px;color:var(--ch)">Kit Stretching</div><div style="font-size:8px;color:#aaa">Tapis épais · Foam roller · Bandes</div></div>
-            </div>
+            <div><div style="font-family:Nunito,sans-serif;font-weight:700;font-size:10.5px;color:var(--ch)">Kit Stretching</div><div style="font-size:8px;color:#aaa">Tapis épais · Foam roller · Bandes</div></div>
             <div style="text-align:right"><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:13px;color:var(--or)">2,90 €</div><div style="font-size:7.5px;color:#aaa">/semaine</div></div>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <span class="pill pill-g">Disponible</span>
-            <button style="background:var(--ch);color:var(--wh);border-radius:8px;padding:5px 12px;font-family:Nunito,sans-serif;font-weight:700;font-size:9px;border:none;cursor:pointer">Louer →</button>
-          </div>
+          <button style="width:100%;background:var(--ch);color:var(--wh);border-radius:8px;padding:7px;font-family:Nunito,sans-serif;font-weight:700;font-size:9px;border:none;cursor:pointer">Louer →</button>
         </div>
+        <div class="acard" style="margin-bottom:6px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px">
+            <div><div style="font-family:Nunito,sans-serif;font-weight:700;font-size:10.5px;color:var(--ch)">Kit Full Body</div><div style="font-size:8px;color:#aaa">Haltères · Tapis · Bandes · Corde</div></div>
+            <div style="text-align:right"><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:13px;color:var(--or)">4,90 €</div><div style="font-size:7.5px;color:#aaa">/semaine</div></div>
+          </div>
+          <button style="width:100%;background:var(--ch);color:var(--wh);border-radius:8px;padding:7px;font-family:Nunito,sans-serif;font-weight:700;font-size:9px;border:none;cursor:pointer">Louer →</button>
+        </div>
+
+        <!-- Scanner une box -->
+        <div style="background:var(--ch-1);border-radius:12px;padding:12px;border:1.5px dashed var(--ch-2);text-align:center;margin-bottom:8px">
+          <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;color:var(--ch);margin-bottom:4px">📷 Scanner une box</div>
+          <div style="font-size:8px;color:var(--ch-4);margin-bottom:10px;line-height:1.5">Scanne une box pour voir combien de kits sont disponibles à l'intérieur et lesquels.</div>
+          <button onclick="openScanBox()" style="width:100%;background:var(--ch);color:var(--wh);border-radius:9px;padding:9px;font-family:Nunito,sans-serif;font-weight:800;font-size:10px;border:none;cursor:pointer">Scanner une box QR →</button>
+        </div>
+
       </div>
       <div class="a-nav">
         <div class="n-tab" onclick="goS('screen-home')"><div class="n-ico">🏠</div>Accueil</div>
@@ -530,6 +540,107 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         <div class="n-tab" onclick="goS('screen-seance')"><div class="n-ico">▶️</div>Séance</div>
         <div class="n-tab" onclick="goS('screen-resa')"><div class="n-ico">📅</div>Réserver</div>
         <div class="n-tab" onclick="goS('screen-profil')"><div class="n-ico">👤</div>Profil</div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL RENOUVELER ══ -->
+    <div id="modal-renouveler" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.82);z-index:55;flex-direction:column;align-items:center;justify-content:center;border-radius:32px">
+      <div style="background:var(--wh);border-radius:18px;padding:20px 18px;width:88%;text-align:center">
+        <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:var(--ch);margin-bottom:4px">🔄 Renouveler le kit</div>
+        <div style="font-size:8.5px;color:#aaa;margin-bottom:14px">Kit Full Body · Choisir la durée</div>
+        <!-- Option 1 sem -->
+        <div style="background:var(--ch-1);border-radius:12px;padding:12px 14px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;border:1.5px solid var(--ch-2);cursor:pointer" id="renouv-1" onclick="selectRenouv(1)">
+          <div style="text-align:left">
+            <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--ch)">+ 1 semaine</div>
+            <div style="font-size:8px;color:var(--ch-4);margin-top:2px">Prolonge jusqu'au 22 juin</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:16px;color:var(--or)">4,90 €</div>
+            <div style="font-size:7.5px;color:#aaa">une fois</div>
+          </div>
+        </div>
+        <!-- Option 4 sem -->
+        <div style="background:var(--or);border-radius:12px;padding:12px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;position:relative;cursor:pointer" id="renouv-4" onclick="selectRenouv(4)">
+          <div style="position:absolute;top:-8px;right:12px;background:var(--ye);color:var(--ch);font-family:Nunito,sans-serif;font-weight:800;font-size:8px;padding:2px 9px;border-radius:20px">Meilleure offre</div>
+          <div style="text-align:left">
+            <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--wh)">+ 4 semaines</div>
+            <div style="font-size:8px;color:rgba(255,255,255,.65);margin-top:2px">Prolonge jusqu'au 13 juillet</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:16px;color:var(--wh)">16,90 €</div>
+            <div style="font-size:7.5px;color:rgba(255,255,255,.65)">au lieu de 19,60 €</div>
+          </div>
+        </div>
+        <button id="renouv-confirm" onclick="confirmRenouv()" style="width:100%;background:var(--or);color:var(--wh);border-radius:10px;padding:11px;font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;border:none;cursor:pointer;margin-bottom:7px">Confirmer le renouvellement →</button>
+        <button onclick="closeRenouv()" style="width:100%;background:none;color:var(--ch-4);border:1.5px solid var(--ch-2);border-radius:10px;padding:9px;font-family:Nunito,sans-serif;font-weight:700;font-size:10px;cursor:pointer">Annuler</button>
+      </div>
+    </div>
+
+    <!-- ══ MODAL CHANGER ══ -->
+    <div id="modal-changer" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.82);z-index:55;flex-direction:column;align-items:center;justify-content:center;border-radius:32px">
+      <div style="background:var(--wh);border-radius:18px;padding:20px 18px;width:88%">
+        <div style="text-align:center;margin-bottom:12px">
+          <div style="width:48px;height:48px;border-radius:50%;background:var(--ye-l);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 8px">⚠️</div>
+          <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:13px;color:var(--ch);margin-bottom:4px">Changer de kit</div>
+        </div>
+        <div style="background:var(--ye-l);border-radius:10px;padding:11px 12px;margin-bottom:14px;border:1px solid rgba(255,200,0,.3)">
+          <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:#6b4a00;margin-bottom:6px">⚠️ Attention</div>
+          <div style="font-size:8.5px;color:#6b4a00;line-height:1.6">Si tu changes de kit en cours d'abonnement :<br><br>
+            <span style="font-weight:700">· </span>Ton programme actuel sera annulé<br>
+            <span style="font-weight:700">· </span>Tu devras rendre le Kit Full Body avant de récupérer un nouveau kit<br>
+            <span style="font-weight:700">· </span>Un nouveau programme sera généré automatiquement après le scan du nouveau kit
+          </div>
+        </div>
+        <button onclick="closeChanger();openQR()" style="width:100%;background:var(--or);color:var(--wh);border-radius:10px;padding:11px;font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;border:none;cursor:pointer;margin-bottom:7px">Je comprends, changer quand même →</button>
+        <button onclick="closeChanger()" style="width:100%;background:none;color:var(--ch-4);border:1.5px solid var(--ch-2);border-radius:10px;padding:9px;font-family:Nunito,sans-serif;font-weight:700;font-size:10px;cursor:pointer">Garder mon kit actuel</button>
+      </div>
+    </div>
+
+    <!-- ══ MODAL SCAN BOX ══ -->
+    <div id="modal-scanbox" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.85);z-index:55;flex-direction:column;align-items:center;justify-content:center;border-radius:32px">
+      <div style="background:var(--wh);border-radius:18px;padding:20px 18px;width:88%;text-align:center" id="scanbox-step1">
+        <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:13px;color:var(--ch);margin-bottom:4px">Scanner une box</div>
+        <div style="font-size:8.5px;color:#aaa;margin-bottom:14px">Pointe l'appareil vers le QR de la box pour voir son contenu</div>
+        <div style="width:120px;height:120px;margin:0 auto 14px;position:relative">
+          <div style="position:absolute;top:0;left:0;width:22px;height:22px;border-top:3px solid var(--or);border-left:3px solid var(--or);border-radius:3px 0 0 0"></div>
+          <div style="position:absolute;top:0;right:0;width:22px;height:22px;border-top:3px solid var(--or);border-right:3px solid var(--or);border-radius:0 3px 0 0"></div>
+          <div style="position:absolute;bottom:0;left:0;width:22px;height:22px;border-bottom:3px solid var(--or);border-left:3px solid var(--or);border-radius:0 0 0 3px"></div>
+          <div style="position:absolute;bottom:0;right:0;width:22px;height:22px;border-bottom:3px solid var(--or);border-right:3px solid var(--or);border-radius:0 0 3px 0"></div>
+          <div style="position:absolute;left:8px;right:8px;height:2px;background:linear-gradient(90deg,transparent,var(--or),transparent);animation:scanAnim 1.8s ease-in-out infinite;top:20px"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:26px">🗄️</div>
+        </div>
+        <div style="font-size:8px;color:#aaa;margin-bottom:14px">Scan en cours...</div>
+        <button onclick="showBoxContent()" style="width:100%;background:var(--or);color:var(--wh);border-radius:10px;padding:10px;font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;border:none;cursor:pointer;margin-bottom:7px">✓ Simuler scan box</button>
+        <button onclick="closeScanBox()" style="width:100%;background:none;color:var(--ch-4);border:1.5px solid var(--ch-2);border-radius:10px;padding:9px;font-family:Nunito,sans-serif;font-weight:700;font-size:10px;cursor:pointer">Annuler</button>
+      </div>
+      <!-- Résultat box -->
+      <div style="background:var(--wh);border-radius:18px;padding:20px 18px;width:88%;display:none" id="scanbox-step2">
+        <div style="text-align:center;margin-bottom:12px">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 8px">✅</div>
+          <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:13px;color:var(--ch);margin-bottom:2px">Box #MU-042 — Rue de la Paix</div>
+          <div style="font-size:8px;color:#aaa">Scannée le 8 juin · 9:41</div>
+        </div>
+        <div style="background:var(--ch-1);border-radius:11px;padding:11px 13px;margin-bottom:12px">
+          <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--ch);margin-bottom:8px">📦 Contenu de la box <span style="color:var(--or)">· 5 kits disponibles</span></div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:8.5px">
+              <span style="color:var(--ch);font-weight:700">Kit Full Body</span>
+              <span style="background:var(--gr-l);color:var(--gr-d);font-size:7.5px;font-weight:700;padding:2px 8px;border-radius:20px">2 dispo</span>
+            </div>
+            <div style="height:1px;background:var(--ch-2);opacity:.4"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:8.5px">
+              <span style="color:var(--ch);font-weight:700">Kit Cardio</span>
+              <span style="background:var(--gr-l);color:var(--gr-d);font-size:7.5px;font-weight:700;padding:2px 8px;border-radius:20px">2 dispo</span>
+            </div>
+            <div style="height:1px;background:var(--ch-2);opacity:.4"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:8.5px">
+              <span style="color:var(--ch);font-weight:700">Kit Stretching</span>
+              <span style="background:var(--gr-l);color:var(--gr-d);font-size:7.5px;font-weight:700;padding:2px 8px;border-radius:20px">1 dispo</span>
+            </div>
+          </div>
+        </div>
+        <button onclick="closeScanBox()" style="width:100%;background:var(--or);color:var(--wh);border-radius:10px;padding:11px;font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;border:none;cursor:pointer;margin-bottom:7px">Réserver un kit ici →</button>
+        <button onclick="closeScanBox()" style="width:100%;background:none;color:var(--ch-4);border:1.5px solid var(--ch-2);border-radius:10px;padding:9px;font-family:Nunito,sans-serif;font-weight:700;font-size:10px;cursor:pointer">Fermer</button>
       </div>
     </div>
 
@@ -783,13 +894,13 @@ document.getElementById('inp-poids').addEventListener('input',updateSummary)
 const COACHES={
   max:{name:'Max',emoji:'💪',tag:'Musculation · Force',tagBg:'rgba(88,204,2,.15)',tagColor:'#3A8A00',
     desc:'Spécialisé renforcement musculaire et perte de poids. Max adapte chaque séance à ton niveau intermédiaire pour des résultats visibles en 4 semaines.',
-    match:'94%',msg:'Max est là pour toi !',sub:'Prêt pour le renfo du jour ? 💪',img:'images/coach-max-joie.jpg'},
+    match:'94%',msg:'Max est là pour toi !',sub:'Prêt pour le renfo du jour ? 💪',img:'images/coach-max-heureux.jpg'},
   sara:{name:'Sara',emoji:'🏃',tag:'Running · Cardio',tagBg:'rgba(28,176,246,.15)',tagColor:'#1CB0F6',
     desc:'Spécialisée endurance et cardio. Sara construit ta progression semaine après semaine pour que tu atteignes tes objectifs running sans te blesser.',
-    match:'91%',msg:"Sara t'attend sur la piste !",sub:'Allez, on sort courir ? 🏃',img:'images/coach-sara-joie.jpg'},
+    match:'91%',msg:"Sara t'attend sur la piste !",sub:'Allez, on sort courir ? 🏃',img:'images/coach-sara-heureux.jpg'},
   lea:{name:'Léa',emoji:'🧘',tag:'Souplesse · Mobilité',tagBg:'rgba(206,130,255,.15)',tagColor:'#CE82FF',
     desc:'Spécialisée mobilité et bien-être. Léa travaille en douceur sur tes tensions et ta flexibilité pour un corps plus libre et moins douloureux.',
-    match:'89%',msg:'Léa a préparé ta séance !',sub:"Un moment pour toi aujourd'hui 🧘",img:'images/coach-lea-joie.jpg'}
+    match:'89%',msg:'Léa a préparé ta séance !',sub:"Un moment pour toi aujourd'hui 🧘",img:'images/coach-lea-heureux.jpg'}
 }
 
 // ── REVEAL ──────────────────────────────────
@@ -930,6 +1041,38 @@ function closeEndModal(){
   document.getElementById('end-modal').style.display='none'
   curEx=0;renderExCard();renderExList();goS('screen-home')
 }
+
+// ── KIT MODALS ───────────────────────────────
+function openRenouveler(){document.getElementById('modal-renouveler').style.display='flex'}
+function closeRenouv(){document.getElementById('modal-renouveler').style.display='none'}
+let renouvSel=4
+function selectRenouv(n){
+  renouvSel=n
+  document.getElementById('renouv-1').style.borderColor=n===1?'var(--or)':'var(--ch-2)'
+  document.getElementById('renouv-1').style.background=n===1?'var(--or-l)':'var(--ch-1)'
+}
+function confirmRenouv(){
+  closeRenouv()
+  // Show success toast
+  const t=document.createElement('div')
+  t.style.cssText='position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:var(--gr);color:#fff;font-family:Nunito,sans-serif;font-weight:700;font-size:9px;padding:7px 16px;border-radius:20px;z-index:90;white-space:nowrap'
+  t.textContent='✓ Kit renouvelé !'
+  document.getElementById('pscreen').appendChild(t)
+  setTimeout(()=>t.remove(),2500)
+}
+function openChanger(){document.getElementById('modal-changer').style.display='flex'}
+function closeChanger(){document.getElementById('modal-changer').style.display='none'}
+function openScanBox(){
+  document.getElementById('modal-scanbox').style.display='flex'
+  document.getElementById('scanbox-step1').style.display='block'
+  document.getElementById('scanbox-step2').style.display='none'
+}
+function showBoxContent(){
+  document.getElementById('scanbox-step1').style.display='none'
+  document.getElementById('scanbox-step2').style.display='block'
+}
+function closeScanBox(){document.getElementById('modal-scanbox').style.display='none'}
+
 function goBack(){
   if(document.referrer&&document.referrer.includes(window.location.hostname))history.back()
   else window.location.href='index.html'
