@@ -123,9 +123,10 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
 .scard.on .s-dot{background:var(--or);border-color:var(--or)}
 
 /* Multi select */
-.mcard{background:var(--wh);border-radius:10px;padding:8px 11px;margin-bottom:5px;border:1.5px solid #eee;display:flex;align-items:center;gap:9px;cursor:pointer;transition:border-color .15s,background .15s}
+.mcard{background:var(--wh);border-radius:10px;padding:8px 11px;margin-bottom:5px;border:1.5px solid #eee;display:flex;align-items:center;gap:9px;cursor:pointer;transition:border-color .15s,background .15s;color:var(--ch)}
 .mcard:hover{border-color:var(--or-m)}
-.mcard.on{border-color:var(--or);background:var(--or-l)}
+.mcard.on{border-color:var(--or);background:var(--or-l);color:var(--ch)}
+.mcard .s-lbl{color:var(--ch);font-family:'Nunito',sans-serif;font-weight:700;font-size:10.5px}
 .m-check{width:14px;height:14px;border-radius:4px;border:2px solid #ddd;margin-left:auto;flex-shrink:0;transition:all .15s;display:flex;align-items:center;justify-content:center;font-size:8px;color:transparent}
 .mcard.on .m-check{background:var(--or);border-color:var(--or);color:var(--wh)}
 
