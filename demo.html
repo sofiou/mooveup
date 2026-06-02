@@ -22,6 +22,8 @@
 html,body{height:100%;font-family:'Nunito Sans',sans-serif;background:#0E0E0D;color:var(--wh);overflow:hidden}
 h1,h2,h3,h4{font-family:'Nunito',sans-serif;font-weight:800}
 button{cursor:pointer;font-family:inherit;border:none;outline:none}
+@keyframes scanAnim{0%{top:8px;opacity:1}50%{top:calc(100% - 10px);opacity:.8}100%{top:8px;opacity:1}}
+
 
 /* ── MINIMAL HEADER ── */
 #hdr{
@@ -307,7 +309,6 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         </div>
         <button class="abtn" onclick="goS('s-ob4')">Continuer →</button>
         <button class="abtn-g" onclick="goS('s-ob2')">← Retour</button>
-        <button class="abtn-g" onclick="launchReveal()" style="margin-top:5px;color:var(--ch-4);border-color:var(--ch-2);font-size:9.5px">Passer le questionnaire →</button>
       </div>
     </div>
 
@@ -740,7 +741,7 @@ const COACHES = {
     match:'94%',
     msg:'Max est là pour toi !',
     sub:'Prêt pour le renfo du jour ? 💪',
-    img:'images/coach-max-joie.jpg'
+    img:'images/coach-max-heureux.jpg'
   },
   sara:{
     name:'Sara', emoji:'🏃',
@@ -750,7 +751,7 @@ const COACHES = {
     match:'91%',
     msg:'Sara t\'attend sur la piste !',
     sub:'Allez, on sort courir ? 🏃',
-    img:'images/coach-sara-joie.jpg'
+    img:'images/coach-sara-heureux.jpg'
   },
   lea:{
     name:'Léa', emoji:'🧘',
@@ -760,7 +761,7 @@ const COACHES = {
     match:'89%',
     msg:'Léa a préparé ta séance !',
     sub:'Un moment pour toi aujourd\'hui 🧘',
-    img:'images/coach-léa-joie.jpg'
+    img:'images/coach-lea-heureux.jpg'
   }
 }
 
@@ -836,6 +837,23 @@ function goBack(){
   } else {
     window.location.href='index.html'
   }
+}
+
+// ── QR MODAL ────────────────────────────────
+function openQR(){
+  const m = document.getElementById('qr-modal')
+  m.style.display = 'flex'
+}
+function closeQR(){
+  document.getElementById('qr-modal').style.display = 'none'
+}
+function scanSuccess(){
+  document.getElementById('qr-modal').style.display = 'none'
+  document.getElementById('qr-success').style.display = 'flex'
+}
+function closeSuccess(){
+  document.getElementById('qr-success').style.display = 'none'
+  goS('screen-seance')
 }
 </script>
 </body>
