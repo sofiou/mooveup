@@ -674,12 +674,139 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
 
     <!-- ══ RÉSERVATION ══ -->
     <div class="screen" id="screen-resa">
-      <div class="a-top"><span class="a-top-title">Réservation</span></div>
-      <div class="a-body" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px">
-        <div style="font-size:36px">📅</div>
-        <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:12px;color:var(--ch)">Réserver un coach</div>
-        <div style="font-size:9px;color:#aaa;text-align:center">Prochaine étape.<br>Bientôt disponible !</div>
-        <button class="abtn" style="width:auto;padding:9px 18px" onclick="goS('screen-home')">← Accueil</button>
+      <div class="a-top">
+        <span class="a-top-title">Salles & Réservation</span>
+        <span class="pill pill-g" style="cursor:pointer" onclick="openQRAcces()">🔑 Mon accès</span>
+      </div>
+      <div class="a-body" id="resa-body">
+
+        <!-- QR code accès toujours visible -->
+        <div style="background:var(--ch);border-radius:12px;padding:10px 13px;margin-bottom:10px;display:flex;align-items:center;gap:10px;cursor:pointer" onclick="openQRAcces()">
+          <div style="width:44px;height:44px;background:var(--wh);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="2" y="2" width="12" height="12" rx="1.5" stroke="#2C2C2A" stroke-width="2" fill="none"/>
+              <rect x="5" y="5" width="6" height="6" fill="#2C2C2A"/>
+              <rect x="18" y="2" width="12" height="12" rx="1.5" stroke="#2C2C2A" stroke-width="2" fill="none"/>
+              <rect x="21" y="5" width="6" height="6" fill="#2C2C2A"/>
+              <rect x="2" y="18" width="12" height="12" rx="1.5" stroke="#2C2C2A" stroke-width="2" fill="none"/>
+              <rect x="5" y="21" width="6" height="6" fill="#2C2C2A"/>
+              <rect x="18" y="18" width="4" height="4" fill="#FF4D00"/>
+              <rect x="24" y="18" width="4" height="4" fill="#FF4D00"/>
+              <rect x="18" y="24" width="4" height="4" fill="#FF4D00"/>
+              <rect x="24" y="24" width="4" height="4" fill="#FF4D00"/>
+            </svg>
+          </div>
+          <div style="flex:1">
+            <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--wh)">QR Code d'entrée</div>
+            <div style="font-size:7.5px;color:rgba(255,255,255,.45);margin-top:1px">Abonnement Premium · Stan · Valide aujourd'hui</div>
+          </div>
+          <div style="font-size:10px;color:rgba(255,255,255,.4)">›</div>
+        </div>
+
+        <!-- Carte simulée -->
+        <div style="border-radius:12px;overflow:hidden;margin-bottom:10px;position:relative;height:100px">
+          <!-- Fond carte stylisé -->
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#e8f4e8 0%,#d4ecd4 50%,#c8e4c8 100%)"></div>
+          <!-- Rues simulées -->
+          <div style="position:absolute;left:0;right:0;top:50%;height:6px;background:rgba(255,255,255,.7);transform:translateY(-50%)"></div>
+          <div style="position:absolute;top:0;bottom:0;left:40%;width:5px;background:rgba(255,255,255,.7)"></div>
+          <div style="position:absolute;top:0;bottom:0;left:70%;width:4px;background:rgba(255,255,255,.6)"></div>
+          <div style="position:absolute;left:0;right:0;top:30%;height:3px;background:rgba(255,255,255,.5)"></div>
+          <div style="position:absolute;left:0;right:0;top:70%;height:3px;background:rgba(255,255,255,.5)"></div>
+          <!-- Marqueurs salles -->
+          <div onclick="selectSalle(1)" style="position:absolute;left:35%;top:25%;cursor:pointer;transform:translate(-50%,-50%)">
+            <div style="background:var(--or);color:var(--wh);font-family:Nunito,sans-serif;font-weight:800;font-size:7px;padding:3px 7px;border-radius:10px;white-space:nowrap;box-shadow:0 2px 6px rgba(255,77,0,.4)">MU · Opéra<br><span style="font-weight:600;opacity:.8">3/15</span></div>
+            <div style="width:6px;height:6px;background:var(--or);border-radius:50%;margin:1px auto 0"></div>
+          </div>
+          <div onclick="selectSalle(2)" style="position:absolute;left:65%;top:55%;cursor:pointer;transform:translate(-50%,-50%)">
+            <div style="background:var(--gr);color:var(--wh);font-family:Nunito,sans-serif;font-weight:800;font-size:7px;padding:3px 7px;border-radius:10px;white-space:nowrap;box-shadow:0 2px 6px rgba(88,204,2,.4)">MU · Marais<br><span style="font-weight:600;opacity:.8">1/15</span></div>
+            <div style="width:6px;height:6px;background:var(--gr);border-radius:50%;margin:1px auto 0"></div>
+          </div>
+          <div onclick="selectSalle(3)" style="position:absolute;left:75%;top:22%;cursor:pointer;transform:translate(-50%,-50%)">
+            <div style="background:var(--ch);color:var(--wh);font-family:Nunito,sans-serif;font-weight:800;font-size:7px;padding:3px 7px;border-radius:10px;white-space:nowrap;box-shadow:0 2px 6px rgba(44,44,42,.4)">MU · Nation<br><span style="font-weight:600;opacity:.8">10/15</span></div>
+            <div style="width:6px;height:6px;background:var(--ch);border-radius:50%;margin:1px auto 0"></div>
+          </div>
+          <!-- Label carte -->
+          <div style="position:absolute;bottom:6px;right:8px;background:rgba(255,255,255,.85);font-size:7px;color:var(--ch-4);padding:2px 6px;border-radius:6px;font-family:Nunito,sans-serif;font-weight:600">Paris · Maintenant</div>
+        </div>
+
+        <!-- Liste des salles -->
+        <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--ch);margin-bottom:7px">Salles disponibles</div>
+
+        <!-- Salle 1 -->
+        <div class="acard" style="margin-bottom:6px;cursor:pointer;border:1.5px solid #eee;transition:border-color .2s" onclick="selectSalle(1)" onmouseover="this.style.borderColor='#FF4D00'" onmouseout="this.style.borderColor='#eee'">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:6px">
+            <div style="width:36px;height:36px;border-radius:9px;background:var(--or-l);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🏋️</div>
+            <div style="flex:1">
+              <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;color:var(--ch)">Moove Up · Opéra</div>
+              <div style="font-size:8px;color:#aaa;margin-top:1px">12 rue de la Paix · 75002 · 0,4 km</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:var(--or)">3</div>
+              <div style="font-size:7px;color:#aaa">/15</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:5px;align-items:center">
+            <div style="flex:1;height:5px;background:#f0f0f0;border-radius:3px">
+              <div style="height:5px;width:20%;background:var(--or);border-radius:3px"></div>
+            </div>
+            <span style="font-size:7.5px;color:var(--gr-d);font-weight:700">Peu fréquenté</span>
+          </div>
+          <div style="display:flex;gap:5px;margin-top:6px;flex-wrap:wrap">
+            <span class="pill pill-g">Ouvert · 6h–23h</span>
+            <span class="pill" style="background:var(--ch-1);color:var(--ch-4)">Cours à 11h00</span>
+          </div>
+        </div>
+
+        <!-- Salle 2 -->
+        <div class="acard" style="margin-bottom:6px;cursor:pointer;border:1.5px solid #eee;transition:border-color .2s" onclick="selectSalle(2)" onmouseover="this.style.borderColor='#58CC02'" onmouseout="this.style.borderColor='#eee'">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:6px">
+            <div style="width:36px;height:36px;border-radius:9px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🏋️</div>
+            <div style="flex:1">
+              <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;color:var(--ch)">Moove Up · Marais</div>
+              <div style="font-size:8px;color:#aaa;margin-top:1px">5 rue des Archives · 75004 · 1,2 km</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:var(--gr-d)">1</div>
+              <div style="font-size:7px;color:#aaa">/15</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:5px;align-items:center">
+            <div style="flex:1;height:5px;background:#f0f0f0;border-radius:3px">
+              <div style="height:5px;width:7%;background:var(--gr);border-radius:3px"></div>
+            </div>
+            <span style="font-size:7.5px;color:var(--gr-d);font-weight:700">Presque vide</span>
+          </div>
+          <div style="display:flex;gap:5px;margin-top:6px;flex-wrap:wrap">
+            <span class="pill pill-g">Ouvert · 6h–23h</span>
+          </div>
+        </div>
+
+        <!-- Salle 3 -->
+        <div class="acard" style="margin-bottom:10px;cursor:pointer;border:1.5px solid #eee;transition:border-color .2s" onclick="selectSalle(3)" onmouseover="this.style.borderColor='#2C2C2A'" onmouseout="this.style.borderColor='#eee'">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:6px">
+            <div style="width:36px;height:36px;border-radius:9px;background:var(--ch-1);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🏋️</div>
+            <div style="flex:1">
+              <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;color:var(--ch)">Moove Up · Nation</div>
+              <div style="font-size:8px;color:#aaa;margin-top:1px">8 av. du Trône · 75011 · 2,1 km</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:var(--re)">10</div>
+              <div style="font-size:7px;color:#aaa">/15</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:5px;align-items:center">
+            <div style="flex:1;height:5px;background:#f0f0f0;border-radius:3px">
+              <div style="height:5px;width:67%;background:var(--re);border-radius:3px"></div>
+            </div>
+            <span style="font-size:7.5px;color:var(--re);font-weight:700">Fréquenté</span>
+          </div>
+          <div style="display:flex;gap:5px;margin-top:6px;flex-wrap:wrap">
+            <span class="pill pill-g">Ouvert · 6h–23h</span>
+            <span class="pill" style="background:var(--pu-l);color:var(--pu-d)">Coach à 14h00</span>
+          </div>
+        </div>
+
       </div>
       <div class="a-nav">
         <div class="n-tab" onclick="goS('screen-home')"><div class="n-ico">🏠</div>Accueil</div>
@@ -687,6 +814,271 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         <div class="n-tab" onclick="goS('screen-seance')"><div class="n-ico">▶️</div>Séance</div>
         <div class="n-tab on"><div class="n-ico">📅</div>Réserver</div>
         <div class="n-tab" onclick="goS('screen-profil')"><div class="n-ico">👤</div>Profil</div>
+      </div>
+    </div>
+
+    <!-- ══ DÉTAIL SALLE ══ -->
+    <div class="screen" id="screen-salle">
+      <div class="a-top">
+        <button onclick="goS('screen-resa')" style="background:none;border:none;cursor:pointer;font-size:14px;color:var(--ch-4);padding:0 6px 0 0">‹</button>
+        <span class="a-top-title" id="salle-titre">Moove Up · Opéra</span>
+        <span id="salle-occup" class="pill pill-g">3/15</span>
+      </div>
+      <div class="a-body" style="padding:0">
+
+        <!-- Header salle -->
+        <div style="background:var(--ch);padding:12px 13px;color:var(--wh)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+            <div>
+              <div style="font-size:8px;color:rgba(255,255,255,.5)" id="salle-adresse">12 rue de la Paix · 75002</div>
+              <div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:1px">Ouvert · 6h – 23h · Max 15 pers.</div>
+            </div>
+            <span class="pill" style="background:rgba(88,204,2,.2);color:#a0f060;font-size:7.5px" id="salle-dispo-lbl">Peu fréquenté</span>
+          </div>
+          <!-- Barre occupation -->
+          <div style="height:4px;background:rgba(255,255,255,.1);border-radius:3px;margin-bottom:8px">
+            <div id="salle-occ-bar" style="height:4px;background:var(--or);border-radius:3px;width:20%"></div>
+          </div>
+          <!-- Bouton réserver place -->
+          <button onclick="reserverPlace()" style="width:100%;background:var(--or);color:var(--wh);border-radius:10px;padding:9px;font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;border:none;cursor:pointer">
+            Réserver ma place · 1h →
+          </button>
+        </div>
+
+        <!-- Onglets -->
+        <div style="display:flex;background:var(--wh);border-bottom:1px solid #f0f0f0">
+          <button id="tab-agenda" onclick="showTab('agenda')" style="flex:1;padding:9px 4px;font-family:Nunito,sans-serif;font-weight:700;font-size:9px;background:none;border:none;border-bottom:2px solid var(--or);color:var(--or);cursor:pointer">📅 Agenda</button>
+          <button id="tab-events" onclick="showTab('events')" style="flex:1;padding:9px 4px;font-family:Nunito,sans-serif;font-weight:700;font-size:9px;background:none;border:none;border-bottom:2px solid transparent;color:#aaa;cursor:pointer">🎉 Événements</button>
+          <button id="tab-cours" onclick="showTab('cours')" style="flex:1;padding:9px 4px;font-family:Nunito,sans-serif;font-weight:700;font-size:9px;background:none;border:none;border-bottom:2px solid transparent;color:#aaa;cursor:pointer">👥 Cours</button>
+        </div>
+
+        <!-- Contenu onglets -->
+        <div style="flex:1;overflow-y:auto;padding:10px;background:#f8f8f8" id="tab-content">
+
+          <!-- AGENDA -->
+          <div id="content-agenda">
+            <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;color:var(--ch);margin-bottom:8px">Cette semaine</div>
+            <!-- Lundi -->
+            <div style="background:var(--wh);border-radius:10px;padding:9px 11px;margin-bottom:5px;border:.5px solid #eee">
+              <div style="font-family:Nunito,sans-serif;font-weight:700;font-size:9px;color:var(--ch-4);margin-bottom:6px">Lundi 10 juin</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:.5px solid #f5f5f5">
+                <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Cours HIIT collectif</div><div style="font-size:7.5px;color:#aaa">10h00 – 11h00 · Max Clément</div></div>
+                <span class="pill pill-o">3 places</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0">
+                <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Accès libre</div><div style="font-size:7.5px;color:#aaa">14h00 – 22h00</div></div>
+                <span class="pill pill-g">Ouvert</span>
+              </div>
+            </div>
+            <!-- Mardi -->
+            <div style="background:var(--wh);border-radius:10px;padding:9px 11px;margin-bottom:5px;border:.5px solid #eee">
+              <div style="font-family:Nunito,sans-serif;font-weight:700;font-size:9px;color:var(--ch-4);margin-bottom:6px">Mardi 11 juin</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:.5px solid #f5f5f5">
+                <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Coach solo · Léa</div><div style="font-size:7.5px;color:#aaa">9h00 – 10h00 · Souplesse</div></div>
+                <span class="pill pill-g">Libre</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0">
+                <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Yoga flow</div><div style="font-size:7.5px;color:#aaa">19h00 – 20h00 · Sara Martin</div></div>
+                <span class="pill pill-b">5 places</span>
+              </div>
+            </div>
+            <!-- Mercredi -->
+            <div style="background:var(--wh);border-radius:10px;padding:9px 11px;margin-bottom:5px;border:.5px solid #eee">
+              <div style="font-family:Nunito,sans-serif;font-weight:700;font-size:9px;color:var(--ch-4);margin-bottom:6px">Mercredi 12 juin</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0">
+                <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Circuit training</div><div style="font-size:7.5px;color:#aaa">18h30 – 19h30 · Max Clément</div></div>
+                <span class="pill pill-o">2 places</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ÉVÉNEMENTS (caché par défaut) -->
+          <div id="content-events" style="display:none">
+            <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;color:var(--ch);margin-bottom:8px">Événements à venir</div>
+            <div style="background:var(--or);border-radius:12px;padding:12px;margin-bottom:8px;color:var(--wh)">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:11px;margin-bottom:3px">🏆 Challenge Moove Up</div>
+              <div style="font-size:8px;opacity:.75;margin-bottom:8px">Samedi 15 juin · 10h – 13h</div>
+              <div style="font-size:8.5px;line-height:1.5;opacity:.85;margin-bottom:8px">Défi inter-membres : circuit 30 min, classement en direct. Tous niveaux. Prix pour les 3 premiers !</div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:7.5px;opacity:.65">12 inscrits · 3 places restantes</span>
+                <button style="background:var(--wh);color:var(--or);font-family:Nunito,sans-serif;font-weight:800;font-size:9px;border:none;cursor:pointer;padding:5px 12px;border-radius:8px">S'inscrire</button>
+              </div>
+            </div>
+            <div style="background:var(--wh);border-radius:12px;padding:12px;margin-bottom:8px;border:.5px solid #eee">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:11px;color:var(--ch);margin-bottom:3px">🧘 Journée bien-être</div>
+              <div style="font-size:8px;color:#aaa;margin-bottom:6px">Dimanche 23 juin · 9h – 17h</div>
+              <div style="font-size:8.5px;color:var(--ch-4);line-height:1.5;margin-bottom:8px">Yoga, stretching, méditation guidée. Journée détox pour votre corps et votre esprit.</div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:7.5px;color:#aaa">8 places restantes</span>
+                <button style="background:var(--ch);color:var(--wh);font-family:Nunito,sans-serif;font-weight:800;font-size:9px;border:none;cursor:pointer;padding:5px 12px;border-radius:8px">S'inscrire</button>
+              </div>
+            </div>
+            <div style="background:var(--wh);border-radius:12px;padding:12px;border:.5px solid #eee">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:11px;color:var(--ch);margin-bottom:3px">🎉 Inauguration · Nation</div>
+              <div style="font-size:8px;color:#aaa;margin-bottom:6px">Vendredi 28 juin · 18h – 21h</div>
+              <div style="font-size:8.5px;color:var(--ch-4);line-height:1.5;margin-bottom:8px">Ouverture de la nouvelle salle Moove Up Nation. Accès gratuit, découverte, cocktail.</div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:7.5px;color:#aaa">Entrée libre</span>
+                <button style="background:var(--or);color:var(--wh);font-family:Nunito,sans-serif;font-weight:800;font-size:9px;border:none;cursor:pointer;padding:5px 12px;border-radius:8px">RSVP</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- COURS COLLECTIFS (caché par défaut) -->
+          <div id="content-cours" style="display:none">
+            <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;color:var(--ch);margin-bottom:8px">Cours collectifs</div>
+            <div style="background:var(--wh);border-radius:10px;padding:10px 11px;margin-bottom:6px;border:.5px solid #eee">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
+                <div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--ch)">HIIT Full Body</div><div style="font-size:8px;color:#aaa;margin-top:1px">Lun, Mer, Ven · 10h00 · 60 min</div></div>
+                <span class="pill pill-o">Inter.</span>
+              </div>
+              <div style="font-size:8px;color:var(--ch-4);margin-bottom:6px">Circuit cardio intensif. Brûle graisses et renforcement musculaire. Avec Max Clément.</div>
+              <button onclick="reserverCours('HIIT Full Body')" style="width:100%;background:var(--or);color:var(--wh);border-radius:8px;padding:7px;font-family:Nunito,sans-serif;font-weight:800;font-size:9.5px;border:none;cursor:pointer">S'inscrire · 3 places</button>
+            </div>
+            <div style="background:var(--wh);border-radius:10px;padding:10px 11px;margin-bottom:6px;border:.5px solid #eee">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
+                <div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--ch)">Yoga Flow</div><div style="font-size:8px;color:#aaa;margin-top:1px">Mar, Jeu · 19h00 · 60 min</div></div>
+                <span class="pill pill-g">Tous niv.</span>
+              </div>
+              <div style="font-size:8px;color:var(--ch-4);margin-bottom:6px">Séance de yoga dynamique et méditative. Flexibilité, équilibre, respiration. Avec Léa.</div>
+              <button onclick="reserverCours('Yoga Flow')" style="width:100%;background:var(--or);color:var(--wh);border-radius:8px;padding:7px;font-family:Nunito,sans-serif;font-weight:800;font-size:9.5px;border:none;cursor:pointer">S'inscrire · 5 places</button>
+            </div>
+            <div style="background:var(--wh);border-radius:10px;padding:10px 11px;margin-bottom:10px;border:.5px solid #eee">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
+                <div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--ch)">Circuit Training</div><div style="font-size:8px;color:#aaa;margin-top:1px">Mer · 18h30 · 60 min</div></div>
+                <span class="pill pill-o">Inter.</span>
+              </div>
+              <div style="font-size:8px;color:var(--ch-4);margin-bottom:6px">Enchaînement de stations intensives. Cardio + force + core. Avec Max Clément.</div>
+              <button onclick="reserverCours('Circuit Training')" style="width:100%;background:var(--or);color:var(--wh);border-radius:8px;padding:7px;font-family:Nunito,sans-serif;font-weight:800;font-size:9.5px;border:none;cursor:pointer">S'inscrire · 2 places</button>
+            </div>
+
+            <!-- Coach physique -->
+            <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;color:var(--ch);margin-bottom:8px">Coaching physique en salle</div>
+            <div style="background:var(--ch);border-radius:12px;padding:11px 13px;margin-bottom:6px;color:var(--wh)">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:10.5px;margin-bottom:4px">Séance avec Max · Musculation</div>
+              <div style="font-size:8px;color:rgba(255,255,255,.55);margin-bottom:8px">Prochain créneau : Mar 11 juin · 9h00</div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:var(--or)">35 €<span style="font-size:9px;color:rgba(255,255,255,.5);font-weight:600">/séance</span></div>
+                <button onclick="reserverCoach('Max')" style="background:var(--or);color:var(--wh);font-family:Nunito,sans-serif;font-weight:800;font-size:9px;border:none;cursor:pointer;padding:7px 14px;border-radius:8px">Réserver</button>
+              </div>
+            </div>
+            <div style="background:var(--ch);border-radius:12px;padding:11px 13px;color:var(--wh)">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:10.5px;margin-bottom:4px">Séance avec Léa · Souplesse</div>
+              <div style="font-size:8px;color:rgba(255,255,255,.55);margin-bottom:8px">Prochain créneau : Mer 12 juin · 14h00</div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:var(--or)">35 €<span style="font-size:9px;color:rgba(255,255,255,.5);font-weight:600">/séance</span></div>
+                <button onclick="reserverCoach('Léa')" style="background:var(--or);color:var(--wh);font-family:Nunito,sans-serif;font-weight:800;font-size:9px;border:none;cursor:pointer;padding:7px 14px;border-radius:8px">Réserver</button>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /tab-content -->
+      </div>
+      <div class="a-nav">
+        <div class="n-tab" onclick="goS('screen-home')"><div class="n-ico">🏠</div>Accueil</div>
+        <div class="n-tab" onclick="goS('screen-kit')"><div class="n-ico">📦</div>Kits</div>
+        <div class="n-tab" onclick="goS('screen-seance')"><div class="n-ico">▶️</div>Séance</div>
+        <div class="n-tab on"><div class="n-ico">📅</div>Réserver</div>
+        <div class="n-tab" onclick="goS('screen-profil')"><div class="n-ico">👤</div>Profil</div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL QR ACCÈS ══ -->
+    <div id="modal-qr-acces" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.88);z-index:60;flex-direction:column;align-items:center;justify-content:center;border-radius:32px">
+      <div style="background:var(--wh);border-radius:18px;padding:22px 18px;width:88%;text-align:center">
+        <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:13px;color:var(--ch);margin-bottom:3px">🔑 Ton accès Moove Up</div>
+        <div style="font-size:8px;color:#aaa;margin-bottom:16px">Stan · Abonnement Premium · Valide aujourd'hui</div>
+        <!-- QR code SVG -->
+        <div style="width:140px;height:140px;margin:0 auto 12px;background:white;padding:10px;border-radius:12px;border:2px solid var(--ch-1)">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <rect width="120" height="120" fill="white"/>
+            <!-- Coins QR -->
+            <rect x="4" y="4" width="36" height="36" rx="3" fill="none" stroke="#2C2C2A" stroke-width="4"/>
+            <rect x="12" y="12" width="20" height="20" fill="#2C2C2A"/>
+            <rect x="80" y="4" width="36" height="36" rx="3" fill="none" stroke="#2C2C2A" stroke-width="4"/>
+            <rect x="88" y="12" width="20" height="20" fill="#2C2C2A"/>
+            <rect x="4" y="80" width="36" height="36" rx="3" fill="none" stroke="#2C2C2A" stroke-width="4"/>
+            <rect x="12" y="88" width="20" height="20" fill="#2C2C2A"/>
+            <!-- Pixels data simulés -->
+            <rect x="48" y="4" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="56" y="4" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="48" y="12" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="64" y="12" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="56" y="20" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="48" y="28" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="64" y="28" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="4" y="48" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="12" y="48" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="28" y="48" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="48" y="48" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="64" y="48" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="80" y="48" width="6" height="6" fill="#FF4D00"/>
+            <rect x="96" y="48" width="6" height="6" fill="#FF4D00"/>
+            <rect x="108" y="48" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="4" y="56" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="20" y="56" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="48" y="56" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="56" y="56" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="72" y="56" width="6" height="6" fill="#FF4D00"/>
+            <rect x="88" y="56" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="104" y="56" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="4" y="64" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="16" y="64" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="32" y="64" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="56" y="64" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="80" y="64" width="6" height="6" fill="#FF4D00"/>
+            <rect x="96" y="64" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="48" y="80" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="64" y="80" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="80" y="80" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="96" y="80" width="6" height="6" fill="#FF4D00"/>
+            <rect x="108" y="80" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="48" y="88" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="72" y="88" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="88" y="88" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="104" y="88" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="56" y="96" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="80" y="96" width="6" height="6" fill="#FF4D00"/>
+            <rect x="96" y="96" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="48" y="104" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="64" y="104" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="88" y="104" width="6" height="6" fill="#2C2C2A"/>
+            <rect x="108" y="104" width="6" height="6" fill="#FF4D00"/>
+          </svg>
+        </div>
+        <div style="font-size:9px;color:var(--ch-4);margin-bottom:4px">Présente ce QR code à l'entrée de la salle</div>
+        <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--ch);margin-bottom:16px;letter-spacing:.05em">MU-STAN-2024-PRO</div>
+        <div style="display:flex;gap:6px;margin-bottom:0">
+          <div style="flex:1;background:var(--gr-l);border-radius:9px;padding:8px;text-align:center">
+            <div style="font-size:7.5px;color:var(--gr-d);font-weight:700">Statut</div>
+            <div style="font-size:9px;color:var(--gr-d);font-weight:800;margin-top:2px">✓ Valide</div>
+          </div>
+          <div style="flex:1;background:var(--or-l);border-radius:9px;padding:8px;text-align:center">
+            <div style="font-size:7.5px;color:var(--or-d);font-weight:700">Abonnement</div>
+            <div style="font-size:9px;color:var(--or-d);font-weight:800;margin-top:2px">Premium</div>
+          </div>
+          <div style="flex:1;background:var(--ch-1);border-radius:9px;padding:8px;text-align:center">
+            <div style="font-size:7.5px;color:var(--ch-4);font-weight:700">Accès</div>
+            <div style="font-size:9px;color:var(--ch);font-weight:800;margin-top:2px">3 salles</div>
+          </div>
+        </div>
+        <button onclick="closeQRAcces()" style="width:100%;background:none;color:var(--ch-4);border:1.5px solid var(--ch-2);border-radius:10px;padding:9px;font-family:Nunito,sans-serif;font-weight:700;font-size:10px;cursor:pointer;margin-top:12px">Fermer</button>
+      </div>
+    </div>
+
+    <!-- ══ MODAL CONFIRMATION PLACE ══ -->
+    <div id="modal-place" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.85);z-index:61;flex-direction:column;align-items:center;justify-content:center;border-radius:32px">
+      <div style="background:var(--wh);border-radius:18px;padding:22px 18px;width:88%;text-align:center">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 10px">✅</div>
+        <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:var(--ch);margin-bottom:4px">Place réservée !</div>
+        <div style="font-size:8.5px;color:#aaa;margin-bottom:14px" id="place-details">Moove Up · Opéra · 1h · Maintenant</div>
+        <div style="background:var(--ch-1);border-radius:11px;padding:10px 12px;margin-bottom:14px;text-align:left">
+          <div style="font-size:8.5px;color:var(--ch-4);line-height:1.6">
+            💡 N'oublie pas ton QR code d'entrée disponible en haut de l'écran Réservation.
+          </div>
+        </div>
+        <button onclick="closeModalPlace();openQRAcces()" style="width:100%;background:var(--or);color:var(--wh);border-radius:10px;padding:11px;font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;border:none;cursor:pointer;margin-bottom:7px">Voir mon QR code d'entrée →</button>
+        <button onclick="closeModalPlace()" style="width:100%;background:none;color:var(--ch-4);border:1.5px solid var(--ch-2);border-radius:10px;padding:9px;font-family:Nunito,sans-serif;font-weight:700;font-size:10px;cursor:pointer">Retour</button>
       </div>
     </div>
 
@@ -894,13 +1286,13 @@ document.getElementById('inp-poids').addEventListener('input',updateSummary)
 const COACHES={
   max:{name:'Max',emoji:'💪',tag:'Musculation · Force',tagBg:'rgba(88,204,2,.15)',tagColor:'#3A8A00',
     desc:'Spécialisé renforcement musculaire et perte de poids. Max adapte chaque séance à ton niveau intermédiaire pour des résultats visibles en 4 semaines.',
-    match:'94%',msg:'Max est là pour toi !',sub:'Prêt pour le renfo du jour ? 💪',img:'images/coach-max-joie.jpg'},
+    match:'94%',msg:'Max est là pour toi !',sub:'Prêt pour le renfo du jour ? 💪',img:'images/coach-max-heureux.jpg'},
   sara:{name:'Sara',emoji:'🏃',tag:'Running · Cardio',tagBg:'rgba(28,176,246,.15)',tagColor:'#1CB0F6',
     desc:'Spécialisée endurance et cardio. Sara construit ta progression semaine après semaine pour que tu atteignes tes objectifs running sans te blesser.',
-    match:'91%',msg:"Sara t'attend sur la piste !",sub:'Allez, on sort courir ? 🏃',img:'images/coach-sara-joie.jpg'},
+    match:'91%',msg:"Sara t'attend sur la piste !",sub:'Allez, on sort courir ? 🏃',img:'images/coach-sara-heureux.jpg'},
   lea:{name:'Léa',emoji:'🧘',tag:'Souplesse · Mobilité',tagBg:'rgba(206,130,255,.15)',tagColor:'#CE82FF',
     desc:'Spécialisée mobilité et bien-être. Léa travaille en douceur sur tes tensions et ta flexibilité pour un corps plus libre et moins douloureux.',
-    match:'89%',msg:'Léa a préparé ta séance !',sub:"Un moment pour toi aujourd'hui 🧘",img:'images/coach-lea-joie.jpg'}
+    match:'89%',msg:'Léa a préparé ta séance !',sub:"Un moment pour toi aujourd'hui 🧘",img:'images/coach-lea-heureux.jpg'}
 }
 
 // ── REVEAL ──────────────────────────────────
@@ -1041,6 +1433,58 @@ function closeEndModal(){
   document.getElementById('end-modal').style.display='none'
   curEx=0;renderExCard();renderExList();goS('screen-home')
 }
+
+
+// ── RÉSERVATION SALLES ────────────────────────
+const SALLES = {
+  1:{nom:"Moove Up · Opéra",  adresse:"12 rue de la Paix · 75002", occ:3,  pct:"20%", bar:"var(--or)", lbl:"Peu fréquenté", lblcol:"rgba(160,240,96,1)"},
+  2:{nom:"Moove Up · Marais", adresse:"5 rue des Archives · 75004", occ:1,  pct:"7%",  bar:"var(--gr)", lbl:"Presque vide",  lblcol:"rgba(160,240,96,1)"},
+  3:{nom:"Moove Up · Nation", adresse:"8 av. du Trône · 75011",    occ:10, pct:"67%", bar:"var(--re)", lbl:"Fréquenté",     lblcol:"var(--re)"},
+}
+let curSalle=1
+function selectSalle(id){
+  curSalle=id
+  const s=SALLES[id]
+  document.getElementById("salle-titre").textContent=s.nom
+  document.getElementById("salle-adresse").textContent=s.adresse
+  document.getElementById("salle-occup").textContent=s.occ+"/15"
+  document.getElementById("salle-dispo-lbl").textContent=s.lbl
+  document.getElementById("salle-dispo-lbl").style.color=s.lblcol
+  document.getElementById("salle-occ-bar").style.width=s.pct
+  document.getElementById("salle-occ-bar").style.background=s.bar
+  showTab("agenda")
+  goS("screen-salle")
+}
+function showTab(tab){
+  ["agenda","events","cours"].forEach(t=>{
+    document.getElementById("content-"+t).style.display=t===tab?"block":"none"
+    const btn=document.getElementById("tab-"+t)
+    btn.style.borderBottomColor=t===tab?"var(--or)":"transparent"
+    btn.style.color=t===tab?"var(--or)":"#aaa"
+  })
+}
+function reserverPlace(){
+  const s=SALLES[curSalle]
+  document.getElementById("place-details").textContent=s.nom+" · 1h · Maintenant"
+  document.getElementById("modal-place").style.display="flex"
+}
+function closeModalPlace(){document.getElementById("modal-place").style.display="none"}
+function reserverCours(nom){
+  const t=document.createElement("div")
+  t.style.cssText="position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:var(--gr);color:#fff;font-family:Nunito,sans-serif;font-weight:700;font-size:9px;padding:7px 16px;border-radius:20px;z-index:90;white-space:nowrap"
+  t.textContent="✓ "+nom+" · Inscrit !"
+  document.getElementById("pscreen").appendChild(t)
+  setTimeout(()=>t.remove(),2500)
+}
+function reserverCoach(nom){
+  const t=document.createElement("div")
+  t.style.cssText="position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:var(--or);color:#fff;font-family:Nunito,sans-serif;font-weight:700;font-size:9px;padding:7px 16px;border-radius:20px;z-index:90;white-space:nowrap"
+  t.textContent="✓ Séance avec "+nom+" · Réservée !"
+  document.getElementById("pscreen").appendChild(t)
+  setTimeout(()=>t.remove(),2500)
+}
+function openQRAcces(){document.getElementById("modal-qr-acces").style.display="flex"}
+function closeQRAcces(){document.getElementById("modal-qr-acces").style.display="none"}
 
 // ── KIT MODALS ───────────────────────────────
 function openRenouveler(){document.getElementById('modal-renouveler').style.display='flex'}
