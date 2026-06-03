@@ -1084,12 +1084,255 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
 
     <!-- ══ PROFIL ══ -->
     <div class="screen" id="screen-profil">
-      <div class="a-top"><span class="a-top-title">Mon profil</span><span class="pill pill-y">⭐ Premium</span></div>
-      <div class="a-body" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px">
-        <div style="font-size:36px">👤</div>
-        <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:12px;color:var(--ch)">Profil de Stan</div>
-        <div style="font-size:9px;color:#aaa;text-align:center">Prochaine étape.<br>Bientôt disponible !</div>
-        <button class="abtn" style="width:auto;padding:9px 18px" onclick="goS('screen-home')">← Accueil</button>
+      <div class="a-top">
+        <span class="a-top-title">Mon profil</span>
+        <span class="pill pill-y">⭐ Premium</span>
+      </div>
+      <div class="a-body" style="padding:0">
+
+        <!-- ── BLOC 1 : HEADER ── -->
+        <div style="background:linear-gradient(160deg,var(--ch) 0%,#3a3a38 100%);padding:16px 14px 14px;color:var(--wh)">
+          <!-- Photo + infos -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+            <!-- Photo profil -->
+            <div style="position:relative;flex-shrink:0">
+              <div style="width:58px;height:58px;border-radius:50%;overflow:hidden;border:2.5px solid var(--or);background:var(--ch-1)" id="profil-photo-wrap">
+                <img id="profil-photo" src="images/profil-stan.jpg" alt="Stan"
+                  style="width:100%;height:100%;object-fit:cover"
+                  onerror="this.parentNode.innerHTML='<div style=&quot;width:100%;height:100%;background:var(--or);display:flex;align-items:center;justify-content:center;font-family:Nunito,sans-serif;font-weight:900;font-size:20px;color:white&quot;>ST</div>'">
+              </div>
+              <div style="position:absolute;bottom:0;right:0;width:18px;height:18px;background:var(--gr);border-radius:50%;border:2px solid var(--ch);display:flex;align-items:center;justify-content:center;font-size:9px">✓</div>
+            </div>
+            <!-- Nom + badge -->
+            <div style="flex:1">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:16px;color:var(--wh)">Stan</div>
+              <div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:1px">Membre depuis juin 2025 · Paris</div>
+              <div style="display:flex;gap:5px;margin-top:5px;flex-wrap:wrap">
+                <span style="background:rgba(255,200,0,.18);color:var(--ye);font-family:Nunito,sans-serif;font-weight:700;font-size:7.5px;padding:2px 8px;border-radius:20px">⭐ Premium</span>
+                <span style="background:rgba(255,77,0,.18);color:var(--or);font-family:Nunito,sans-serif;font-weight:700;font-size:7.5px;padding:2px 8px;border-radius:20px">⚡ Intermédiaire</span>
+              </div>
+            </div>
+            <!-- Coach assigné -->
+            <div style="text-align:center;flex-shrink:0">
+              <div style="width:38px;height:38px;border-radius:50%;overflow:hidden;border:2px solid var(--or);margin:0 auto 3px">
+                <img src="images/coach-max-neutre.jpg" alt="Max"
+                  style="width:100%;height:100%;object-fit:cover"
+                  onerror="this.style.display='none';this.parentNode.style.background='var(--or)';this.parentNode.innerHTML+='<div style=&quot;font-size:12px;font-weight:800;font-family:Nunito,sans-serif;color:white;line-height:38px;text-align:center&quot;>M</div>'">
+              </div>
+              <div style="font-size:7px;color:rgba(255,255,255,.5)">Coach</div>
+              <div style="font-family:Nunito,sans-serif;font-weight:700;font-size:8px;color:var(--wh)">Max</div>
+            </div>
+          </div>
+
+          <!-- Stats rapides -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+            <div style="background:rgba(255,255,255,.07);border-radius:9px;padding:8px 4px;text-align:center">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:15px;color:var(--or)">7</div>
+              <div style="font-size:7px;color:rgba(255,255,255,.45);margin-top:1px">Jours<br>de série</div>
+            </div>
+            <div style="background:rgba(255,255,255,.07);border-radius:9px;padding:8px 4px;text-align:center">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:15px;color:var(--or)">12</div>
+              <div style="font-size:7px;color:rgba(255,255,255,.45);margin-top:1px">Séances<br>total</div>
+            </div>
+            <div style="background:rgba(255,255,255,.07);border-radius:9px;padding:8px 4px;text-align:center">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:15px;color:var(--ye)">350</div>
+              <div style="font-size:7px;color:rgba(255,255,255,.45);margin-top:1px">XP<br>gagnés</div>
+            </div>
+            <div style="background:rgba(255,255,255,.07);border-radius:9px;padding:8px 4px;text-align:center">
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:15px;color:var(--gr)">Niv.2</div>
+              <div style="font-size:7px;color:rgba(255,255,255,.45);margin-top:1px">Niveau<br>actuel</div>
+            </div>
+          </div>
+          <!-- Barre XP -->
+          <div style="margin-top:8px">
+            <div style="display:flex;justify-content:space-between;font-size:7px;color:rgba(255,255,255,.35);margin-bottom:3px">
+              <span>Niveau 2 · 350 XP</span><span>Niveau 3 · 500 XP</span>
+            </div>
+            <div style="height:4px;background:rgba(255,255,255,.1);border-radius:3px">
+              <div style="height:4px;width:70%;background:var(--ye);border-radius:3px"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenu scrollable -->
+        <div style="padding:11px;background:#f8f8f8;overflow-y:auto;flex:1">
+
+          <!-- ── BLOC 2 : DONNÉES SPORTIVES ── -->
+          <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--ch);margin-bottom:7px">Mon profil sportif</div>
+          <div style="background:var(--wh);border-radius:12px;padding:11px 13px;margin-bottom:10px;border:.5px solid #e8e8e8">
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:.5px solid #f5f5f5">
+                <span style="font-size:9px;color:var(--ch-4)">🎯 Objectif principal</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:700;font-size:9px;color:var(--ch)">Perdre du poids 🔥</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:.5px solid #f5f5f5">
+                <span style="font-size:9px;color:var(--ch-4)">📅 Objectif 30 jours</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:700;font-size:9px;color:var(--ch)">Perdre 3 à 5 kg</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:.5px solid #f5f5f5">
+                <span style="font-size:9px;color:var(--ch-4)">⚡ Niveau</span>
+                <span class="pill pill-o">Intermédiaire</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:.5px solid #f5f5f5">
+                <span style="font-size:9px;color:var(--ch-4)">🕐 Pratique</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:700;font-size:9px;color:var(--ch)">6 mois à 2 ans</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:.5px solid #f5f5f5">
+                <span style="font-size:9px;color:var(--ch-4)">📊 Séances / sem.</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:700;font-size:9px;color:var(--ch)">1–2 actuellement</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:.5px solid #f5f5f5">
+                <span style="font-size:9px;color:var(--ch-4)">👤 Sexe / Âge</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:700;font-size:9px;color:var(--ch)">Homme · 28 ans</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:.5px solid #f5f5f5">
+                <span style="font-size:9px;color:var(--ch-4)">⚖️ Taille / Poids</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:700;font-size:9px;color:var(--ch)">178 cm · 80 kg</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:.5px solid #f5f5f5">
+                <span style="font-size:9px;color:var(--ch-4)">🩺 Santé</span>
+                <span class="pill pill-g">Aucun antécédent</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <span style="font-size:9px;color:var(--ch-4)">💪 Points forts</span>
+                <div style="display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;max-width:60%">
+                  <span class="pill pill-o">Endurance</span>
+                  <span class="pill pill-o">Motivation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── BLOC 3 : PROGRESSION ── -->
+          <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--ch);margin-bottom:7px">Ma progression</div>
+
+          <!-- Mini graphique simulé -->
+          <div style="background:var(--wh);border-radius:12px;padding:11px 13px;margin-bottom:8px;border:.5px solid #e8e8e8">
+            <div style="font-family:Nunito,sans-serif;font-weight:700;font-size:9.5px;color:var(--ch);margin-bottom:8px">Séances · 4 dernières semaines</div>
+            <div style="display:flex;align-items:flex-end;gap:5px;height:44px;margin-bottom:5px">
+              <div style="flex:1;background:var(--or-l);border-radius:3px 3px 0 0;height:30%" title="S1"></div>
+              <div style="flex:1;background:var(--or-l);border-radius:3px 3px 0 0;height:50%" title="S2"></div>
+              <div style="flex:1;background:var(--or);border-radius:3px 3px 0 0;height:70%" title="S3"></div>
+              <div style="flex:1;background:var(--or);border-radius:3px 3px 0 0;height:100%" title="S4"></div>
+              <div style="flex:1;background:var(--or);border-radius:3px 3px 0 0;height:85%" title="S5"></div>
+              <div style="flex:1;background:var(--or);border-radius:3px 3px 0 0;height:90%" title="S6"></div>
+              <div style="flex:1;background:var(--or-m);border-radius:3px 3px 0 0;height:60%;opacity:.5" title="S7"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:7px;color:#bbb">
+              <span>Sem. 1</span><span>Sem. 2</span><span>Sem. 3</span><span>Cette sem.</span>
+            </div>
+          </div>
+
+          <!-- Meilleures perfs -->
+          <div style="background:var(--wh);border-radius:12px;padding:11px 13px;margin-bottom:8px;border:.5px solid #e8e8e8">
+            <div style="font-family:Nunito,sans-serif;font-weight:700;font-size:9.5px;color:var(--ch);margin-bottom:8px">🏆 Meilleures perfs</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:8.5px;color:var(--ch-4)">💪 Pompes max</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:800;font-size:9.5px;color:var(--or)">28 reps</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:8.5px;color:var(--ch-4)">🏃 Cardio HIIT</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:800;font-size:9.5px;color:var(--or)">20 min sans arrêt</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:8.5px;color:var(--ch-4)">🔥 Série la plus longue</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:800;font-size:9.5px;color:var(--or)">7 jours</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:8.5px;color:var(--ch-4)">⏱ Séance la + longue</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:800;font-size:9.5px;color:var(--or)">45 min</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Historique séances -->
+          <div style="background:var(--wh);border-radius:12px;padding:11px 13px;margin-bottom:10px;border:.5px solid #e8e8e8">
+            <div style="font-family:Nunito,sans-serif;font-weight:700;font-size:9.5px;color:var(--ch);margin-bottom:8px">📋 Dernières séances</div>
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:.5px solid #f5f5f5">
+                <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Renfo Full Body</div><div style="font-size:7.5px;color:#aaa">Aujourd'hui · 30 min</div></div>
+                <span class="pill pill-g">+50 XP</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:.5px solid #f5f5f5">
+                <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Cardio HIIT</div><div style="font-size:7.5px;color:#aaa">Hier · 20 min</div></div>
+                <span class="pill pill-g">+30 XP</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:.5px solid #f5f5f5">
+                <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Upper Body</div><div style="font-size:7.5px;color:#aaa">7 juin · 25 min</div></div>
+                <span class="pill pill-g">+40 XP</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0">
+                <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Yoga Flow (salle)</div><div style="font-size:7.5px;color:#aaa">6 juin · 60 min</div></div>
+                <span class="pill pill-g">+60 XP</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── BLOC 4 : GESTION COMPTE ── -->
+          <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--ch);margin-bottom:7px">Mon compte</div>
+
+          <!-- Abonnement -->
+          <div style="background:var(--ch);border-radius:12px;padding:12px 13px;margin-bottom:7px;color:var(--wh)">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+              <div>
+                <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:10.5px">Hybride complet</div>
+                <div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:2px">Renouvellement · 1 juillet 2025</div>
+              </div>
+              <span style="background:rgba(255,200,0,.18);color:var(--ye);font-family:Nunito,sans-serif;font-weight:700;font-size:7.5px;padding:2px 8px;border-radius:20px">⭐ Premium</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.08);padding-top:6px">
+              <span style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:var(--or)">39 €<span style="font-size:8px;font-weight:600;color:rgba(255,255,255,.4)">/mois</span></span>
+              <button style="background:rgba(255,255,255,.1);color:var(--wh);font-family:Nunito,sans-serif;font-weight:700;font-size:8.5px;border:1px solid rgba(255,255,255,.15);cursor:pointer;padding:5px 12px;border-radius:8px">Gérer →</button>
+            </div>
+          </div>
+
+          <!-- Parrainage -->
+          <div style="background:var(--wh);border-radius:12px;padding:11px 13px;margin-bottom:7px;border:.5px solid #e8e8e8">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:36px;height:36px;border-radius:9px;background:var(--or-l);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🎁</div>
+              <div style="flex:1">
+                <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--ch)">Parrainer un ami</div>
+                <div style="font-size:8px;color:var(--ch-4);margin-top:1px">Parraine un ami → 1 mois offert pour toi</div>
+              </div>
+              <button style="background:var(--or);color:var(--wh);font-family:Nunito,sans-serif;font-weight:700;font-size:8.5px;border:none;cursor:pointer;padding:6px 12px;border-radius:8px">Inviter</button>
+            </div>
+            <div style="background:var(--ch-1);border-radius:8px;padding:7px 10px;margin-top:8px;display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:8px;color:var(--ch-4);font-family:Nunito,sans-serif;font-weight:700">Code : STAN2025</span>
+              <button style="background:var(--ch);color:var(--wh);font-family:Nunito,sans-serif;font-weight:700;font-size:7.5px;border:none;cursor:pointer;padding:4px 10px;border-radius:6px" onclick="copyCode()">Copier</button>
+            </div>
+          </div>
+
+          <!-- Paramètres & Déconnexion -->
+          <div style="background:var(--wh);border-radius:12px;overflow:hidden;margin-bottom:7px;border:.5px solid #e8e8e8">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-bottom:.5px solid #f5f5f5;cursor:pointer" onclick="alert('⚙️ Paramètres disponibles au lancement')">
+              <div style="display:flex;align-items:center;gap:9px">
+                <span style="font-size:14px">⚙️</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:700;font-size:9.5px;color:var(--ch)">Paramètres</span>
+              </div>
+              <span style="color:#ccc;font-size:12px">›</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-bottom:.5px solid #f5f5f5;cursor:pointer" onclick="alert('🔔 Notifications disponibles au lancement')">
+              <div style="display:flex;align-items:center;gap:9px">
+                <span style="font-size:14px">🔔</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:700;font-size:9.5px;color:var(--ch)">Notifications</span>
+              </div>
+              <span style="color:#ccc;font-size:12px">›</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 13px;cursor:pointer" onclick="goS('s-ob1')">
+              <div style="display:flex;align-items:center;gap:9px">
+                <span style="font-size:14px">🚪</span>
+                <span style="font-family:Nunito,sans-serif;font-weight:700;font-size:9.5px;color:var(--re)">Se déconnecter</span>
+              </div>
+              <span style="color:#ccc;font-size:12px">›</span>
+            </div>
+          </div>
+
+          <div style="text-align:center;font-size:7.5px;color:var(--ch-2);padding:8px 0 4px">
+            Moove Up v1.0 · Progress where you are
+          </div>
+
+        </div><!-- /scrollable -->
       </div>
       <div class="a-nav">
         <div class="n-tab" onclick="goS('screen-home')"><div class="n-ico">🏠</div>Accueil</div>
@@ -1517,6 +1760,13 @@ function showBoxContent(){
 }
 function closeScanBox(){document.getElementById('modal-scanbox').style.display='none'}
 
+function copyCode(){
+  const t=document.createElement("div")
+  t.style.cssText="position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:var(--gr);color:#fff;font-family:Nunito,sans-serif;font-weight:700;font-size:9px;padding:7px 16px;border-radius:20px;z-index:90;white-space:nowrap"
+  t.textContent="✓ Code STAN2025 copié !"
+  document.getElementById("pscreen").appendChild(t)
+  setTimeout(()=>t.remove(),2500)
+}
 function goBack(){
   if(document.referrer&&document.referrer.includes(window.location.hostname))history.back()
   else window.location.href='index.html'
