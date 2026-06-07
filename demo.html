@@ -1628,9 +1628,9 @@ function applyCoachEverywhere(coach){
   // 3. FIN DE SÉANCE — message coach
   const ecm=document.getElementById('end-coach-msg')
   const msgs={
-    max:'"Super séance Stan ! Récupère bien ce soir, on remet ça demain. Tu es sur la bonne voie 🔥"',
-    sara:'"Belle performance Stan ! Ton cardio s'améliore vite. Repose-toi bien 🏃"',
-    lea:'"Excellent travail Stan. Ton corps te remercie. Prends soin de toi ce soir 🧘"'
+    max:`"Super séance Stan ! Récupère bien ce soir, on remet ça demain. Tu es sur la bonne voie 🔥"`,
+    sara:`"Belle performance Stan ! Ton cardio s'améliore vite. Repose-toi bien 🏃"`,
+    lea:`"Excellent travail Stan. Ton corps te remercie. Prends soin de toi ce soir 🧘"`
   }
   if(ecm){
     const k=Object.keys(COACHES).find(k=>COACHES[k]===coach)||'max'
