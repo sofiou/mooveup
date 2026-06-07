@@ -955,7 +955,7 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
             <!-- Coach physique -->
             <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;color:var(--ch);margin-bottom:8px">Coaching physique en salle</div>
             <div style="background:var(--ch);border-radius:12px;padding:11px 13px;margin-bottom:6px;color:var(--wh)">
-              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:10.5px;margin-bottom:4px">Séance avec Max · Musculation</div>
+              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:10.5px;margin-bottom:4px" id="resa-coach-1-name">Séance avec Max · Musculation</div>
               <div style="font-size:8px;color:rgba(255,255,255,.55);margin-bottom:8px">Prochain créneau : Mar 11 juin · 9h00</div>
               <div style="display:flex;justify-content:space-between;align-items:center">
                 <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:14px;color:var(--or)">35 €<span style="font-size:9px;color:rgba(255,255,255,.5);font-weight:600">/séance</span></div>
@@ -1115,12 +1115,12 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
             <!-- Coach assigné -->
             <div style="text-align:center;flex-shrink:0">
               <div style="width:38px;height:38px;border-radius:50%;overflow:hidden;border:2px solid var(--or);margin:0 auto 3px">
-                <img src="images/coach-max-neutre.jpg" alt="Max"
+                <img id="profil-coach-img" src="images/coach-max-neutre.jpg" alt="Coach"
                   style="width:100%;height:100%;object-fit:cover"
                   onerror="this.style.display='none';this.parentNode.style.background='var(--or)';this.parentNode.innerHTML+='<div style=&quot;font-size:12px;font-weight:800;font-family:Nunito,sans-serif;color:white;line-height:38px;text-align:center&quot;>M</div>'">
               </div>
               <div style="font-size:7px;color:rgba(255,255,255,.5)">Coach</div>
-              <div style="font-family:Nunito,sans-serif;font-weight:700;font-size:8px;color:var(--wh)">Max</div>
+              <div style="font-family:Nunito,sans-serif;font-weight:700;font-size:8px;color:var(--wh)" id="profil-coach-name">Max</div>
             </div>
           </div>
 
@@ -1453,6 +1453,8 @@ function goS(id){
     const b=next.querySelector('.a-body')
     if(b) b.scrollTop=0
     if(id==='screen-seance') setTimeout(initSeance,50)
+    // Reapply coach on every screen switch
+    if(activeCoach) applyCoachEverywhere(activeCoach)
   },220)
 }
 
@@ -1529,18 +1531,25 @@ document.getElementById('inp-poids').addEventListener('input',updateSummary)
 const COACHES={
   max:{name:'Max',emoji:'💪',tag:'Musculation · Force',tagBg:'rgba(88,204,2,.15)',tagColor:'#3A8A00',
     desc:'Spécialisé renforcement musculaire et perte de poids. Max adapte chaque séance à ton niveau intermédiaire pour des résultats visibles en 4 semaines.',
-    match:'94%',msg:'Max est là pour toi !',sub:'Prêt pour le renfo du jour ? 💪',img:'images/coach-max-heureux.jpg'},
+    match:'94%',msg:'Max est là pour toi !',sub:'Prêt pour le renfo du jour ? 💪',
+    imgs:{neutre:'images/coach-max-neutre.jpg',joie:'images/coach-max-joie.jpg',triste:'images/coach-max-triste.jpg',choque:'images/coach-max-choque.jpg'}},
   sara:{name:'Sara',emoji:'🏃',tag:'Running · Cardio',tagBg:'rgba(28,176,246,.15)',tagColor:'#1CB0F6',
     desc:'Spécialisée endurance et cardio. Sara construit ta progression semaine après semaine pour que tu atteignes tes objectifs running sans te blesser.',
-    match:'91%',msg:"Sara t'attend sur la piste !",sub:'Allez, on sort courir ? 🏃',img:'images/coach-sara-heureux.jpg'},
+    match:'91%',msg:"Sara t'attend sur la piste !",sub:'Allez, on sort courir ? 🏃',
+    imgs:{neutre:'images/coach-sara-neutre.jpg',joie:'images/coach-sara-joie.jpg',triste:'images/coach-sara-triste.jpg',choque:'images/coach-sara-choque.jpg'}},
   lea:{name:'Léa',emoji:'🧘',tag:'Souplesse · Mobilité',tagBg:'rgba(206,130,255,.15)',tagColor:'#CE82FF',
     desc:'Spécialisée mobilité et bien-être. Léa travaille en douceur sur tes tensions et ta flexibilité pour un corps plus libre et moins douloureux.',
-    match:'89%',msg:'Léa a préparé ta séance !',sub:"Un moment pour toi aujourd'hui 🧘",img:'images/coach-lea-heureux.jpg'}
+    match:'89%',msg:'Léa a préparé ta séance !',sub:"Un moment pour toi aujourd'hui 🧘",
+    imgs:{neutre:'images/coach-lea-neutre.jpg',joie:'images/coach-lea-joie.jpg',triste:'images/coach-lea-triste.jpg',choque:'images/coach-lea-choque.jpg'}}
 }
+// Coach actif global
+let activeCoach = null
 
 // ── REVEAL ──────────────────────────────────
 function launchReveal(){
-  const coach=COACHES[OB1_DATA[curOb1].coach]
+  const coachKey=OB1_DATA[curOb1].coach
+  const coach=COACHES[coachKey]
+  activeCoach=coach
   goS('screen-reveal')
   document.querySelectorAll('.reveal-hidden').forEach(el=>el.classList.remove('show'))
   document.getElementById('rv-name').textContent=coach.name
@@ -1550,23 +1559,97 @@ function launchReveal(){
   document.getElementById('rv-desc').textContent=coach.desc
   document.getElementById('rv-match-val').textContent=coach.match
   document.getElementById('rv-title').textContent='Analyse de ton profil...'
+  // Avatar reveal
   const av=document.getElementById('rv-avatar')
   av.className='reveal-coach-placeholder'
   av.innerHTML=coach.emoji
-  const img=new Image()
-  img.onload=()=>{av.innerHTML='';av.className='';const i=document.createElement('img');i.src=coach.img;i.className='reveal-coach-img';av.appendChild(i)}
-  img.onerror=()=>{av.textContent=coach.emoji}
-  img.src=coach.img
-  const hci=document.getElementById('home-coach-img')
-  const himg=new Image()
-  himg.onload=()=>{hci.innerHTML=`<img src="${coach.img}" style="width:52px;height:52px;border-radius:50%;object-fit:cover">`}
-  himg.onerror=()=>{hci.textContent=coach.emoji}
-  himg.src=coach.img
-  document.getElementById('home-coach-msg').textContent=coach.msg
-  document.getElementById('home-coach-sub').textContent=coach.sub
+  loadImg(coach.imgs.joie, (src)=>{
+    av.innerHTML=''
+    av.className=''
+    const i=document.createElement('img')
+    i.src=src
+    i.className='reveal-coach-img'
+    av.appendChild(i)
+  }, ()=>{ av.textContent=coach.emoji })
+  // Appliquer sur tous les écrans
+  applyCoachEverywhere(coach)
   const seq=[[400,'rv-title'],[1200,'rv-ring'],[1800,'rv-label'],[2100,'rv-name'],[2400,'rv-tag'],[2800,'rv-desc'],[3200,'rv-match'],[3700,'rv-btn']]
   setTimeout(()=>{document.getElementById('rv-title').textContent='Ton coach idéal trouvé ✓'},1000)
   seq.forEach(([d,id])=>setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('show')},d))
+}
+
+// Charge une image avec fallback
+function loadImg(src, onOk, onErr){
+  const i=new Image()
+  i.onload=()=>onOk(src)
+  i.onerror=()=>{ if(onErr) onErr() }
+  i.src=src
+}
+
+// Helper : crée un élément img avec fallback emoji
+function coachImgEl(src, emoji, w, h, extra){
+  const wrap=document.createElement('div')
+  wrap.style.cssText=`width:${w}px;height:${h}px;border-radius:50%;overflow:hidden;flex-shrink:0;${extra||''}`
+  const img=document.createElement('img')
+  img.src=src
+  img.style.cssText='width:100%;height:100%;object-fit:cover'
+  img.onerror=()=>{ wrap.innerHTML=`<div style="width:100%;height:100%;background:var(--or);display:flex;align-items:center;justify-content:center;font-size:${Math.round(w*0.4)}px">${emoji}</div>` }
+  wrap.appendChild(img)
+  return wrap
+}
+
+// Applique le coach actif sur tous les points d'affichage
+function applyCoachEverywhere(coach){
+  if(!coach) return
+  const n=coach.imgs.neutre
+  const j=coach.imgs.joie
+
+  // 1. ACCUEIL — streak card
+  const hci=document.getElementById('home-coach-img')
+  if(hci){
+    hci.innerHTML=''
+    hci.style.overflow='hidden'
+    loadImg(j, (src)=>{ hci.innerHTML=`<img src="${src}" style="width:52px;height:52px;border-radius:50%;object-fit:cover">` }, ()=>{ hci.textContent=coach.emoji })
+  }
+  const hcm=document.getElementById('home-coach-msg')
+  const hcs=document.getElementById('home-coach-sub')
+  if(hcm) hcm.textContent=coach.msg
+  if(hcs) hcs.textContent=coach.sub
+
+  // 2. SÉANCE — bandeau coach
+  const sav=document.getElementById('seance-coach-av')
+  if(sav){
+    sav.innerHTML=''
+    loadImg(n, (src)=>{ sav.innerHTML=`<img src="${src}" style="width:40px;height:40px;border-radius:50%;object-fit:cover">` }, ()=>{ sav.textContent=coach.emoji })
+  }
+  const snm=document.getElementById('seance-coach-name')
+  if(snm) snm.textContent=coach.name
+
+  // 3. FIN DE SÉANCE — message coach
+  const ecm=document.getElementById('end-coach-msg')
+  const msgs={
+    max:'"Super séance Stan ! Récupère bien ce soir, on remet ça demain. Tu es sur la bonne voie 🔥"',
+    sara:'"Belle performance Stan ! Ton cardio s'améliore vite. Repose-toi bien 🏃"',
+    lea:'"Excellent travail Stan. Ton corps te remercie. Prends soin de toi ce soir 🧘"'
+  }
+  if(ecm){
+    const k=Object.keys(COACHES).find(k=>COACHES[k]===coach)||'max'
+    ecm.textContent=msgs[k]||msgs.max
+  }
+
+  // 4. PROFIL — coach assigné
+  const pcImg=document.getElementById('profil-coach-img')
+  const pcName=document.getElementById('profil-coach-name')
+  if(pcImg){
+    loadImg(n, (src)=>{ pcImg.src=src }, ()=>{ pcImg.style.display='none' })
+  }
+  if(pcName) pcName.textContent=coach.name
+
+  // 5. RÉSERVATION SALLE — coachs proposés
+  const rc1=document.getElementById('resa-coach-1-name')
+  const rc1img=document.getElementById('resa-coach-1-img')
+  if(rc1) rc1.textContent='Séance avec '+coach.name+' · '+coach.tag
+  if(rc1img){ loadImg(n,(src)=>{rc1img.src=src},()=>{}) }
 }
 
 // ── QR ──────────────────────────────────────
