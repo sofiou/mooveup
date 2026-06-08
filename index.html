@@ -323,9 +323,16 @@ footer{background:var(--ch);padding:36px 5%;display:flex;align-items:center;just
       </div>
     </div>
     <div class="hero-visual">
-  <img src="images/screen-accueil.jpg" alt="Moove Up app"
-    style="width:240px;filter:drop-shadow(0 40px 60px rgba(44,44,42,.25));animation:float 3.5s ease-in-out infinite">
-</div>
+      <div class="phone" style="animation:float 3.5s ease-in-out infinite">
+        <div class="phone-bar"><span>9:41</span><span>●●● 100%</span></div>
+        <div class="phone-notch"></div>
+        <div class="phone-screen" style="min-height:420px">
+          <img src="images/screen-accueil.jpg" alt="Moove Up app"
+            style="width:100%;height:100%;object-fit:cover;object-position:top;display:block"
+            onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -534,8 +541,15 @@ footer{background:var(--ch);padding:36px 5%;display:flex;align-items:center;just
         </div>
       </div>
       <div style="display:flex;justify-content:center">
-        <img src="images/screen-seance.jpg" alt="Moove Up séance"
-  style="width:220px;filter:drop-shadow(0 32px 48px rgba(44,44,42,.2));animation:float 3.5s ease-in-out infinite">
+        <div class="phone" style="width:220px;animation:float 3.5s ease-in-out infinite">
+          <div class="phone-bar"><span>9:41</span><span>●●●</span></div>
+          <div class="phone-notch"></div>
+          <div class="phone-screen" style="min-height:420px">
+            <img src="images/screen-seance.jpg" alt="Moove Up séance"
+              style="width:100%;height:100%;object-fit:cover;object-position:top;display:block"
+              onerror="this.style.display='none'">
+          </div>
+        </div>
       </div>
     </div>
     <div class="reveal">
@@ -656,8 +670,15 @@ footer{background:var(--ch);padding:36px 5%;display:flex;align-items:center;just
       <div style="display:flex;justify-content:center">
         <div style="position:relative">
           <div style="position:absolute;inset:-20px;background:radial-gradient(circle,rgba(255,77,0,.1) 0%,transparent 70%);border-radius:50%;z-index:0"></div>
-         <img src="images/screen-resa.jpg" alt="Moove Up réservation"
-  style="width:220px;filter:drop-shadow(0 32px 48px rgba(255,77,0,.15));animation:float 3.5s ease-in-out infinite;position:relative;z-index:1">
+          <div class="phone" style="width:220px;position:relative;z-index:1;animation:float 3.5s ease-in-out infinite">
+            <div class="phone-bar"><span>9:41</span><span>●●●</span></div>
+            <div class="phone-notch"></div>
+            <div class="phone-screen" style="min-height:420px">
+              <img src="images/screen-resa.jpg" alt="Moove Up réservation"
+                style="width:100%;height:100%;object-fit:cover;object-position:top;display:block"
+                onerror="this.style.display='none'">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -745,7 +766,7 @@ footer{background:var(--ch);padding:36px 5%;display:flex;align-items:center;just
         <textarea placeholder="Un message ou une question ? (optionnel)"></textarea>
         <button type="submit" class="wsub">Rejoindre la liste d'attente →</button>
       </form>
-      <p class="wcount"><strong>+247 personnes</strong> déjà inscrites</p>
+      <p class="wcount">Rejoins les premiers testeurs — sois parmi les premiers à découvrir l'app.</p>
     </div>
   </div>
 </section>
