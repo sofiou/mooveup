@@ -406,7 +406,10 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         </div>
         <div style="display:flex;align-items:center;gap:6px">
           <span class="pill pill-y">⭐ Premium</span>
-          <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;background:var(--ch-1);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;border:1.5px dashed var(--ch-2)" onclick="alert('📸 Fonctionnalité disponible au lancement !')">+</div>
+          <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;background:var(--ch-1);border:1.5px solid var(--or);flex-shrink:0">
+  <img src="images/profil-stan.jpg" alt="Stan" style="width:100%;height:100%;object-fit:cover"
+    onerror="this.parentNode.innerHTML='<div style=&quot;width:100%;height:100%;background:var(--or);display:flex;align-items:center;justify-content:center;font-family:Nunito,sans-serif;font-weight:900;font-size:11px;color:white&quot;>ST</div>'">
+</div>
         </div>
       </div>
       <div class="a-body">
@@ -445,12 +448,43 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
             <span class="pill pill-o">À faire</span>
           </div>
         </div>
-        <div class="atit">Ton profil</div>
-        <div class="profile-photo-placeholder" onclick="alert('📸 Ajoute ta photo au lancement !')">
-          <span style="font-size:22px">📸</span>
-          <span>Ajouter une photo de profil</span>
-          <span style="font-size:8px;color:var(--ch-2)">Disponible au lancement</span>
-        </div>
+<div class="atit">Ton activité</div>
+<div class="acard" style="margin-bottom:7px">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <span style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--ch)">📅 Cette semaine</span>
+    <span style="font-size:7.5px;color:var(--gr-d);font-weight:700;background:var(--gr-l);padding:2px 8px;border-radius:20px">🔥 7 jours de suite</span>
+  </div>
+  <div style="display:flex;justify-content:space-between;gap:4px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
+      <span style="font-size:7px;color:#bbb;font-weight:700">L</span>
+      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gr-d)">✓</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
+      <span style="font-size:7px;color:#bbb;font-weight:700">M</span>
+      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gr-d)">✓</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
+      <span style="font-size:7px;color:#bbb;font-weight:700">M</span>
+      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gr-d)">✓</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
+      <span style="font-size:7px;color:#bbb;font-weight:700">J</span>
+      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gr-d)">✓</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
+      <span style="font-size:7px;color:#bbb;font-weight:700">V</span>
+      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gr-d)">✓</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
+      <span style="font-size:7px;color:#bbb;font-weight:700">S</span>
+      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gr-d)">✓</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
+      <span style="font-size:7px;color:var(--or);font-weight:800">D</span>
+      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--or);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--wh)">🔥</div>
+    </div>
+  </div>
+</div>
         <button class="abtn" onclick="goS('screen-seance')">▶ Lancer la séance →</button>
       </div>
       <div class="a-nav">
