@@ -492,7 +492,7 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         <div class="n-tab on" onclick="goS('screen-home')">
   <i data-lucide="home" style="width:16px;height:16px"></i>Accueil
 </div>
-<div class="n-tab" onclick="goS('screen-kit')">
+<div class="n-tab on" onclick="goS('screen-kit')">
   <i data-lucide="package" style="width:16px;height:16px"></i>Kits
 </div>
 <div class="n-tab" onclick="goS('screen-seance')">
@@ -1418,11 +1418,21 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         </div><!-- /scrollable -->
       </div>
       <div class="a-nav">
-        <div class="n-tab" onclick="goS('screen-home')"><div class="n-ico">🏠</div>Accueil</div>
-        <div class="n-tab" onclick="goS('screen-kit')"><div class="n-ico">📦</div>Kits</div>
-        <div class="n-tab" onclick="goS('screen-seance')"><div class="n-ico">▶️</div>Séance</div>
-        <div class="n-tab" onclick="goS('screen-resa')"><div class="n-ico">📅</div>Réserver</div>
-        <div class="n-tab on"><div class="n-ico">👤</div>Profil</div>
+ <div class="n-tab" onclick="goS('screen-home')">
+  <i data-lucide="home" style="width:16px;height:16px"></i>Accueil
+</div>
+<div class="n-tab" onclick="goS('screen-kit')">
+  <i data-lucide="package" style="width:16px;height:16px"></i>Kits
+</div>
+<div class="n-tab" onclick="goS('screen-seance')">
+  <i data-lucide="play-circle" style="width:16px;height:16px"></i>Séance
+</div>
+<div class="n-tab" onclick="goS('screen-resa')">
+  <i data-lucide="calendar" style="width:16px;height:16px"></i>Réserver
+</div>
+<div class="n-tab on" onclick="goS('screen-profil')">
+  <i data-lucide="user" style="width:16px;height:16px"></i>Profil
+</div>
       </div>
     </div>
 
@@ -1773,8 +1783,9 @@ function renderExCard(){
   card.innerHTML=`
     <div style="background:var(--or);border-radius:13px;padding:12px 13px;margin-bottom:8px;cursor:pointer" onclick="openExModal(${curEx})">
       <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">
-<div style="width:38px;height:38px;border-radius:9px;overflow:hidden;flex-shrink:0;background:rgba(255,255,255,.2)"><img src="${ex.img}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.innerHTML='<i data-lucide=\\'${ex.ico}\\' style=\\'width:18px;height:18px;stroke:white\\'></i>'">
-<div style="flex:1"><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:11px;color:var(--wh)">${ex.name}</div><div style="font-size:8px;color:rgba(255,255,255,.65);margin-top:1px">${ex.detail}</div></div>
+<div style="width:38px;height:38px;border-radius:9px;overflow:hidden;flex-shrink:0;background:rgba(255,255,255,.2)"><img src="${ex.img}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.innerHTML='💪'"></div>
+<div style="flex:1">
+<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:11px;color:var(--wh)">${ex.name}</div><div style="font-size:8px;color:rgba(255,255,255,.65);margin-top:1px">${ex.detail}</div></div>
         <div style="font-size:18px">▶️</div>
       </div>
       <div style="height:3px;background:rgba(255,255,255,.2);border-radius:3px">
@@ -1795,7 +1806,7 @@ function renderExList(){
     const d=document.createElement('div')
     d.style.cssText=`background:var(--wh);border-radius:10px;padding:9px 11px;margin-bottom:5px;border:1.5px solid ${cur?'var(--or)':done?'var(--gr)':'#eee'};display:flex;align-items:center;gap:8px;cursor:pointer;opacity:${done?'.6':'1'}`
     d.onclick=()=>openExModal(i)
-    d.innerHTML=`<div style="width:28px;height:28px;border-radius:7px;background:${done?'var(--gr-l)':cur?'var(--or-l)':'#f5f5f5'};display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">${done?'✅':ex.ico}</div>
+      d.innerHTML=`<div style="width:28px;height:28px;border-radius:7px;overflow:hidden;flex-shrink:0;background:${done?'var(--gr-l)':cur?'var(--or-l)':'#f5f5f5'};display:flex;align-items:center;justify-content:center">${done?'<span style="font-size:13px">✅</span>':`<img src="${ex.img}" style="width:100%;height:100%;object-fit:cover">`}</div>
       <div style="flex:1"><div style="font-family:Nunito,sans-serif;font-weight:700;font-size:10px;color:var(--ch)">${ex.name}</div><div style="font-size:7.5px;color:#aaa;margin-top:1px">${ex.detail}</div></div>
       <span style="font-size:7.5px;font-weight:700;padding:2px 7px;border-radius:20px;${done?'background:var(--gr-l);color:var(--gr-d)':cur?'background:var(--or-l);color:var(--or-d)':'background:#f0f0f0;color:#aaa'}">${done?'Fait':cur?'En cours':'À faire'}</span>`
     c.appendChild(d)
@@ -1806,7 +1817,7 @@ function openExModal(idx){
   const ex=EXERCICES[idx]
   document.getElementById('ex-modal').style.display='flex'
   document.getElementById('modal-ex-num').textContent=`Exercice ${idx+1}/6`
-  document.getElementById('modal-ex-ico').textContent=ex.ico
+  document.getElementById('modal-ex-img').src=ex.img
   document.getElementById('modal-ex-name').textContent=ex.name
   document.getElementById('modal-ex-detail').textContent=ex.detail
   document.getElementById('modal-ex-duration').textContent=ex.duration+' sec'
