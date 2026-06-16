@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Moove Up — Démo Stan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -407,10 +407,7 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         </div>
         <div style="display:flex;align-items:center;gap:6px">
           <span class="pill pill-y">⭐ Premium</span>
-          <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;background:var(--ch-1);border:1.5px solid var(--or);flex-shrink:0">
-  <img src="images/profil-stan.jpg" alt="Stan" style="width:100%;height:100%;object-fit:cover"
-    onerror="this.parentNode.innerHTML='<div style=&quot;width:100%;height:100%;background:var(--or);display:flex;align-items:center;justify-content:center;font-family:Nunito,sans-serif;font-weight:900;font-size:11px;color:white&quot;>ST</div>'">
-</div>
+          <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;background:var(--ch-1);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;border:1.5px dashed var(--ch-2)" onclick="alert('📸 Fonctionnalité disponible au lancement !')">+</div>
         </div>
       </div>
       <div class="a-body">
@@ -449,61 +446,20 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
             <span class="pill pill-o">À faire</span>
           </div>
         </div>
-<div class="atit">Ton activité</div>
-<div class="acard" style="margin-bottom:7px">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-    <span style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--ch)">📅 Cette semaine</span>
-    <span style="font-size:7.5px;color:var(--gr-d);font-weight:700;background:var(--gr-l);padding:2px 8px;border-radius:20px">🔥 7 jours de suite</span>
-  </div>
-  <div style="display:flex;justify-content:space-between;gap:4px">
-    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
-      <span style="font-size:7px;color:#bbb;font-weight:700">L</span>
-      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gr-d)">✓</div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
-      <span style="font-size:7px;color:#bbb;font-weight:700">M</span>
-      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gr-d)">✓</div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
-      <span style="font-size:7px;color:#bbb;font-weight:700">M</span>
-      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gr-d)">✓</div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
-      <span style="font-size:7px;color:#bbb;font-weight:700">J</span>
-      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gr-d)">✓</div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
-      <span style="font-size:7px;color:#bbb;font-weight:700">V</span>
-      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gr-d)">✓</div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
-      <span style="font-size:7px;color:#bbb;font-weight:700">S</span>
-      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--gr-l);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gr-d)">✓</div>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
-      <span style="font-size:7px;color:var(--or);font-weight:800">D</span>
-      <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--or);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--wh)">🔥</div>
-    </div>
-  </div>
-</div>
+        <div class="atit">Ton profil</div>
+        <div class="profile-photo-placeholder" onclick="alert('📸 Ajoute ta photo au lancement !')">
+          <span style="font-size:22px">📸</span>
+          <span>Ajouter une photo de profil</span>
+          <span style="font-size:8px;color:var(--ch-2)">Disponible au lancement</span>
+        </div>
         <button class="abtn" onclick="goS('screen-seance')">▶ Lancer la séance →</button>
       </div>
       <div class="a-nav">
-        <div class="n-tab on" onclick="goS('screen-home')">
-  <i data-lucide="home" style="width:16px;height:16px"></i>Accueil
-</div>
-<div class="n-tab" onclick="goS('screen-kit')">
-  <i data-lucide="package" style="width:16px;height:16px"></i>Kits
-</div>
-<div class="n-tab" onclick="goS('screen-seance')">
-  <i data-lucide="play-circle" style="width:16px;height:16px"></i>Séance
-</div>
-<div class="n-tab" onclick="goS('screen-resa')">
-  <i data-lucide="calendar" style="width:16px;height:16px"></i>Réserver
-</div>
-<div class="n-tab" onclick="goS('screen-profil')">
-  <i data-lucide="user" style="width:16px;height:16px"></i>Profil
-</div>
+        <div class="n-tab on" onclick="goS('screen-home')"><div class="n-ico">🏠</div>Accueil</div>
+        <div class="n-tab" onclick="goS('screen-kit')"><div class="n-ico">📦</div>Kits</div>
+        <div class="n-tab" onclick="goS('screen-seance')"><div class="n-ico">▶️</div>Séance</div>
+        <div class="n-tab" onclick="goS('screen-resa')"><div class="n-ico">📅</div>Réserver</div>
+        <div class="n-tab" onclick="goS('screen-profil')"><div class="n-ico">👤</div>Profil</div>
       </div>
     </div>
 
@@ -579,24 +535,14 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         </div>
 
       </div>
-</div>
       <div class="a-nav">
-        <div class="n-tab" onclick="goS('screen-home')">
-          <i data-lucide="home" style="width:16px;height:16px"></i>Accueil
-        </div>
-        <div class="n-tab on" onclick="goS('screen-kit')">
-          <i data-lucide="package" style="width:16px;height:16px"></i>Kits
-        </div>
-        <div class="n-tab" onclick="goS('screen-seance')">
-          <i data-lucide="play-circle" style="width:16px;height:16px"></i>Séance
-        </div>
-        <div class="n-tab" onclick="goS('screen-resa')">
-          <i data-lucide="calendar" style="width:16px;height:16px"></i>Réserver
-        </div>
-        <div class="n-tab" onclick="goS('screen-profil')">
-          <i data-lucide="user" style="width:16px;height:16px"></i>Profil
-        </div>
+        <div class="n-tab" onclick="goS('screen-home')"><i data-lucide="home" style="width:16px;height:16px"></i>Accueil</div>
+        <div class="n-tab on" onclick="goS('screen-kit')"><i data-lucide="package" style="width:16px;height:16px"></i>Kits</div>
+        <div class="n-tab" onclick="goS('screen-seance')"><i data-lucide="play-circle" style="width:16px;height:16px"></i>Séance</div>
+        <div class="n-tab" onclick="goS('screen-resa')"><i data-lucide="calendar" style="width:16px;height:16px"></i>Réserver</div>
+        <div class="n-tab" onclick="goS('screen-profil')"><i data-lucide="user" style="width:16px;height:16px"></i>Profil</div>
       </div>
+    </div>
 
     <!-- ══ MODAL RENOUVELER ══ -->
     <div id="modal-renouveler" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.82);z-index:55;flex-direction:column;align-items:center;justify-content:center;border-radius:32px">
@@ -719,21 +665,11 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         <div id="seance-list"></div>
       </div>
       <div class="a-nav">
-        <div class="n-tab" onclick="goS('screen-home')">
-  <i data-lucide="home" style="width:16px;height:16px"></i>Accueil
-</div>
-<div class="n-tab" onclick="goS('screen-kit')">
-  <i data-lucide="package" style="width:16px;height:16px"></i>Kits
-</div>
-<div class="n-tab on" onclick="goS('screen-seance')">
-  <i data-lucide="play-circle" style="width:16px;height:16px"></i>Séance
-</div>
-<div class="n-tab" onclick="goS('screen-resa')">
-  <i data-lucide="calendar" style="width:16px;height:16px"></i>Réserver
-</div>
-<div class="n-tab" onclick="goS('screen-profil')">
-  <i data-lucide="user" style="width:16px;height:16px"></i>Profil
-</div>
+        <div class="n-tab" onclick="goS('screen-home')"><div class="n-ico">🏠</div>Accueil</div>
+        <div class="n-tab" onclick="goS('screen-kit')"><div class="n-ico">📦</div>Kits</div>
+        <div class="n-tab on"><div class="n-ico">▶️</div>Séance</div>
+        <div class="n-tab" onclick="goS('screen-resa')"><div class="n-ico">📅</div>Réserver</div>
+        <div class="n-tab" onclick="goS('screen-profil')"><div class="n-ico">👤</div>Profil</div>
       </div>
     </div>
 
@@ -874,21 +810,11 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
 
       </div>
       <div class="a-nav">
-        <div class="n-tab" onclick="goS('screen-home')">
-  <i data-lucide="home" style="width:16px;height:16px"></i>Accueil
-</div>
-<div class="n-tab" onclick="goS('screen-kit')">
-  <i data-lucide="package" style="width:16px;height:16px"></i>Kits
-</div>
-<div class="n-tab" onclick="goS('screen-seance')">
-  <i data-lucide="play-circle" style="width:16px;height:16px"></i>Séance
-</div>
-<div class="n-tab on" onclick="goS('screen-resa')">
-  <i data-lucide="calendar" style="width:16px;height:16px"></i>Réserver
-</div>
-<div class="n-tab" onclick="goS('screen-profil')">
-  <i data-lucide="user" style="width:16px;height:16px"></i>Profil
-</div>
+        <div class="n-tab" onclick="goS('screen-home')"><div class="n-ico">🏠</div>Accueil</div>
+        <div class="n-tab" onclick="goS('screen-kit')"><div class="n-ico">📦</div>Kits</div>
+        <div class="n-tab" onclick="goS('screen-seance')"><div class="n-ico">▶️</div>Séance</div>
+        <div class="n-tab on"><div class="n-ico">📅</div>Réserver</div>
+        <div class="n-tab" onclick="goS('screen-profil')"><div class="n-ico">👤</div>Profil</div>
       </div>
     </div>
 
@@ -1050,21 +976,11 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         </div><!-- /tab-content -->
       </div>
       <div class="a-nav">
-        <div class="n-tab" onclick="goS('screen-home')">
-  <i data-lucide="home" style="width:16px;height:16px"></i>Accueil
-</div>
-<div class="n-tab" onclick="goS('screen-kit')">
-  <i data-lucide="package" style="width:16px;height:16px"></i>Kits
-</div>
-<div class="n-tab" onclick="goS('screen-seance')">
-  <i data-lucide="play-circle" style="width:16px;height:16px"></i>Séance
-</div>
-<div class="n-tab" onclick="goS('screen-resa')">
-  <i data-lucide="calendar" style="width:16px;height:16px"></i>Réserver
-</div>
-<div class="n-tab on" onclick="goS('screen-profil')">
-  <i data-lucide="user" style="width:16px;height:16px"></i>Profil
-</div>
+        <div class="n-tab" onclick="goS('screen-home')"><div class="n-ico">🏠</div>Accueil</div>
+        <div class="n-tab" onclick="goS('screen-kit')"><div class="n-ico">📦</div>Kits</div>
+        <div class="n-tab" onclick="goS('screen-seance')"><div class="n-ico">▶️</div>Séance</div>
+        <div class="n-tab on"><div class="n-ico">📅</div>Réserver</div>
+        <div class="n-tab" onclick="goS('screen-profil')"><div class="n-ico">👤</div>Profil</div>
       </div>
     </div>
 
@@ -1420,21 +1336,11 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         </div><!-- /scrollable -->
       </div>
       <div class="a-nav">
- <div class="n-tab" onclick="goS('screen-home')">
-  <i data-lucide="home" style="width:16px;height:16px"></i>Accueil
-</div>
-<div class="n-tab" onclick="goS('screen-kit')">
-  <i data-lucide="package" style="width:16px;height:16px"></i>Kits
-</div>
-<div class="n-tab" onclick="goS('screen-seance')">
-  <i data-lucide="play-circle" style="width:16px;height:16px"></i>Séance
-</div>
-<div class="n-tab" onclick="goS('screen-resa')">
-  <i data-lucide="calendar" style="width:16px;height:16px"></i>Réserver
-</div>
-<div class="n-tab on" onclick="goS('screen-profil')">
-  <i data-lucide="user" style="width:16px;height:16px"></i>Profil
-</div>
+        <div class="n-tab" onclick="goS('screen-home')"><i data-lucide="home" style="width:16px;height:16px"></i>Accueil</div>
+        <div class="n-tab" onclick="goS('screen-kit')"><i data-lucide="package" style="width:16px;height:16px"></i>Kits</div>
+        <div class="n-tab" onclick="goS('screen-seance')"><i data-lucide="play-circle" style="width:16px;height:16px"></i>Séance</div>
+        <div class="n-tab" onclick="goS('screen-resa')"><i data-lucide="calendar" style="width:16px;height:16px"></i>Réserver</div>
+        <div class="n-tab on" onclick="goS('screen-profil')"><i data-lucide="user" style="width:16px;height:16px"></i>Profil</div>
       </div>
     </div>
 
@@ -1485,14 +1391,13 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
       <div style="height:3px;background:#f0f0f0;flex-shrink:0">
         <div id="modal-prog-fill" style="height:3px;background:var(--or);transition:width .4s;width:16%"></div>
       </div>
-     <div style="height:160px;position:relative;flex-shrink:0;overflow:hidden;background:#111">
-  <img id="modal-ex-img" src="" alt="exercice"
-    style="width:100%;height:100%;object-fit:cover;object-position:center">
-  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.5))"></div>
-  <div style="position:absolute;bottom:8px;right:10px;background:var(--or);color:var(--wh);font-size:7px;font-family:Nunito,sans-serif;font-weight:700;padding:2px 8px;border-radius:4px">EN DIRECT</div>
-  <div style="position:absolute;bottom:8px;left:10px;color:rgba(255,255,255,.8);font-size:7.5px" id="modal-ex-duration">45 sec</div>
-  <div id="play-btn" onclick="toggleTimer()" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,77,0,.9);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer">▶</div>
-</div>
+      <div style="height:160px;position:relative;flex-shrink:0;overflow:hidden;background:#111">
+        <img id="modal-ex-img" src="" alt="exercice" style="width:100%;height:100%;object-fit:cover;object-position:center">
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.5))"></div>
+        <div style="position:absolute;bottom:8px;right:10px;background:var(--or);color:var(--wh);font-size:7px;font-family:Nunito,sans-serif;font-weight:700;padding:2px 8px;border-radius:4px">EN DIRECT</div>
+        <div style="position:absolute;bottom:8px;left:10px;color:rgba(255,255,255,.8);font-size:7.5px" id="modal-ex-duration">45 sec</div>
+        <div id="play-btn" onclick="toggleTimer()" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,77,0,.9);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer">▶</div>
+      </div>
       <div style="padding:10px 12px;background:var(--wh);flex-shrink:0">
         <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:13px;color:var(--ch);margin-bottom:2px" id="modal-ex-name">Pompes larges</div>
         <div style="font-size:8.5px;color:#aaa" id="modal-ex-detail">3 séries · 12 reps · 45 sec repos</div>
@@ -1757,22 +1662,22 @@ function closeSuccess(){document.getElementById('qr-success').style.display='non
 
 // ── SÉANCE ──────────────────────────────────
 const EXERCICES=[
-  {name:'Pompes larges',       img:'images/exercices/pompes.jpg',   ico:'hand',      detail:'3 séries · 12 reps · 45 sec repos',duration:45,
+  {name:'Pompes larges',ico:'💪',detail:'3 séries · 12 reps · 45 sec repos',duration:45,
    tip:'Garde le dos bien droit, descends lentement sur 3 temps. Souffle en poussant !',
    tips:['Mains écartées à la largeur des épaules','Coudes à 45° du corps','Expire en montant, inspire en descendant']},
-  {name:'Squat avec haltères', img:'images/exercices/squat.jpg',    ico:'dumbbell',  detail:'3 séries · 15 reps · 45 sec repos',duration:45,
+  {name:'Squat avec haltères',ico:'🏋️',detail:'3 séries · 15 reps · 45 sec repos',duration:45,
    tip:"Genoux dans l'axe des pieds, descends jusqu'à 90°. Garde le dos droit !",
    tips:['Pieds écartés largeur épaules','Regard droit devant','Talons bien ancrés au sol']},
-  {name:'Gainage frontal',     img:'images/exercices/gainage.jpg',  ico:'shield',    detail:'3 séries · 45 sec · 30 sec repos',duration:45,
+  {name:'Gainage frontal',ico:'🧱',detail:'3 séries · 45 sec · 30 sec repos',duration:45,
    tip:'Corps droit de la tête aux talons. Contracte les abdos et les fessiers !',
    tips:['Coudes sous les épaules','Ne laisse pas les hanches tomber','Respire régulièrement']},
-  {name:'Rowing haltères',     img:'images/exercices/rowing.jpg',   ico:'dumbbell',  detail:'3 séries · 12 reps · 45 sec repos',duration:45,
+  {name:'Rowing haltères',ico:'🚣',detail:'3 séries · 12 reps · 45 sec repos',duration:45,
    tip:"Tire le coude vers l'arrière en serrant l'omoplate. Mouvement contrôlé !",
    tips:['Dos parallèle au sol','Haltère près du corps','Pause en haut de la traction']},
-  {name:'Fentes alternées',    img:'images/exercices/fentes.jpg',   ico:'footprints',detail:'3 séries · 10 reps · 45 sec repos',duration:45,
+  {name:'Fentes alternées',ico:'🦵',detail:'3 séries · 10 reps · 45 sec repos',duration:45,
    tip:'Grand pas en avant, genou à 90°. Le genou arrière frôle le sol !',
    tips:['Tronc bien vertical','Genou avant ne dépasse pas le pied','Pousse sur le talon avant']},
-  {name:'Burpees',             img:'images/exercices/burpees.jpg',  ico:'zap',       detail:'3 séries · 8 reps · 60 sec repos',duration:60,
+  {name:'Burpees',ico:'🔥',detail:'3 séries · 8 reps · 60 sec repos',duration:60,
    tip:'Enchaîne fluidement : pompe → saut. Rythme régulier, qualité avant vitesse !',
    tips:['Garde le gainage sur la pompe','Saute les pieds vers les mains ensemble','Bras levés en haut du saut']},
 ]
@@ -1785,9 +1690,8 @@ function renderExCard(){
   card.innerHTML=`
     <div style="background:var(--or);border-radius:13px;padding:12px 13px;margin-bottom:8px;cursor:pointer" onclick="openExModal(${curEx})">
       <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">
-<div style="width:38px;height:38px;border-radius:9px;overflow:hidden;flex-shrink:0;background:rgba(255,255,255,.2)"><img src="${ex.img}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.innerHTML='💪'"></div>
-<div style="flex:1">
-<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:11px;color:var(--wh)">${ex.name}</div><div style="font-size:8px;color:rgba(255,255,255,.65);margin-top:1px">${ex.detail}</div></div>
+        <div style="width:38px;height:38px;border-radius:9px;overflow:hidden;flex-shrink:0;background:rgba(255,255,255,.2)"><img src="${ex.img}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.innerHTML='💪'"></div>
+        <div style="flex:1"><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:11px;color:var(--wh)">${ex.name}</div><div style="font-size:8px;color:rgba(255,255,255,.65);margin-top:1px">${ex.detail}</div></div>
         <div style="font-size:18px">▶️</div>
       </div>
       <div style="height:3px;background:rgba(255,255,255,.2);border-radius:3px">
@@ -1808,7 +1712,7 @@ function renderExList(){
     const d=document.createElement('div')
     d.style.cssText=`background:var(--wh);border-radius:10px;padding:9px 11px;margin-bottom:5px;border:1.5px solid ${cur?'var(--or)':done?'var(--gr)':'#eee'};display:flex;align-items:center;gap:8px;cursor:pointer;opacity:${done?'.6':'1'}`
     d.onclick=()=>openExModal(i)
-      d.innerHTML=`<div style="width:28px;height:28px;border-radius:7px;overflow:hidden;flex-shrink:0;background:${done?'var(--gr-l)':cur?'var(--or-l)':'#f5f5f5'};display:flex;align-items:center;justify-content:center">${done?'<span style="font-size:13px">✅</span>':`<img src="${ex.img}" style="width:100%;height:100%;object-fit:cover">`}</div>
+    d.innerHTML=`<div style="width:28px;height:28px;border-radius:7px;background:${done?'var(--gr-l)':cur?'var(--or-l)':'#f5f5f5'};display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">${done?'<span style="font-size:13px">✅</span>':`<img src="${ex.img}" style="width:100%;height:100%;object-fit:cover">`}</div>
       <div style="flex:1"><div style="font-family:Nunito,sans-serif;font-weight:700;font-size:10px;color:var(--ch)">${ex.name}</div><div style="font-size:7.5px;color:#aaa;margin-top:1px">${ex.detail}</div></div>
       <span style="font-size:7.5px;font-weight:700;padding:2px 7px;border-radius:20px;${done?'background:var(--gr-l);color:var(--gr-d)':cur?'background:var(--or-l);color:var(--or-d)':'background:#f0f0f0;color:#aaa'}">${done?'Fait':cur?'En cours':'À faire'}</span>`
     c.appendChild(d)
@@ -1956,7 +1860,6 @@ function goBack(){
   else window.location.href='index.html'
 }
 // initSeance est appelé automatiquement dans goS() quand on arrive sur screen-seance
-  // Init Lucide icons
 lucide.createIcons()
 </script>
 </body>
