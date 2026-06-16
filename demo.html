@@ -492,7 +492,7 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         <div class="n-tab on" onclick="goS('screen-home')">
   <i data-lucide="home" style="width:16px;height:16px"></i>Accueil
 </div>
-<div class="n-tab on" onclick="goS('screen-kit')">
+<div class="n-tab" onclick="goS('screen-kit')">
   <i data-lucide="package" style="width:16px;height:16px"></i>Kits
 </div>
 <div class="n-tab" onclick="goS('screen-seance')">
@@ -579,22 +579,24 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         </div>
 
       </div>
-      <div class="n-tab" onclick="goS('screen-home')">
-  <i data-lucide="home" style="width:16px;height:16px"></i>Accueil
 </div>
-<div class="n-tab on" onclick="goS('screen-kit')">
-  <i data-lucide="package" style="width:16px;height:16px"></i>Kits
-</div>
-<div class="n-tab" onclick="goS('screen-seance')">
-  <i data-lucide="play-circle" style="width:16px;height:16px"></i>Séance
-</div>
-<div class="n-tab" onclick="goS('screen-resa')">
-  <i data-lucide="calendar" style="width:16px;height:16px"></i>Réserver
-</div>
-<div class="n-tab" onclick="goS('screen-profil')">
-  <i data-lucide="user" style="width:16px;height:16px"></i>Profil
-</div>
-    </div>
+      <div class="a-nav">
+        <div class="n-tab" onclick="goS('screen-home')">
+          <i data-lucide="home" style="width:16px;height:16px"></i>Accueil
+        </div>
+        <div class="n-tab on" onclick="goS('screen-kit')">
+          <i data-lucide="package" style="width:16px;height:16px"></i>Kits
+        </div>
+        <div class="n-tab" onclick="goS('screen-seance')">
+          <i data-lucide="play-circle" style="width:16px;height:16px"></i>Séance
+        </div>
+        <div class="n-tab" onclick="goS('screen-resa')">
+          <i data-lucide="calendar" style="width:16px;height:16px"></i>Réserver
+        </div>
+        <div class="n-tab" onclick="goS('screen-profil')">
+          <i data-lucide="user" style="width:16px;height:16px"></i>Profil
+        </div>
+      </div>
 
     <!-- ══ MODAL RENOUVELER ══ -->
     <div id="modal-renouveler" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.82);z-index:55;flex-direction:column;align-items:center;justify-content:center;border-radius:32px">
