@@ -8,6 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <style>
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-6px)}
+  40%{transform:translateX(6px)}
+  60%{transform:translateX(-4px)}
+  80%{transform:translateX(4px)}
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --or:#FF4D00;--or-d:#CC3D00;--or-l:#FFF3EE;--or-m:#FF7A3D;
@@ -113,21 +120,40 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
 /* ── REVEAL ── */
 #screen-reveal{background:var(--ch)}
 .reveal-overlay{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;position:relative;overflow:hidden;background:var(--ch)}
-.reveal-glow{position:absolute;width:200px;height:200px;border-radius:50%;background:var(--or);opacity:.12;filter:blur(40px);animation:glow-pulse 2s ease-in-out infinite;top:50%;left:50%;transform:translate(-50%,-50%)}
-@keyframes glow-pulse{0%,100%{opacity:.12;transform:translate(-50%,-50%) scale(1)}50%{opacity:.22;transform:translate(-50%,-50%) scale(1.2)}}
-.reveal-ring{width:120px;height:120px;border-radius:50%;border:3px solid rgba(255,77,0,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;position:relative;animation:ring-spin 8s linear infinite}
+
+/* Fond animé */
+.reveal-glow{position:absolute;width:260px;height:260px;border-radius:50%;background:var(--or);opacity:.18;filter:blur(50px);animation:glow-pulse 1.8s ease-in-out infinite;top:50%;left:50%;transform:translate(-50%,-50%)}
+.reveal-glow2{position:absolute;width:160px;height:160px;border-radius:50%;background:#FFC800;opacity:.1;filter:blur(30px);animation:glow-pulse 2.4s ease-in-out infinite reverse;top:40%;left:40%;transform:translate(-50%,-50%)}
+@keyframes glow-pulse{0%,100%{opacity:.12;transform:translate(-50%,-50%) scale(1)}50%{opacity:.28;transform:translate(-50%,-50%) scale(1.25)}}
+
+/* Anneau */
+.reveal-ring{width:130px;height:130px;border-radius:50%;border:3px solid rgba(255,77,0,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;position:relative}
+.reveal-ring::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(255,77,0,.2);animation:ring-spin 6s linear infinite}
+.reveal-ring::after{content:'';position:absolute;inset:-16px;border-radius:50%;border:1px solid rgba(255,77,0,.1);animation:ring-spin 10s linear infinite reverse}
 @keyframes ring-spin{to{transform:rotate(360deg)}}
-.reveal-ring::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(255,77,0,.15);animation:ring-spin 12s linear infinite reverse}
-.reveal-coach-img{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--or);position:relative;z-index:1}
-.reveal-coach-placeholder{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,var(--or),var(--or-d));display:flex;align-items:center;justify-content:center;font-size:40px;position:relative;z-index:1}
-.reveal-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;color:var(--wh);margin-bottom:6px;position:relative;z-index:1}
-.reveal-tag{display:inline-block;padding:4px 14px;border-radius:var(--r-pill);font-family:'Nunito',sans-serif;font-weight:700;font-size:10px;margin-bottom:12px;position:relative;z-index:1}
+
+/* Photo coach */
+.reveal-coach-img{width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid var(--or);position:relative;z-index:1;box-shadow:0 0 30px rgba(255,77,0,.5);animation:coach-pop .6s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes coach-pop{from{transform:scale(0) rotate(-10deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.reveal-coach-placeholder{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--or),var(--or-d));display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;z-index:1}
+
+/* Textes */
+.reveal-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--wh);margin-bottom:6px;position:relative;z-index:1;text-shadow:0 2px 20px rgba(255,77,0,.4)}
+.reveal-tag{display:inline-block;padding:5px 16px;border-radius:var(--r-pill);font-family:'Nunito',sans-serif;font-weight:700;font-size:10px;margin-bottom:12px;position:relative;z-index:1}
 .reveal-desc{font-size:9.5px;color:rgba(255,255,255,.55);line-height:1.6;max-width:220px;position:relative;z-index:1;margin-bottom:16px}
-.reveal-match{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border-radius:20px;padding:6px 14px;position:relative;z-index:1;margin-bottom:16px}
-.reveal-match-val{font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;color:var(--or)}
+
+/* Compatibilité */
+.reveal-match{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border-radius:20px;padding:8px 18px;position:relative;z-index:1;margin-bottom:18px;border:1px solid rgba(255,77,0,.3)}
+.reveal-match-val{font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--or);text-shadow:0 0 20px rgba(255,77,0,.6)}
 .reveal-match-lbl{font-size:8.5px;color:rgba(255,255,255,.5);line-height:1.3}
-.reveal-hidden{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+
+/* Entrées */
+.reveal-hidden{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
 .reveal-hidden.show{opacity:1;transform:none}
+
+/* Confettis simulés */
+.confetti{position:absolute;width:6px;height:6px;border-radius:2px;opacity:0;animation:confetti-fall 1.2s ease forwards}
+@keyframes confetti-fall{0%{opacity:1;transform:translateY(-20px) rotate(0deg)}100%{opacity:0;transform:translateY(80px) rotate(360deg)}}
 
 /* ── HOME ── */
 .streak-card{background:var(--or);border-radius:12px;padding:12px 14px;margin-bottom:8px;color:var(--wh);display:flex;align-items:center;gap:12px}
@@ -178,7 +204,7 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--ch);margin:6px 0 4px">Étape 1 · Quel est ton objectif principal ?</div>
       </div>
       <div class="a-body">
-        <div class="scard on" id="ob1-1" onclick="selOb1(1)"><span class="s-ico">🔥</span><div><div class="s-lbl">Perdre du poids</div><div class="s-sub">Cardio + renforcement</div></div><div class="s-dot"></div></div>
+        <div class="scard" id="ob1-1" onclick="selOb1(1)"><span class="s-ico">🔥</span><div><div class="s-lbl">Perdre du poids</div><div class="s-sub">Cardio + renforcement</div></div><div class="s-dot"></div></div>
         <div class="scard" id="ob1-2" onclick="selOb1(2)"><span class="s-ico">💪</span><div><div class="s-lbl">Prendre du muscle</div><div class="s-sub">Force & volume</div></div><div class="s-dot"></div></div>
         <div class="scard" id="ob1-3" onclick="selOb1(3)"><span class="s-ico">🏃</span><div><div class="s-lbl">Gagner en endurance</div><div class="s-sub">Running & cardio</div></div><div class="s-dot"></div></div>
         <div class="scard" id="ob1-4" onclick="selOb1(4)"><span class="s-ico">❤️</span><div><div class="s-lbl">Me remettre en forme</div><div class="s-sub">Retrouver une routine</div></div><div class="s-dot"></div></div>
@@ -186,7 +212,7 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         <div class="scard" id="ob1-6" onclick="selOb1(6)"><span class="s-ico">🏅</span><div><div class="s-lbl">Préparer un événement</div><div class="s-sub">Course, compétition...</div></div><div class="s-dot"></div></div>
         <div class="scard" id="ob1-7" onclick="selOb1(7)"><span class="s-ico">🩹</span><div><div class="s-lbl">Réduire mes douleurs</div><div class="s-sub">Rééducation & mobilité</div></div><div class="s-dot"></div></div>
         <div class="scard" id="ob1-8" onclick="selOb1(8)"><span class="s-ico">✅</span><div><div class="s-lbl">Maintenir ma condition</div><div class="s-sub">Rester actif régulièrement</div></div><div class="s-dot"></div></div>
-        <button class="abtn" onclick="goS('s-ob2')">Continuer →</button>
+        <button class="abtn" onclick="continuerOb1()">Continuer →</button>
       </div>
     </div>
 
@@ -209,7 +235,7 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
             <button class="scale-btn" onclick="selScale('imp',1)">1</button><button class="scale-btn" onclick="selScale('imp',2)">2</button>
             <button class="scale-btn" onclick="selScale('imp',3)">3</button><button class="scale-btn" onclick="selScale('imp',4)">4</button>
             <button class="scale-btn" onclick="selScale('imp',5)">5</button><button class="scale-btn" onclick="selScale('imp',6)">6</button>
-            <button class="scale-btn" onclick="selScale('imp',7)">7</button><button class="scale-btn on" onclick="selScale('imp',8)">8</button>
+            <button class="scale-btn" onclick="selScale('imp',7)">7</button><button class="scale-btn" onclick="selScale('imp',8)">8</button>
             <button class="scale-btn" onclick="selScale('imp',9)">9</button><button class="scale-btn" onclick="selScale('imp',10)">10</button>
           </div>
         </div>
@@ -233,17 +259,17 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
       <div class="a-body">
         <div class="atit">Quel est ton niveau ?</div>
         <div class="scard" id="niv-1" onclick="selNiv(1)"><span class="s-ico">🌱</span><div><div class="s-lbl">Débutant</div><div class="s-sub">Je commence ou reprends</div></div><div class="s-dot"></div></div>
-        <div class="scard on" id="niv-2" onclick="selNiv(2)"><span class="s-ico">⚡</span><div><div class="s-lbl">Intermédiaire</div><div class="s-sub">Je m'entraîne régulièrement</div></div><div class="s-dot"></div></div>
+        <div class="scard" id="niv-2" onclick="selNiv(2)"><span class="s-ico">⚡</span><div><div class="s-lbl">Intermédiaire</div><div class="s-sub">Je m'entraîne régulièrement</div></div><div class="s-dot"></div></div>
         <div class="scard" id="niv-3" onclick="selNiv(3)"><span class="s-ico">🔥</span><div><div class="s-lbl">Avancé</div><div class="s-sub">Je performe sérieusement</div></div><div class="s-dot"></div></div>
         <div class="atit" style="margin-top:10px">Depuis combien de temps pratiques-tu ?</div>
         <div class="scard" id="exp-1" onclick="selExp(1)"><span class="s-ico">🆕</span><div><div class="s-lbl">Je débute</div></div><div class="s-dot"></div></div>
         <div class="scard" id="exp-2" onclick="selExp(2)"><span class="s-ico">📅</span><div><div class="s-lbl">Moins de 6 mois</div></div><div class="s-dot"></div></div>
-        <div class="scard on" id="exp-3" onclick="selExp(3)"><span class="s-ico">📆</span><div><div class="s-lbl">6 mois à 2 ans</div></div><div class="s-dot"></div></div>
+        <div class="scard" id="exp-3" onclick="selExp(3)"><span class="s-ico">📆</span><div><div class="s-lbl">6 mois à 2 ans</div></div><div class="s-dot"></div></div>
         <div class="scard" id="exp-4" onclick="selExp(4)"><span class="s-ico">🏆</span><div><div class="s-lbl">Plus de 2 ans</div></div><div class="s-dot"></div></div>
         <div class="atit" style="margin-top:10px">Séances par semaine actuellement ?</div>
         <div style="display:flex;gap:6px;margin-bottom:8px">
           <button class="scale-btn" style="height:32px" onclick="selSes(0)">0</button>
-          <button class="scale-btn on" style="height:32px" onclick="selSes(1)">1–2</button>
+          <button class="scale-btn" style="height:32px" onclick="selSes(1)">1–2</button>
           <button class="scale-btn" style="height:32px" onclick="selSes(2)">3–4</button>
           <button class="scale-btn" style="height:32px" onclick="selSes(3)">5+</button>
         </div>
@@ -267,13 +293,13 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
       <div class="a-body">
         <div class="atit">Sexe</div>
         <div style="display:flex;gap:7px;margin-bottom:10px">
-          <div class="scard on" id="sex-h" onclick="selSex('h')" style="flex:1;padding:9px;flex-direction:column;text-align:center;gap:4px"><span class="s-ico" style="margin:0 auto">👨</span><div class="s-lbl">Homme</div><div class="s-dot" style="margin:4px auto 0"></div></div>
+          <div class="scard" id="sex-h" onclick="selSex('h')" style="flex:1;padding:9px;flex-direction:column;text-align:center;gap:4px"><span class="s-ico" style="margin:0 auto">👨</span><div class="s-lbl">Homme</div><div class="s-dot" style="margin:4px auto 0"></div></div>
           <div class="scard" id="sex-f" onclick="selSex('f')" style="flex:1;padding:9px;flex-direction:column;text-align:center;gap:4px"><span class="s-ico" style="margin:0 auto">👩</span><div class="s-lbl">Femme</div><div class="s-dot" style="margin:4px auto 0"></div></div>
           <div class="scard" id="sex-n" onclick="selSex('n')" style="flex:1;padding:9px;flex-direction:column;text-align:center;gap:4px"><span class="s-ico" style="margin:0 auto">🙅</span><div class="s-lbl" style="font-size:9px">N/A</div><div class="s-dot" style="margin:4px auto 0"></div></div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px">
-          <div><div class="atit">Âge</div><input class="num-input" type="number" placeholder="28" value="28" id="inp-age"></div>
-          <div><div class="atit">Taille (cm)</div><input class="num-input" type="number" placeholder="178" value="178" id="inp-taille"></div>
+          <div><div class="atit">Âge</div><input class="num-input" type="number" placeholder="28" id="inp-age"></div>
+          <div><div class="atit">Taille (cm)</div><input class="num-input" type="number" placeholder="178" id="inp-taille"></div>
         </div>
         <div class="atit">Poids (kg)</div>
         <input class="num-input" type="number" placeholder="80" value="80" id="inp-poids" style="margin-bottom:10px">
@@ -305,7 +331,7 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         <div class="atit">As-tu une blessure ou douleur en ce moment ?</div>
         <div style="display:flex;gap:7px;margin-bottom:8px">
           <div class="scard" id="bles-oui" onclick="selBles(true)" style="flex:1"><div class="s-lbl">Oui</div><div class="s-dot"></div></div>
-          <div class="scard on" id="bles-non" onclick="selBles(false)" style="flex:1"><div class="s-lbl">Non</div><div class="s-dot"></div></div>
+          <div class="scard" id="bles-non" onclick="selBles(false)" style="flex:1"><div class="s-lbl">Non</div><div class="s-dot"></div></div>
         </div>
         <div id="bles-zones" style="display:none;margin-bottom:8px">
           <div class="atit">Zone(s) concernée(s) :</div>
@@ -319,7 +345,7 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         </div>
         <div class="atit">Antécédents médicaux sportifs</div>
         <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px">
-          <div class="mcard on" id="ant-0" onclick="togMC('ant-0')" style="padding:6px 10px"><div class="s-lbl">Aucun</div><div class="m-check">✓</div></div>
+          <div class="mcard" id="ant-0" onclick="togMC('ant-0')" style="padding:6px 10px"><div class="s-lbl">Aucun</div><div class="m-check">✓</div></div>
           <div class="mcard" id="ant-card" onclick="togMC('ant-card')" style="padding:6px 10px"><div class="s-lbl">Cardiaque</div><div class="m-check">✓</div></div>
           <div class="mcard" id="ant-resp" onclick="togMC('ant-resp')" style="padding:6px 10px"><div class="s-lbl">Respiratoire</div><div class="m-check">✓</div></div>
           <div class="mcard" id="ant-art" onclick="togMC('ant-art')" style="padding:6px 10px"><div class="s-lbl">Articulaire</div><div class="m-check">✓</div></div>
@@ -327,7 +353,7 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         <div class="atit">Ton médecin a-t-il déconseillé des exercices ?</div>
         <div style="display:flex;gap:7px;margin-bottom:10px">
           <div class="scard" id="med-oui" onclick="selMed(true)" style="flex:1"><div class="s-lbl">Oui</div><div class="s-dot"></div></div>
-          <div class="scard on" id="med-non" onclick="selMed(false)" style="flex:1"><div class="s-lbl">Non</div><div class="s-dot"></div></div>
+          <div class="scard" id="med-non" onclick="selMed(false)" style="flex:1"><div class="s-lbl">Non</div><div class="s-dot"></div></div>
         </div>
         <button class="abtn" onclick="goS('s-ob6')">Continuer →</button>
         <button class="abtn-g" onclick="goS('s-ob4')">← Retour</button>
@@ -349,18 +375,18 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         <div class="atit">Tes points forts (choix multiple)</div>
         <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px">
           <div class="mcard" id="pf-force" onclick="togMC('pf-force')" style="padding:6px 10px"><div class="s-lbl">💪 Force</div><div class="m-check">✓</div></div>
-          <div class="mcard on" id="pf-end" onclick="togMC('pf-end')" style="padding:6px 10px"><div class="s-lbl">🏃 Endurance</div><div class="m-check">✓</div></div>
+          <div class="mcard" id="pf-end" onclick="togMC('pf-end')" style="padding:6px 10px"><div class="s-lbl">🏃 Endurance</div><div class="m-check">✓</div></div>
           <div class="mcard" id="pf-sou" onclick="togMC('pf-sou')" style="padding:6px 10px"><div class="s-lbl">🧘 Souplesse</div><div class="m-check">✓</div></div>
-          <div class="mcard on" id="pf-mot" onclick="togMC('pf-mot')" style="padding:6px 10px"><div class="s-lbl">🔥 Motivation</div><div class="m-check">✓</div></div>
+          <div class="mcard" id="pf-mot" onclick="togMC('pf-mot')" style="padding:6px 10px"><div class="s-lbl">🔥 Motivation</div><div class="m-check">✓</div></div>
           <div class="mcard" id="pf-reg" onclick="togMC('pf-reg')" style="padding:6px 10px"><div class="s-lbl">📅 Régularité</div><div class="m-check">✓</div></div>
           <div class="mcard" id="pf-coo" onclick="togMC('pf-coo')" style="padding:6px 10px"><div class="s-lbl">🎯 Coordination</div><div class="m-check">✓</div></div>
         </div>
         <div class="atit">Tes axes de progression</div>
         <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px">
-          <div class="mcard on" id="ax-cardio" onclick="togMC('ax-cardio')" style="padding:6px 10px"><div class="s-lbl">🫀 Cardio</div><div class="m-check">✓</div></div>
-          <div class="mcard on" id="ax-force" onclick="togMC('ax-force')" style="padding:6px 10px"><div class="s-lbl">💪 Force</div><div class="m-check">✓</div></div>
+          <div class="mcard" id="ax-cardio" onclick="togMC('ax-cardio')" style="padding:6px 10px"><div class="s-lbl">🫀 Cardio</div><div class="m-check">✓</div></div>
+          <div class="mcard" id="ax-force" onclick="togMC('ax-force')" style="padding:6px 10px"><div class="s-lbl">💪 Force</div><div class="m-check">✓</div></div>
           <div class="mcard" id="ax-sou" onclick="togMC('ax-sou')" style="padding:6px 10px"><div class="s-lbl">🧘 Souplesse</div><div class="m-check">✓</div></div>
-          <div class="mcard on" id="ax-poids" onclick="togMC('ax-poids')" style="padding:6px 10px"><div class="s-lbl">⚖️ Poids</div><div class="m-check">✓</div></div>
+          <div class="mcard" id="ax-poids" onclick="togMC('ax-poids')" style="padding:6px 10px"><div class="s-lbl">⚖️ Poids</div><div class="m-check">✓</div></div>
           <div class="mcard" id="ax-disc" onclick="togMC('ax-disc')" style="padding:6px 10px"><div class="s-lbl">📋 Discipline</div><div class="m-check">✓</div></div>
           <div class="mcard" id="ax-stress" onclick="togMC('ax-stress')" style="padding:6px 10px"><div class="s-lbl">🧠 Stress</div><div class="m-check">✓</div></div>
         </div>
@@ -1566,7 +1592,22 @@ const OB1_DATA={
   7:{label:'Réduire mes douleurs 🩹',coach:'lea',options:['Moins de tensions','Meilleure mobilité','Protocole doux']},
   8:{label:'Maintenir ma condition ✅',coach:'max',options:['Rester régulier','Garder le niveau','Diversifier les séances']},
 }
-let curOb1=1
+let curOb1=0
+function continuerOb1(){
+  if(curOb1===0){
+    const btn=document.querySelector('#s-ob1 .abtn')
+    btn.style.animation='shake .4s ease'
+    btn.textContent='⚠️ Choisis un objectif d\'abord'
+    btn.style.background='#aaa'
+    setTimeout(()=>{
+      btn.style.animation=''
+      btn.textContent='Continuer →'
+      btn.style.background=''
+    },2000)
+    return
+  }
+  goS('s-ob2')
+}
 function selOb1(n){
   curOb1=n
   for(let i=1;i<=8;i++) document.getElementById('ob1-'+i).classList.toggle('on',i===n)
@@ -1670,6 +1711,18 @@ function launchReveal(){
   }, ()=>{ av.textContent=coach.emoji })
   // Appliquer sur tous les écrans
   applyCoachEverywhere(coach)
+  // Confettis
+setTimeout(()=>{
+  const colors=['#FF4D00','#FFC800','#58CC02','#1CB0F6','#CE82FF']
+  const overlay=document.querySelector('.reveal-overlay')
+  for(let i=0;i<12;i++){
+    const c=document.createElement('div')
+    c.className='confetti'
+    c.style.cssText=`left:${10+Math.random()*80}%;top:${20+Math.random()*40}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*.6}s;animation-duration:${.8+Math.random()*.6}s`
+    overlay.appendChild(c)
+    setTimeout(()=>c.remove(),2000)
+  }
+},3200)
   const seq=[[400,'rv-title'],[1200,'rv-ring'],[1800,'rv-label'],[2100,'rv-name'],[2400,'rv-tag'],[2800,'rv-desc'],[3200,'rv-match'],[3700,'rv-btn']]
   setTimeout(()=>{document.getElementById('rv-title').textContent='Ton coach idéal trouvé ✓'},1000)
   seq.forEach(([d,id])=>setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('show')},d))
