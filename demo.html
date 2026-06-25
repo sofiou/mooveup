@@ -448,7 +448,7 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
             <div style="font-size:8px;opacity:.65" id="home-coach-sub">Ton programme est prêt. On y va ?</div>
           </div>
         </div>
-        <div class="kit-countdown">
+        <div class="kit-countdown" onclick="goS('screen-kit')" style="cursor:pointer">
           <div class="kit-icon-box">📦</div>
           <div class="kit-right">
             <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--wh);margin-bottom:2px">Kit Full Body · En location</div>
@@ -461,16 +461,16 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
           </div>
         </div>
         <div class="atit">Programme du jour</div>
-        <div class="acard" style="margin-bottom:6px">
-          <div class="arow">
-            <div class="aico">🏃</div>
+       <div class="acard" style="margin-bottom:6px;cursor:pointer" onclick="goS('screen-seance')">
+  <div class="arow">
+    <div class="aico">🏃</div>
             <div style="flex:1"><div style="font-size:10px;font-weight:700;font-family:Nunito,sans-serif;color:var(--ch)">Cardio HIIT · 20 min</div><div class="asub">Intermédiaire · Bodyweight</div></div>
             <span class="pill pill-o">À faire</span>
           </div>
         </div>
-        <div class="acard" style="margin-bottom:6px">
-          <div class="arow">
-            <div class="aico">💪</div>
+        <div class="acard" style="margin-bottom:6px;cursor:pointer" onclick="goS('screen-seance')">
+  <div class="arow">
+    <div class="aico">💪</div>
             <div style="flex:1"><div style="font-size:10px;font-weight:700;font-family:Nunito,sans-serif;color:var(--ch)">Renfo Full Body · 30 min</div><div class="asub">Kit Full Body · 6 exercices</div></div>
             <span class="pill pill-o">À faire</span>
           </div>
@@ -478,7 +478,7 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
 <div class="atit">Ton activité</div>
 <div class="acard" style="margin-bottom:7px">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-    <span style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--ch)">📅 Cette semaine</span>
+    <span style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--ch);cursor:pointer" onclick="toggleHistorique()">Cette semaine <span id="histo-arrow" style="font-size:8px;color:var(--or)">▼</span></span>
     <span style="font-size:7.5px;color:var(--gr-d);font-weight:700;background:var(--gr-l);padding:2px 8px;border-radius:20px">🔥 7 jours de suite</span>
   </div>
   <div style="display:flex;justify-content:space-between;gap:4px">
@@ -510,7 +510,43 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
       <span style="font-size:7px;color:var(--or);font-weight:800">D</span>
       <div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--or);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--wh)">🔥</div>
     </div>
+   </div>
+
+  <!-- Historique entraînements -->
+  <div id="histo-panel" style="display:none;margin-top:10px;border-top:1px solid #eee;padding-top:10px">
+    <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:9.5px;color:var(--ch);margin-bottom:7px">Derniers entraînements</div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:var(--wh);border-radius:9px;border:.5px solid #eee">
+        <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Renfo Full Body</div><div style="font-size:7.5px;color:#aaa">Aujourd'hui · 30 min</div></div>
+        <div style="color:#FFC800;font-size:11px">★★★★★</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:var(--wh);border-radius:9px;border:.5px solid #eee">
+        <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Cardio HIIT</div><div style="font-size:7.5px;color:#aaa">Hier · 20 min</div></div>
+        <div style="color:#FFC800;font-size:11px">★★★★<span style="color:#ddd">★</span></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:var(--wh);border-radius:9px;border:.5px solid #eee">
+        <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Upper Body</div><div style="font-size:7.5px;color:#aaa">Mercredi · 25 min</div></div>
+        <div style="color:#FFC800;font-size:11px">★★★★★</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:var(--wh);border-radius:9px;border:.5px solid #eee">
+        <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Yoga Flow</div><div style="font-size:7.5px;color:#aaa">Mardi · 60 min</div></div>
+        <div style="color:#FFC800;font-size:11px">★★★<span style="color:#ddd">★★</span></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:var(--wh);border-radius:9px;border:.5px solid #eee">
+        <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Gainage & Core</div><div style="font-size:7.5px;color:#aaa">Lundi · 20 min</div></div>
+        <div style="color:#FFC800;font-size:11px">★★★★<span style="color:#ddd">★</span></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:var(--wh);border-radius:9px;border:.5px solid #eee">
+        <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Circuit Training</div><div style="font-size:7.5px;color:#aaa">Samedi · 35 min</div></div>
+        <div style="color:#FFC800;font-size:11px">★★★★★</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:var(--wh);border-radius:9px;border:.5px solid #eee">
+        <div><div style="font-size:9px;font-weight:700;color:var(--ch)">Pompes & Dips</div><div style="font-size:7.5px;color:#aaa">Vendredi · 25 min</div></div>
+        <div style="color:#FFC800;font-size:11px">★★★★<span style="color:#ddd">★</span></div>
+      </div>
+    </div>
   </div>
+
 </div>
         <button class="abtn" onclick="goS('screen-seance')">▶ Lancer la séance →</button>
       </div>
@@ -2003,6 +2039,13 @@ function copyCode(){
   t.textContent="✓ Code STAN2025 copié !"
   document.getElementById("pscreen").appendChild(t)
   setTimeout(()=>t.remove(),2500)
+}
+function toggleHistorique(){
+  const panel=document.getElementById('histo-panel')
+  const arrow=document.getElementById('histo-arrow')
+  const open=panel.style.display==='block'
+  panel.style.display=open?'none':'block'
+  arrow.textContent=open?'▼':'▲'
 }
 function goBack(){
   if(document.referrer&&document.referrer.includes(window.location.hostname))history.back()
