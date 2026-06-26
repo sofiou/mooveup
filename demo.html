@@ -628,34 +628,66 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
       <div class="a-top"><span class="a-top-title">Mes kits</span><span class="pill pill-g">📦 1 actif</span></div>
       <div class="a-body">
 
-        <!-- Kit en cours -->
-        <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--ch);margin-bottom:7px">Kit en cours</div>
-        <div style="background:var(--ch);border-radius:13px;padding:13px;margin-bottom:10px;color:var(--wh)">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-            <div style="width:42px;height:42px;border-radius:10px;background:rgba(255,77,0,.2);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">📦</div>
-            <div style="flex:1">
-              <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--wh)">Kit Full Body</div>
-              <div style="font-size:8px;color:rgba(255,255,255,.45);margin-top:2px">Haltères · Tapis · Bandes · Corde</div>
-            </div>
-            <div style="text-align:right">
-              <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:18px;color:var(--or)">8</div>
-              <div style="font-size:7.5px;color:rgba(255,255,255,.4)">jours restants</div>
-            </div>
-          </div>
-          <div style="display:flex;justify-content:space-between;font-size:7.5px;color:rgba(255,255,255,.35);margin-bottom:4px"><span>Début : 1 juin</span><span>Fin : 15 juin</span></div>
-          <div style="height:4px;background:rgba(255,255,255,.1);border-radius:3px;margin-bottom:10px">
-            <div style="height:4px;width:46%;background:var(--or);border-radius:3px"></div>
-          </div>
-          <!-- Contenu sans icônes -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:10px">
-            <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Haltères</div><div style="font-size:7px;color:rgba(255,255,255,.4)">2 × 4 kg</div></div>
-            <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Tapis</div><div style="font-size:7px;color:rgba(255,255,255,.4)">Anti-dérapant</div></div>
-            <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Bandes</div><div style="font-size:7px;color:rgba(255,255,255,.4)">3 résistances</div></div>
-            <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Corde</div><div style="font-size:7px;color:rgba(255,255,255,.4)">Cardio</div></div>
-          </div>
-          <button onclick="openQR()" style="width:100%;background:var(--or);color:var(--wh);border-radius:10px;padding:10px;font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px"><span style="font-size:14px">📷</span> Scanner mon kit QR</button>
-          <div style="font-size:7.5px;color:rgba(255,255,255,.3);text-align:center;margin-top:5px">Scanne pour déverrouiller ton programme</div>
-        </div>
+       <!-- Kit en cours -->
+<div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--ch);margin-bottom:7px">Kit en cours</div>
+
+<!-- VUE INACTIVE (avant scan) -->
+<div id="kit-inactive" style="background:var(--ch);border-radius:13px;padding:13px;margin-bottom:10px;color:var(--wh)">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+    <div style="width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;filter:grayscale(1);opacity:.5">📦</div>
+    <div style="flex:1">
+      <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:rgba(255,255,255,.4)">Kit Full Body</div>
+      <div style="font-size:8px;color:rgba(255,255,255,.25);margin-top:2px">En attente d'activation</div>
+    </div>
+    <span style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.35);font-size:7.5px;font-weight:700;padding:3px 9px;border-radius:20px;font-family:Nunito,sans-serif">⏸ Inactif</span>
+  </div>
+  <!-- Contenu flou / masqué -->
+  <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:12px;margin-bottom:12px;filter:blur(2px);pointer-events:none;opacity:.35">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Haltères</div><div style="font-size:7px;color:rgba(255,255,255,.4)">2 × 4 kg</div></div>
+      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Tapis</div><div style="font-size:7px;color:rgba(255,255,255,.4)">Anti-dérapant</div></div>
+      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Bandes</div><div style="font-size:7px;color:rgba(255,255,255,.4)">3 résistances</div></div>
+      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Corde</div><div style="font-size:7px;color:rgba(255,255,255,.4)">Cardio</div></div>
+    </div>
+  </div>
+  <!-- Message + bouton scan -->
+  <div style="background:rgba(255,77,0,.12);border-radius:10px;padding:11px 12px;margin-bottom:10px;border:1px solid rgba(255,77,0,.2);text-align:center">
+    <div style="font-size:20px;margin-bottom:5px">🔒</div>
+    <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:10px;color:var(--or);margin-bottom:4px">Kit non activé</div>
+    <div style="font-size:8px;color:rgba(255,255,255,.45);line-height:1.5">Scanne le QR code de ta box pour activer ton kit et déverrouiller ton programme.</div>
+  </div>
+  <button onclick="openQR()" style="width:100%;background:var(--or);color:var(--wh);border-radius:10px;padding:11px;font-family:Nunito,sans-serif;font-weight:800;font-size:10.5px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px">
+    <span style="font-size:16px">📷</span> Scanner mon kit pour l'activer
+  </button>
+</div>
+
+<!-- VUE ACTIVE (après scan) — cachée par défaut -->
+<div id="kit-active" style="display:none;background:var(--ch);border-radius:13px;padding:13px;margin-bottom:10px;color:var(--wh)">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <div style="width:42px;height:42px;border-radius:10px;background:rgba(255,77,0,.2);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">📦</div>
+    <div style="flex:1">
+      <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:11px;color:var(--wh)">Kit Full Body</div>
+      <div style="font-size:8px;color:rgba(255,255,255,.45);margin-top:2px">Haltères · Tapis · Bandes · Corde</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-family:Nunito,sans-serif;font-weight:900;font-size:18px;color:var(--or)">8</div>
+      <div style="font-size:7.5px;color:rgba(255,255,255,.4)">jours restants</div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-size:7.5px;color:rgba(255,255,255,.35);margin-bottom:4px"><span>Début : 1 juin</span><span>Fin : 15 juin</span></div>
+  <div style="height:4px;background:rgba(255,255,255,.1);border-radius:3px;margin-bottom:10px">
+    <div style="height:4px;width:46%;background:var(--or);border-radius:3px"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:10px">
+    <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Haltères</div><div style="font-size:7px;color:rgba(255,255,255,.4)">2 × 4 kg</div></div>
+    <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Tapis</div><div style="font-size:7px;color:rgba(255,255,255,.4)">Anti-dérapant</div></div>
+    <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Bandes</div><div style="font-size:7px;color:rgba(255,255,255,.4)">3 résistances</div></div>
+    <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:7px 9px"><div style="font-size:8.5px;font-weight:700;color:var(--wh)">Corde</div><div style="font-size:7px;color:rgba(255,255,255,.4)">Cardio</div></div>
+  </div>
+  <button onclick="openQR()" style="width:100%;background:rgba(255,255,255,.1);color:var(--wh);border-radius:10px;padding:10px;font-family:Nunito,sans-serif;font-weight:700;font-size:10px;border:1px solid rgba(255,255,255,.15);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px">
+    <span>📷</span> Rescanner le kit
+  </button>
+</div>
 
         <!-- Boutons Renouveler / Changer -->
         <div style="display:flex;gap:7px;margin-bottom:12px">
@@ -1895,7 +1927,13 @@ function applyCoachEverywhere(coach){
 // ── QR ──────────────────────────────────────
 function openQR(){document.getElementById('qr-modal').style.display='flex'}
 function closeQR(){document.getElementById('qr-modal').style.display='none'}
-function scanSuccess(){document.getElementById('qr-modal').style.display='none';document.getElementById('qr-success').style.display='flex'}
+function scanSuccess(){
+  document.getElementById('qr-modal').style.display='none'
+  document.getElementById('qr-success').style.display='flex'
+  // Activer le kit
+  document.getElementById('kit-inactive').style.display='none'
+  document.getElementById('kit-active').style.display='block'
+}
 function closeSuccess(){document.getElementById('qr-success').style.display='none';goS('screen-seance')}
 
 // ── SÉANCE ──────────────────────────────────
